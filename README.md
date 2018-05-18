@@ -1,8 +1,8 @@
 # **CCC Sea Level Rise Viewer**
 
 ## Currently Working On
->  **master branch:** Adding React.js boilerplate from [digiaonline react-boilerplate](https://github.com/digiaonline/react-boilerplate).
->  TODO: Install esri-leaflet via npm (npm i esri-leaflet) and add functionality to map once working.
+>  **esri-leaflet branch:** Point clustering implemented. Working on loading 'Controls.js' component into 'EsriLeafletMap.js' component (working on adding basemap control switcher).
+>  TODO: Point-polygon spatial intersection (critical facilities & SLR layer w/ roads) controlled from a menu/control panel for layers & add polygon/point intersection functionality.
 
 ## **Build Setup**
 ``` bash
@@ -23,6 +23,25 @@ yarn test
 ```
 
 ---
+## **Resources**
+
+### ReactJS Documentation
+* [ReactJS](https://reactjs.org/docs/hello-world.html)
+
+### Esri Leaflet Documentation
+* [Esri Leaflet](http://esri.github.io/esri-leaflet/api-reference/)
+
+
+### Examples
+* [Demo app using React, Leaflet, and Esri](https://github.com/leogoesger/gis-leaflet)
+* [React Leaflet Example](https://codepen.io/PaulLeCam/pen/XVPmmj)
+* [Esri-React-Mobx-Webpack](https://github.com/geomarvel/esri-react-mobx-webpack)
+* [ArcGIS API for JavaScript React](https://github.com/odoe/esrijs-react-demo)
+* [Esri Leaflet Webpack Example](https://github.com/Esri/esri-leaflet-webpack-example)
+* [Esri Espania List For Developers](https://esri-es.github.io/awesome-arcgis/)
+* [Using React with Leaflet (and Esri Leaflet)](https://github.com/jgravois/developer-support/tree/82eea958b2fa909cdc3e1e13761f222a56795b2a/web-leaflet/react)
+* [Testmap-esri-leaflet-react-react-dom-leaflet](https://github.com/forgo/testmap)
+
 
 # React Boilerplate
 
