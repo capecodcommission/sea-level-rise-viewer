@@ -1,7 +1,7 @@
 # **CCC Sea Level Rise Viewer**
 
 ## Currently Working On
->  **esri-leaflet branch:** Point clustering implemented. Working on loading 'Controls.js' component into 'EsriLeafletMap.js' component (working on adding basemap control switcher).
+>  **working branches:** Working on getting basemap switcher to display within the EsriLeafletMap component.
 >  TODO: Point-polygon spatial intersection (critical facilities & SLR layer w/ roads) controlled from a menu/control panel for layers & add polygon/point intersection functionality.
 
 ## **Build Setup**
