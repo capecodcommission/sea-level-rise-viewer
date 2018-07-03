@@ -1,0 +1,13 @@
+.map {
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: rem(36px);
+}
