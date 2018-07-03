@@ -26,8 +26,27 @@ class EsriLeafletMap extends Component {
 
   componentDidMount = () => {
     this.initiateMap()
-    RootStore.MapStore.changeMessage('Hello: Action')
-    RootStore.WorldStore.changeMessage('World: Action')
+    // RootStore.EsriMapStore.fetchTownLines()
+    // RootStore.EsriMapStore.fetchCriticalFacilities()
+    // RootStore.EsriMapStore.fetchSocialVulnerability()
+    // RootStore.EsriMapStore.fetch0ftSeaLevel()
+    // RootStore.EsriMapStore.fetch1ftSeaLevel()
+    // RootStore.EsriMapStore.fetch2ftSeaLevel()
+    // RootStore.EsriMapStore.fetch3ftSeaLevel()
+    // RootStore.EsriMapStore.fetch4ftSeaLevel()
+    // RootStore.EsriMapStore.fetch5ftSeaLevel()
+    // RootStore.EsriMapStore.fetch6ftSeaLevel()
+    // RootStore.EsriMapStore.fetchFemaFirm()
+    // RootStore.EsriMapStore.fetchSlosh()
+    // RootStore.EsriMapStore.fetchBuildings()
+    // RootStore.EsriMapStore.fetchParcels()
+    // RootStore.EsriMapStore.fetchRoads()
+    // RootStore.EsriMapStore.fetchRoads1ftSeaLevel()
+    // RootStore.EsriMapStore.fetchRoads2ftSeaLevel()
+    // RootStore.EsriMapStore.fetchRoads3ftSeaLevel()
+    // RootStore.EsriMapStore.fetchRoads4ftSeaLevel()
+    // RootStore.EsriMapStore.fetchRoads5ftSeaLevel()
+    // RootStore.EsriMapStore.fetchRoads6ftSeaLevel()
   }
 
   componentDidUpdate = () => {
@@ -48,9 +67,9 @@ class EsriLeafletMap extends Component {
         'http://gis-services.capecodcommission.org/arcgis/rest/services/Data_People/Boundary/MapServer/6',
     })
 
-    const zoom_Level = RootStore.MapStore.currentZoomLevel
+    const zoom_Level = RootStore.EsriMapStore.currentZoomLevel
 
-    RootStore.MapStore.setMap(
+    RootStore.EsriMapStore.setMap(
       L.map('map', {
         center: startView,
         zoom: zoom_Level,
@@ -58,7 +77,7 @@ class EsriLeafletMap extends Component {
       })
     )
 
-    const map = RootStore.MapStore.map
+    const map = RootStore.EsriMapStore.map
 
     var criticalFacilitiesCluster = eLCluster
       .featureLayer({
@@ -74,9 +93,9 @@ class EsriLeafletMap extends Component {
       )
     })
 
-    RootStore.MapStore.setTileLayer(esri.basemapLayer('Streets').addTo(map))
+    RootStore.EsriMapStore.setTileLayer(esri.basemapLayer('Streets').addTo(map))
 
-    const tile_Layer = RootStore.MapStore.tileLayer
+    const tile_Layer = RootStore.EsriMapStore.tileLayer
 
     this.setState({map, tile_Layer})
     window.myMap = map
@@ -85,7 +104,7 @@ class EsriLeafletMap extends Component {
   addTheBasemapMenu = () => {
     // console.log('this.state.map --> ', this.state.map)
 
-    const map = RootStore.MapStore.map
+    const map = RootStore.EsriMapStore.map
     let activeBasemap = esri.basemapLayer('Topographic').addTo(map)
     let activeBasemapLabels
 
@@ -138,8 +157,6 @@ class EsriLeafletMap extends Component {
             width: '100%',
           }}
         >
-          <div>{RootStore.MapStore.message}</div>
-          <div>{RootStore.WorldStore.message}</div>
           <form>
             {' '}
             Select Basemap:
