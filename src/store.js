@@ -1,14 +1,13 @@
 // @flow
 
 import {observable, action} from 'mobx'
-import * as esri from 'esri-leaflet'
 const axios = require('axios')
 
 class EsriMapStore {
   @observable currentZoomLevel: int = 13
   @observable currentBaseMap: string = 'Topographic'
   startView: init = [41.68, -70.3405]
-  map: null = {}
+  @observable map: null = {}
   tileLayer: null = {}
   townLines: init = ''
   criticalFacilities: init = ''
@@ -48,8 +47,8 @@ class EsriMapStore {
   }
 
   @action
-  setBaseMap = event => {
-    this.currentBaseMap = event.target.value
+  setCurrentBaseMap = baseMap => {
+    this.currentBaseMap = baseMap
   }
 
   @action

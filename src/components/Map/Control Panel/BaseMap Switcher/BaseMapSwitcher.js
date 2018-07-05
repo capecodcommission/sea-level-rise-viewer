@@ -5,6 +5,8 @@ import RootStore from '../../../../store'
 import css from './BaseMapSwitcher.css'
 import {observer} from 'mobx-react'
 import {observable, action} from 'mobx'
+import * as L from 'leaflet'
+import * as esri from 'esri-leaflet'
 
 @observer
 class BaseMapSwitcher extends Component {
@@ -12,26 +14,26 @@ class BaseMapSwitcher extends Component {
     super(props)
   }
 
-  setBasemap = basemap => {
-    //   const thisMap = RootStore.EsriMapStore.map
-    //   if (layer) {
-    //     map.removeLayer(layer);
-    //   }
-    //   layer = L.esri.basemapLayer(basemap);
-    //   map.addLayer(layer);
-    //   if (layerLabels) {
-    //     map.removeLayer(layerLabels);
-    //   }
-    //   if (basemap === 'ShadedRelief'
-    //    || basemap === 'Oceans'
-    //    || basemap === 'Gray'
-    //    || basemap === 'DarkGray'
-    //    || basemap === 'Imagery'
-    //    || basemap === 'Terrain'
-    //  ) {
-    //     layerLabels = L.esri.basemapLayer(basemap + 'Labels');
-    //     map.addLayer(layerLabels);
-    //   }
+  setBasemap = event => {
+    console.log('Old Basemap Name: ', RootStore.EsriMapStore.currentBaseMap)
+
+    const oldBaselayer = esri.basemapLayer(
+      RootStore.EsriMapStore.currentBaseMap
+    )
+
+    RootStore.EsriMapStore.setCurrentBaseMap(event.target.value)
+
+    console.log('New Basemap Name: ', RootStore.EsriMapStore.currentBaseMap)
+
+    console.log('Old Basemap Layer: ', oldBaselayer)
+
+    RootStore.EsriMapStore.map.removeLayer(oldBaselayer)
+
+    const layer = esri.basemapLayer(event.target.value)
+
+    console.log('New basemap Layer', layer)
+
+    RootStore.EsriMapStore.map.addLayer(layer)
   }
 
   render = () => {
@@ -40,7 +42,7 @@ class BaseMapSwitcher extends Component {
         <p>BaseMap Switch</p>
         <select
           className={css.basemaps}
-          onChange={RootStore.EsriMapStore.setBaseMap}
+          onChange={this.setBasemap}
           value={RootStore.EsriMapStore.currentBaseMap}
         >
           <option value="Topographic">Topographic</option>
