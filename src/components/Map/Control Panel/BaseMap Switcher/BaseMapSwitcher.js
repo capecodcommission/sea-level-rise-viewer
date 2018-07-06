@@ -1,21 +1,18 @@
-// START WITH BUNDLING OF MAP & CONTROLS
+// IMPORT DEPENDENCIES
 import React, {Component} from 'react'
-import {render} from 'react-dom'
 import RootStore from '../../../../store'
 import css from './BaseMapSwitcher.css'
 import {observer} from 'mobx-react'
-import {observable, action} from 'mobx'
-import * as L from 'leaflet'
 import * as esri from 'esri-leaflet'
 
 @observer
 class BaseMapSwitcher extends Component {
-  constructor(props) {
-    super(props)
-  }
-
+  // constructor(props) {
+  //   super(props)
+  // }
+  // 'SetBasemap' USES THE 'currentBaseMap' (Topographic) FROM THE 'RootStore' & UPDATES IT BASED ON THE USER SELECTION OF DROPDOWN VALUE
   setBasemap = event => {
-    console.log('Old Basemap Name: ', RootStore.EsriMapStore.currentBaseMap)
+    // console.log('Old Basemap Name: ', RootStore.EsriMapStore.currentBaseMap)
 
     const oldBaselayer = esri.basemapLayer(
       RootStore.EsriMapStore.currentBaseMap
@@ -23,19 +20,19 @@ class BaseMapSwitcher extends Component {
 
     RootStore.EsriMapStore.setCurrentBaseMap(event.target.value)
 
-    console.log('New Basemap Name: ', RootStore.EsriMapStore.currentBaseMap)
+    // console.log('New Basemap Name: ', RootStore.EsriMapStore.currentBaseMap)
 
-    console.log('Old Basemap Layer: ', oldBaselayer)
+    // console.log('Old Basemap Layer: ', oldBaselayer)
 
     RootStore.EsriMapStore.map.removeLayer(oldBaselayer)
 
     const layer = esri.basemapLayer(event.target.value)
 
-    console.log('New basemap Layer', layer)
+    // console.log('New basemap Layer', layer)
 
     RootStore.EsriMapStore.map.addLayer(layer)
   }
-
+  // RENDER THE BASEMAP SWITCHER USING THE 'BaseMapSwitcher.css' & SOME MARKUP
   render = () => {
     return (
       <div className={css.basemapsWrapper}>
