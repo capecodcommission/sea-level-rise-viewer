@@ -4,6 +4,7 @@ import RootStore from '../../../store'
 import * as L from 'leaflet'
 import * as esri from 'esri-leaflet'
 import * as eLCluster from 'esri-leaflet-cluster'
+import * as leafletMarkerCluster from 'leaflet.markercluster'
 import css from './EsriLeafletMap.css'
 import {observer} from 'mobx-react'
 
