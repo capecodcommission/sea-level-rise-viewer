@@ -1,8 +1,20 @@
 # **CCC Sea Level Rise Viewer**
 
-## Currently Working On
->  **working branches:** Working on getting basemap switcher to display within the EsriLeafletMap component.
->  TODO: Point-polygon spatial intersection (critical facilities & SLR layer w/ roads) controlled from a menu/control panel for layers & add polygon/point intersection functionality.
+> A visualization of bathtub sea level, showing flooding extent upon critical facilities and roads with related reference layers.
+
+## WORK PLAN
+>  **working branches:**
+>
+>  **shawn-layer-toggling:** implementing all layers toggling on icon click.
+>
+>   **TODOs:**
+>  1. Complete layer toggling
+>  2. Style button (ON/OFF) on layer adding to/removing from map
+>  3. Handle SLR / Critical Facility spatial intersect
+>     * Style Critical Facility points (intersecting/not intersecting SLR)
+>  4. Construct SLR Vertical Slider
+>     * Connect SLR Vertical Slider to Critical Facility layer + Critical Facility styling (intersecting/not intersecting SLR)
+>  5. Complete application layout UI/UX  
 
 ## **Build Setup**
 ``` bash
