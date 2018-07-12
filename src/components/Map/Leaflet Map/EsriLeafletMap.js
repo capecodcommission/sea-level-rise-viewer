@@ -3,8 +3,6 @@ import React, {Component} from 'react'
 import RootStore from '../../../store'
 import * as L from 'leaflet'
 import * as esri from 'esri-leaflet'
-import * as eLCluster from 'esri-leaflet-cluster'
-import * as leafletMarkerCluster from 'leaflet.markercluster'
 import css from './EsriLeafletMap.css'
 import {observer} from 'mobx-react'
 
@@ -23,10 +21,8 @@ class EsriLeafletMap extends Component {
   initiateMap = () => {
     // Set basemap and feature layer constants to be fed into the leaflet map object
     const esriStreets = esri.basemapLayer(RootStore.EsriMapStore.currentBaseMap)
-    const townLines = esri.featureLayer({
-      url:
-        'http://gis-services.capecodcommission.org/arcgis/rest/services/Data_People/Boundary/MapServer/6',
-    })
+
+    const townLines = RootStore.EsriMapStore.townLines
 
     // Set constant using zoom level array from store
     const zoom_Level = RootStore.EsriMapStore.currentZoomLevel
@@ -39,25 +35,6 @@ class EsriLeafletMap extends Component {
         layers: [esriStreets, townLines],
       })
     )
-
-    // Set constant using map from store for ease of typing
-    const map = RootStore.EsriMapStore.map
-
-    // Add feature layer as esri-cluster feature layer to map in store
-    var criticalFacilitiesCluster = eLCluster
-      .featureLayer({
-        url:
-          'http://gis-services.capecodcommission.org/arcgis/rest/services/Data_People/Infrastructure/MapServer/12',
-      })
-      .addTo(map)
-
-    // Bind pop-up template to each point https://leafletjs.com/reference-1.3.0.html#util-template
-    criticalFacilitiesCluster.bindPopup(function(layer) {
-      return L.Util.template(
-        '<strong>{NAME}</strong> <p> {DESCRIPT} | {FULLADDR}</p>',
-        layer.feature.properties
-      )
-    })
   }
 
   // Render html contents as component https://reactjs.org/docs/react-component.html

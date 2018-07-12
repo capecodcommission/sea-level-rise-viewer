@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import {observer} from 'mobx-react'
 import EsriLeafletMap from './Leaflet Map/EsriLeafletMap'
-import Controls from './Control Panel/Controls'
+import ControlPanel from './ControlPanel/ControlPanel'
 import {Grid, Row, Col} from 'react-bootstrap'
 
 // RENDER THE CONTROL PANEL & THE MAP WITHIN A SINGLE COLUMN/ROW OF THE 'react-bootstrap' LAYOUT
@@ -13,7 +13,7 @@ class MapRoot extends Component {
       <Grid>
         <Row>
           <Col>
-            <Controls />
+            <ControlPanel />
             <EsriLeafletMap />
           </Col>
         </Row>

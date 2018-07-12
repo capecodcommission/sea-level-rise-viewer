@@ -1,8 +1,0 @@
-/* THE 'basemapsWrapper' ID IS USED TO STYLE THE WRAPPER AROUND THE DROPDOWN */
-.basemapsWrapper {
-  position: absolute;
-  z-index: 2;
-  background: white;
-  padding: 1em;
-  top: 20%;
-}

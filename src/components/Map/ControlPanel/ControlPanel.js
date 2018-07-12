@@ -1,10 +1,13 @@
 // IMPORT DEPENDENCIES
 import React, {Component} from 'react'
-import BaseMapSwitcher from './BaseMap Switcher/BaseMapSwitcher'
+import BaseMapSwitcher from './BaseMapSwitcher/BaseMapSwitcher'
+import Layers from './Layers/Layers'
 import {observer} from 'mobx-react'
+import {Row, Col} from 'react-bootstrap'
+import css from './ControlPanel.css'
 
 @observer
-class Controls extends Component {
+class ControlPanel extends Component {
   // constructor(props) {
   //   super(props)
   // }
@@ -22,7 +25,16 @@ class Controls extends Component {
   }
   // RENDER THE 'BaseMapSwitcher' WITHIN THE CONTROL PANEL
   render = () => {
-    return <BaseMapSwitcher />
+    return (
+      <div>
+        <Row className={css.ControlsWrapper}>
+          <Col>
+            <BaseMapSwitcher />
+            <Layers />
+          </Col>
+        </Row>
+      </div>
+    )
   }
 }
-export default Controls
+export default ControlPanel
