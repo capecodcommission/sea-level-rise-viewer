@@ -12,17 +12,19 @@ class BaseMapSwitcher extends Component {
   // }
   // 'setBasemap' USES THE 'currentBaseMap' (Topographic) FROM THE 'RootStore' & UPDATES IT BASED ON THE USER SELECTION OF DROPDOWN VALUE
   setBasemap = event => {
-    const oldBaselayer = esri.basemapLayer(
-      RootStore.EsriMapStore.currentBaseMap
+    RootStore.EsriMapStore.setCurrentBaseMapName(event.target.value)
+
+    RootStore.EsriMapStore.map.removeLayer(
+      RootStore.EsriMapStore.currentBaseMapObject
     )
 
-    RootStore.EsriMapStore.setCurrentBaseMap(event.target.value)
+    RootStore.EsriMapStore.setCurrentBaseMapObject(
+      esri.basemapLayer(RootStore.EsriMapStore.currentBaseMapName)
+    )
 
-    RootStore.EsriMapStore.map.removeLayer(oldBaselayer)
-
-    const layer = esri.basemapLayer(event.target.value)
-
-    RootStore.EsriMapStore.map.addLayer(layer)
+    RootStore.EsriMapStore.map.addLayer(
+      RootStore.EsriMapStore.currentBaseMapObject
+    )
   }
 
   // RENDER THE BASEMAP SWITCHER USING THE 'BaseMapSwitcher.css' & SOME MARKUP

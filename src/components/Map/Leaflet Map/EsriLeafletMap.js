@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import RootStore from '../../../store'
 import * as L from 'leaflet'
 import * as esri from 'esri-leaflet'
+import * as geocoder from 'esri-leaflet-geocoder'
 import css from './EsriLeafletMap.css'
 import {observer} from 'mobx-react'
 
@@ -20,21 +21,46 @@ class EsriLeafletMap extends Component {
   // Hook map object to map div contents
   initiateMap = () => {
     // Set basemap and feature layer constants to be fed into the leaflet map object
-    const esriStreets = esri.basemapLayer(RootStore.EsriMapStore.currentBaseMap)
+    const esriStreets = esri.basemapLayer(
+      RootStore.EsriMapStore.currentBaseMapName
+    )
+
+    RootStore.EsriMapStore.setCurrentBaseMapObject(esriStreets)
 
     const townLines = RootStore.EsriMapStore.townLines
 
     // Set constant using zoom level array from store
     const zoom_Level = RootStore.EsriMapStore.currentZoomLevel
 
+    const streets = RootStore.EsriMapStore.currentBaseMapObject
+
     // Create and set leaflet map object into new store object using other store properties
     RootStore.EsriMapStore.setMap(
       L.map('map', {
         center: RootStore.EsriMapStore.startView,
         zoom: zoom_Level,
-        layers: [esriStreets, townLines],
+        layers: [streets, townLines],
       })
     )
+
+    const map = RootStore.EsriMapStore.map
+
+    var searchControl = geocoder
+      .geosearch()
+      .setPosition('topright')
+      .addTo(map)
+
+    var results = L.layerGroup().addTo(map)
+
+    searchControl.on('results', function(data) {
+      results.clearLayers()
+
+      data.results.map(i => {
+        if (i) {
+          results.addLayer(L.marker(i.latlng))
+        }
+      })
+    })
   }
 
   // Render html contents as component https://reactjs.org/docs/react-component.html

@@ -7,7 +7,8 @@ import {observable, action} from 'mobx'
 
 class EsriMapStore {
   @observable currentZoomLevel: int = 13
-  @observable currentBaseMap: string = 'Topographic'
+  @observable currentBaseMapName: string = 'Topographic'
+  @observable currentBaseMapObject: null = {}
   startView: init = [41.68, -70.3405]
   @observable map: null = {}
   tileLayer: null = {}
@@ -151,8 +152,13 @@ class EsriMapStore {
   }
 
   @action
-  setCurrentBaseMap = baseMap => {
-    this.currentBaseMap = baseMap
+  setCurrentBaseMapName = baseMapName => {
+    this.currentBaseMapName = baseMapName
+  }
+
+  @action
+  setCurrentBaseMapObject = baseMapObj => {
+    this.currentBaseMapObject = baseMapObj
   }
 
   constructor(RootStore) {
