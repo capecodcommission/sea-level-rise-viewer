@@ -1,71 +1,15 @@
-/* THE 'LayersWrapper' ID IS USED TO STYLE THE WRAPPER AROUND THE DROPDOWN */
-.LayersWrapper {
-  position: relative;
+/* THE 'ControlsWrapper' ID IS USED TO STYLE THE WRAPPER AROUND THE DROPDOWN */
+.ControlsWrapper {
+  position: absolute;
   z-index: 2;
-  background: #636363;
+  background: #bdbdbd;
   margin-top: 1em;
   padding: 1em;
-  top: 40%;
-  left: 1%;
+  top: 12%;
+  left: 1.75%;
+  opacity: 0.8;
   font-family: 'Open Sans', sans-serif;
   border-radius: 0.5em;
   text-align: center;
-}
-
-.LayerMenuTitle {
-  cursor: default;
-  font-size: 1em;
-  color: #3182bd;
-  background: black;
-  border-radius: 0.3em;
-  padding: 0.5em;
-  white-space: pre-line;      /* Webkit */
-  white-space: -moz-pre-wrap; /* Firefox */
-  white-space: -pre-wrap;     /* Opera <7 */
-  white-space: -o-pre-wrap;   /* Opera 7 */
-  word-wrap: break-word;      /* IE */
-}
-
-.Layer1:hover,
-.Layer2:hover,
-.Layer3:hover {
-  background-color: #ffeda0;
-  cursor: pointer;
-}
-
-/* NEED TO SWITCH BELOW TO TOGGLE CLASS TO TOGGLE BACKGROUND COLOR OF CLICKED LAYER(S) */
-.Layer1:active,
-.Layer2:active,
-.Layer3:active {
-  background-color: red;
-}
-
-.Layer1 {
-  background: #416285;
-  padding: 1em;
-  margin-top: 0.5em;
-  width: 50%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.Layer2 {
-  background: #7bb6c6;
-  padding: 1em;
-  margin-top: 1em;
-  width: 50%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.Layer3 {
-  background: #416285;
-  padding: 1em;
-  margin-top: 1em;
-  width: 50%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  width: 15%;
 }
