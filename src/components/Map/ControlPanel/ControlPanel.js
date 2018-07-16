@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import BaseMapSwitcher from './BaseMapSwitcher/BaseMapSwitcher'
 import Layers from './Layers/Layers'
-import ZoomHome from './ZoomHome/ZoomHome'
+import ZoomHome from './ControlButtons/ControlButtons'
 import {observer} from 'mobx-react'
 import {Row, Col} from 'react-bootstrap'
 import css from './ControlPanel.css'

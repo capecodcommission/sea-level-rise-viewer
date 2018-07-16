@@ -12,9 +12,11 @@
 >  2. Style button (ON/OFF) on layer adding to/removing from map
 >  3. Handle SLR / Critical Facility spatial intersect
 >     * Style Critical Facility points (intersecting/not intersecting SLR)
->  4. Construct SLR Vertical Slider
->     * Connect SLR Vertical Slider to Critical Facility layer + Critical Facility styling (intersecting/not intersecting SLR)
->  5. Complete application layout UI/UX  
+>  4. Construct SLR Horizontal Slider
+>     * Connect SLR Horizontal Slider to Critical Facility layer + Critical Facility styling (intersecting/not intersecting SLR)
+>  5. Complete application layout UI/UX
+>     * Add 'Clear Layers' button to home button row
+
 
 ## **Build Setup**
 ``` bash

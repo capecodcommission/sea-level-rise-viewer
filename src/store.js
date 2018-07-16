@@ -7,7 +7,7 @@ import {observable, action} from 'mobx'
 
 class EsriMapStore {
   @observable currentZoomLevel: int = 13
-  @observable currentBaseMapName: string = 'Topographic'
+  @observable currentBaseMapName: string = 'Gray'
   @observable currentBaseMapObject: null = {}
   startView: init = [41.68, -70.3405]
   @observable map: null = {}
@@ -33,52 +33,73 @@ class EsriMapStore {
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SocialVulnerability/MapServer/0',
   })
-  socialVulnerabilityToggle: init = false
+  zeroFtSeaLevelToggle: init = false
   zeroFtSeaLevel: init = esri.featureLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_0_Corrected/MapServer',
   })
-  zeroFtSeaLevelToggle: init = false
+  oneFtSeaLevelToggle: init = false
   oneFtSeaLevel: init = esri.featureLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_1_Corrected/MapServer',
   })
-  oneFtSeaLevelToggle: init = false
+  twoFtSeaLevelToggle: init = false
   twoFtSeaLevel: init = esri.featureLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_2_Corrected/MapServer',
   })
-  twoFtSeaLevelToggle: init = false
+  threeFtSeaLevelToggle: init = false
   threeFtSeaLevel: init = esri.featureLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_3_Corrected/MapServer',
   })
-  threeFtSeaLevelToggle: init = false
+  fourFtSeaLevelToggle: init = false
   fourFtSeaLevel: init = esri.featureLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_4ft_Corrected/MapServer',
   })
-  fourFtSeaLevelToggle: init = false
+  fiveFtSeaLevelToggle: init = false
   fiveFtSeaLevel: init = esri.featureLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_5ft_Corrected/MapServer',
   })
-  fiveFtSeaLevelToggle: init = false
+  sixFtSeaLevelToggle: init = false
   sixFtSeaLevel: init = esri.featureLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_6/MapServer',
   })
-  sixFtSeaLevelToggle: init = false
-  femaFirm: init = esri.featureLayer({
+  femaFirmToggle: init = false
+  femaFirm: init = esri.tiledMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/FEMA_FIRM_2013/MapServer',
   })
-  femaFirmToggle: init = false
-  slosh: init = esri.featureLayer({
+  sloshToggle: init = false
+  slosh: init = esri.tiledMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/SLOSH_2013/MapServer',
+    // TODO: start here
+    // style: function (feature) {
+    //   return {opacity: 0.5}
+    // },
   })
-  sloshToggle: init = false
+  // .bindPopup(function(layer) {
+  //   return L.Util.template(
+  //     '<strong>HURRICANE CATEGORY |</strong> <p> {HURR_CAT}</p>',
+  //     layer.features.properties
+  //   )
+  // })
+  // .bindPopup(function (error, featureCollection) {
+  //   if(error || featureCollection.features.length === 0) {
+  //     return false
+  //   } else {
+  //     return '<strong>HURRICANE CATEGORY |' + ' ' + featureCollection.features[0].properties.HURR_CAT
+  //   }
+  // })
+  // slosh: init = L.utfGrid('http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/SLOSH_2013/MapServer', {
+  //   resolution: 4,
+  //   pointerCursor: true,
+  //   mouseInterval: 66,  // Delay for mousemove events
+  // })
   buildings: init = esri.featureLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/Buildings/MapServer',
@@ -133,6 +154,37 @@ class EsriMapStore {
       this.criticalFacilities.addTo(this.map)
     } else {
       this.map.removeLayer(this.criticalFacilities)
+    }
+  }
+
+  @action
+  toggleSlosh() {
+    this.sloshToggle = !this.sloshToggle
+
+    if (this.sloshToggle) {
+      this.slosh.addTo(this.map)
+      // this.slosh.on('click', function(e){
+      //   if(e || e.featureCollection.features.length === 0) {
+      //     return false
+      //     alert ('click: ' + e.featureCollection.features.length)
+      //   } else {
+      //     return '<strong>HURRICANE CATEGORY |' + ' ' + e.featureCollection.features[0].properties.HURR_CAT
+      //     alert('click: ' + e.featureCollection.features[0].properties.HURR_CAT)
+      //   }
+      // })
+    } else {
+      this.map.removeLayer(this.slosh)
+    }
+  }
+
+  @action
+  toggleFemaFirm() {
+    this.femaFirmToggle = !this.femaFirmToggle
+
+    if (this.femaFirmToggle) {
+      this.femaFirm.addTo(this.map)
+    } else {
+      this.map.removeLayer(this.femaFirm)
     }
   }
 

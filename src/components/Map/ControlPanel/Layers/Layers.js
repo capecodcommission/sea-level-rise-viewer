@@ -11,16 +11,23 @@ class Layers extends Component {
   // }
 
   // componentDidMount = () => {
-  //
+  //   this.consoleLogSlosh()
   // }
 
   handleCriticalFacilitiesClick = () => {
     RootStore.EsriMapStore.toggleCriticalFacilities()
-    // this.consoleLogToggleCriticalFacilities()
   }
 
-  // consoleLogToggleCriticalFacilities = () => {
-  //   console.log('criticalFacilitiesToggle --> ', RootStore.EsriMapStore.criticalFacilitiesToggle)
+  handleSloshClick = () => {
+    RootStore.EsriMapStore.toggleSlosh()
+  }
+
+  handleFemaFirmClick = () => {
+    RootStore.EsriMapStore.toggleFemaFirm()
+  }
+
+  // consoleLogSlosh = () => {
+  //   console.log('slosh --> ', RootStore.EsriMapStore.slosh)
   // }
 
   // RENDER THE BASEMAP SWITCHER USING THE 'BaseMapSwitcher.css' & SOME MARKUP
@@ -38,14 +45,16 @@ class Layers extends Component {
           circle
         />
         <Image
+          onClick={this.handleSloshClick.bind(this)}
           className={css.Layer2}
-          src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Flooded_house_icon.svg"
+          src="https://cdn.onlinewebfonts.com/svg/img_540212.png"
           responsive
           circle
         />
         <Image
+          onClick={this.handleFemaFirmClick.bind(this)}
           className={css.Layer3}
-          src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Flooded_house_icon.svg"
+          src="http://public.gmmb.com/fs//images/icons/IconWarning.svg"
           responsive
           circle
         />
