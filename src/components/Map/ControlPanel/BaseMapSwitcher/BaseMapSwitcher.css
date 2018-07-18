@@ -1,31 +1,44 @@
-.componentsWrapper {
+/* THE 'BaseMapSwitcher' ID IS USED TO STYLE THE WRAPPER AROUND THE DROPDOWN */
+.basemapsWrapper {
   position: relative;
   z-index: 2;
   background: #636363;
-  padding: 0.25em;
+  margin-top: 0.25em;
+  padding: 1em;
+  left: 1%;
   font-family: 'Open Sans', sans-serif;
   border-radius: 0.5em;
+  text-align: center;
 }
 
-.controlsTitle {
-  position: relative;
+.basemapSelectorTitle {
   cursor: default;
   font-size: 1em;
   color: #3182bd;
   font-family: 'Open Sans', sans-serif;
   background: black;
   border-radius: 0.3em;
-  padding: 0.25em;
+  padding: 0.5em;
   white-space: pre-line;      /* Webkit */
   white-space: -moz-pre-wrap; /* Firefox */
   white-space: -pre-wrap;     /* Opera <7 */
   white-space: -o-pre-wrap;   /* Opera 7 */
   word-wrap: break-word;      /* IE */
-  text-align: center;
 }
 
-.buttonToolbarWrapper {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  margin-left: 0.05em;
+.basemapSelector {
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  background: #416285;
+  padding: 0.2em;
+  margin-top: 1em;
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+select {
+  text-align-last: center;
 }
