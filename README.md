@@ -2,14 +2,16 @@
 
 > A visualization of bathtub sea level, showing flooding extent upon critical facilities and roads with related reference layers.
 
-## WORK PLAN
+## ROAD MAP
 >  **working branches:**
 >
->  **shawn-layer-toggling:** implementing all layers toggling on icon click.
+>
 >
 >   **TODOs:**
->  1. Complete layer toggling
+>  1. Add transparency/opacity for polygonal layers
 >  2. Style button (ON/OFF) on layer adding to/removing from map
+>  3. Add info button corresponding to text popup for layer information
+>  4. Add layer legend on displaying of layer
 >  3. Handle SLR / Critical Facility spatial intersect
 >     * Style Critical Facility points (intersecting/not intersecting SLR)
 >  4. Construct SLR Horizontal Slider
