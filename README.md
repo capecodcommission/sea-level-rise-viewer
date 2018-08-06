@@ -18,8 +18,9 @@ pointStyling-Mario --> Tackling items 5-8 below
 4.  Add layer legend on displaying of layer
 5.  Style non-intersecting Critical Facility points and clusters
 6.  Create Layer Description toggle, move descriptions next to slider to avoid scrolling
-7.  Diagnose Print Control css errors
-8.  Create Share button (Need to research React router parameters)
+7.  Set calculated layer description properties into state, pull into layer descriptions
+8.  Diagnose Print Control css errors
+9.  Create Share button (Need to research React router parameters)
 
 
 ## **Build Setup**

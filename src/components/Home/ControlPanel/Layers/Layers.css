@@ -25,57 +25,64 @@
   white-space: -o-pre-wrap;   /* Opera 7 */
   word-wrap: break-word;      /* IE */
 }
-/* ADD SOME HOVER EFFECTS TO PROVIDE USER FEEDBACK */
-.criticalFacilities:hover,
-.slosh:hover,
-.femaFirm:hover,
-.clickedButton:hover {
-  padding: 0.1em;
-  transform: scale(1.025);
-  cursor: pointer;
-  background-color: #3182bd;
-}
+
 /* ADD LAYER IMAGE STYLING */
 .criticalFacilities {
   background: #416285;
   padding: 1em;
-  margin-top: 0.5em;
+  margin: auto;
+  margin-top: 1em;
   width: 50%;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .slosh {
   background: #7bb6c6;
   padding: 1em;
-  margin-top: 1em;
+  margin: auto;
   width: 50%;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 1em;
 }
 
 .femaFirm {
   background: #416285;
   padding: 1em;
-  margin-top: 1em;
+  margin: auto;
   width: 50%;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 1em;
 }
 
 .clickedButton {
-  background: #f0f0f0;
+  background: red;
   padding: 1em;
-  margin-top: 1em;
+  margin: auto;
   width: 50%;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 1em;
 }
-/* ADD A HOVER EFFECT TO PROVIDE USER FEEDBACK */
+
+.slrslider {
+  background: #7bb6c6;
+  padding: 1em;
+  margin: auto;
+  width: 50%;
+  display: block;
+  margin-top: 1em;
+}
+
+/* ADD SOME HOVER EFFECTS TO PROVIDE USER FEEDBACK */
+.slrslider:hover,
+.criticalFacilities:hover,
+.slosh:hover,
+.femaFirm:hover,
 .clickedButton:hover {
-  background: #f7fcb9;
+  transform: scale(1.025);
+  cursor: pointer;
+  background-color: #f7fcb9;
+}
+
+.slider {
+  margin-bottom: 1em;
 }

@@ -3,8 +3,6 @@ import React, {Component} from 'react'
 import BaseMapSwitcher from './BaseMapSwitcher/BaseMapSwitcher'
 import Layers from './Layers/Layers'
 import ControlButtons from './ControlButtons/ControlButtons'
-import SLRSlider from './SLRSlider/SLRSlider'
-import LayerDesc from './LayerDesc/LayerDesc'
 import {observer} from 'mobx-react'
 import {Row, Col} from 'react-bootstrap'
 import css from './ControlPanel.css'
@@ -24,8 +22,6 @@ class ControlPanel extends Component {
             <ControlButtons />
             <BaseMapSwitcher />
             <Layers />
-            <SLRSlider />
-            <LayerDesc />
           </Col>
         </Row>
       </div>

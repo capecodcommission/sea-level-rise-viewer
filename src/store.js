@@ -7,7 +7,6 @@ import {observable, action, reaction, autorun, toJS} from 'mobx'
 import axios from 'axios'
 import React, {Component} from 'react'
 import easyPrint from 'leaflet-easyprint'
-import css from './components/Home/ControlPanel/Layers/Layers.css'
 
 class EsriMapStore {
   @observable currentZoomLevel: int = 13
@@ -20,12 +19,10 @@ class EsriMapStore {
   currentSLRLayer: null = {}
   currentRoadLayer: null = {}
   tileLayer: null = {}
-  @observable clickedCriticalFacilitiesButton: init = css.clickedButton
-  @observable initCriticalFacilitiesButton: init = css.criticalFacilities
-  @observable clickedSloshButton: init = css.clickedButton
-  @observable initSloshButton: init = css.slosh
-  @observable clickedFemaFirmButton: init = css.clickedButton
-  @observable initFemaFirmButton: init = css.femaFirm
+  criticalFacilitiesButtonValue = 1
+  sloshButtonValue = 2
+  femaFirmButtonValue = 3
+  @observable value: init = []
   townLines: init = esri.featureLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/Data_People/Boundary/MapServer/6',
@@ -34,6 +31,15 @@ class EsriMapStore {
     .featureLayer({
       url:
         'http://gis-services.capecodcommission.org/arcgis/rest/services/Data_People/Infrastructure/MapServer/12',
+      pointToLayer: function(feature, latlng) {
+        return L.marker(latlng, {
+          icon: L.icon({
+            iconUrl:
+              'https://cdn3.iconfinder.com/data/icons/home-insurance-2/380/2-512.png',
+            iconSize: [41, 37],
+          }),
+        })
+      },
     })
     .bindPopup(function(layer) {
       return L.Util.template(
@@ -45,115 +51,112 @@ class EsriMapStore {
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SocialVulnerability/MapServer/0',
   })
-  zeroFtSeaLevelToggle: init = false
   zeroFtSeaLevel: init = esri.dynamicMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_0_Corrected/MapServer',
+    opacity: 0.5,
   })
-  oneFtSeaLevelToggle: init = false
   oneFtSeaLevel: init = esri.dynamicMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_1_Corrected/MapServer',
+    opacity: 0.5,
   })
-  oneFtSeaLevelFL: init = esri.dynamicMapLayer({
-    url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_1_Corrected/MapServer/0',
-  })
-  twoFtSeaLevelToggle: init = false
   twoFtSeaLevel: init = esri.dynamicMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_2_Corrected/MapServer',
+    opacity: 0.5,
   })
-  threeFtSeaLevelToggle: init = false
   threeFtSeaLevel: init = esri.dynamicMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_3_Corrected/MapServer',
+    opacity: 0.5,
   })
-  fourFtSeaLevelToggle: init = false
   fourFtSeaLevel: init = esri.dynamicMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_4ft_Corrected/MapServer',
+    opacity: 0.5,
   })
-  fiveFtSeaLevelToggle: init = false
   fiveFtSeaLevel: init = esri.dynamicMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_5ft_Corrected/MapServer',
+    opacity: 0.5,
   })
-  sixFtSeaLevelToggle: init = false
   sixFtSeaLevel: init = esri.dynamicMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_6/MapServer',
+    opacity: 0.5,
   })
-  femaFirmToggle: init = false
   femaFirm: init = esri.dynamicMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/FEMA_FIRM_2013/MapServer',
     opacity: 0.5,
   })
-  sloshToggle: init = false
   slosh: init = esri.dynamicMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/SLOSH_2013/MapServer',
+    opacity: 0.5,
   })
   buildings: init = esri.featureLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/Buildings/MapServer',
+    opacity: 0.3,
   })
   parcels: init = esri.featureLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/TaxParcel_Yellow/MapServer',
   })
-  parcelsToggle: init = false
   roads: init = esri.dynamicMapLayer({
     url:
       'http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer',
   })
-  roadsToggle: init = false
   roads1ftSeaLevel: init = esri.dynamicMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_1ft/MapServer',
   })
-  roads1ftSeaLevelToggle: init = false
   roads2ftSeaLevel: init = esri.dynamicMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_2ft/MapServer',
   })
-  roads2ftSeaLevelToggle: init = false
   roads3ftSeaLevel: init = esri.dynamicMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_3ft/MapServer',
   })
-  roads3ftSeaLevelToggle: init = false
   roads4ftSeaLevel: init = esri.dynamicMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_4ft/MapServer',
   })
-  roads4ftSeaLevelToggle: init = false
   roads5ftSeaLevel: init = esri.dynamicMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_5ft/MapServer',
   })
-  roads5ftSeaLevelToggle: init = false
   roads6ftSeaLevel: init = esri.dynamicMapLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_6ft/MapServer',
   })
   // TODO: FIGURE OUT BUTTON BACKGROUND STYLING USING LOGIC BELOW & IN 'Layers.js'
-  @observable criticalFacilitiesBackground: init = false
-  @observable sloshBackground: init = false
-  @observable femaFirmBackground: init = false
+  @observable
+  criticalFacilitiesBackground: init = false
+  @observable
+  sloshBackground = false
+  @observable
+  femaFirmBackground = false
 
-  // @action
+  @action
+  handleButtonChange = e => {
+    return (this.value = e)
+  }
+
+  @action
   toggleCriticalFacilitiesBackground = () => {
     this.criticalFacilitiesBackground = !this.criticalFacilitiesBackground
   }
 
-  // @action
+  @action
   toggleSloshBackground = () => {
     this.sloshBackground = !this.sloshBackground
   }
 
-  // @action
+  @action
   toggleFemaFirmBackground = () => {
     this.femaFirmBackground = !this.femaFirmBackground
   }
@@ -163,10 +166,6 @@ class EsriMapStore {
     this.toggleCriticalFacilities()
     this.toggleCriticalFacilitiesBackground()
   }
-  toggleZeroFtSeaLevelToggle() {
-    this.zeroFtSeaLevelToggle = !this.zeroFtSeaLevelToggle
-  }
-  roads6ftSeaLevelToggle: init = false
   @observable SLR_0ft_geojson: init = false
   @observable SLR_1ft_geojson: init = false
   @observable SLR_2ft_geojson: init = false
@@ -260,6 +259,7 @@ class EsriMapStore {
       label: '6',
     },
   }
+  @observable affFacCount: init = 0
 
   // Creates unique URL of map center coordinates, zoom level, and toggled layers for sharing
   // TODO: Research react-router parameters, and how to parse route parameters on-start of the app
@@ -637,11 +637,6 @@ class EsriMapStore {
   }
 
   @action
-  toggleCriticalFacilities() {
-    this.criticalFacilitiesToggle = !this.criticalFacilitiesToggle
-  }
-
-  @action
   handleSloshClick = () => {
     this.toggleSlosh()
     this.toggleSloshBackground()
@@ -654,11 +649,29 @@ class EsriMapStore {
   }
 
   // LOGIC TO TOGGLE THE TOGGLEABLE LAYERS BEING ADDED/SUBTRACTED FROM THE MAP
+  // Remove SLR-intersecting OBJECTIDS from Critical Facility layer
   @action
   toggleCriticalFacilities = () => {
-    this.map.hasLayer(this.criticalFacilities)
-      ? this.map.removeLayer(this.criticalFacilities)
-      : this.map.addLayer(this.criticalFacilities)
+    var whereClause = this.critFacWhere
+    whereClause = whereClause.slice().join(',')
+
+    if (this.map.hasLayer(this.criticalFacilities)) {
+      this.criticalFacilities.setWhere('')
+      this.map.removeLayer(this.criticalFacilities)
+    } else {
+      this.map.addLayer(this.criticalFacilities)
+
+      if (
+        this.map.hasLayer(this.criticalFacilities) &&
+        whereClause.length > 1
+      ) {
+        setTimeout(() => {
+          this.criticalFacilities.setWhere(
+            'OBJECTID NOT IN (' + whereClause + ')'
+          )
+        }, 500)
+      }
+    }
   }
 
   @action
@@ -680,14 +693,24 @@ class EsriMapStore {
   removeToggleableLayers = () => {
     // ESTABLISH AN ARRAY OF THE TOGGLEABLE LAYERS TO LOOP THROUGH TO REMOVE LAYERS IF ANY EXIST IN array.map() METHOD BELOW
     // ESTABLISH THE MAP TO USE IN THE array.map() METHOD BELOW
-    let toggleableLayers = [this.criticalFacilities, this.slosh, this.femaFirm]
+    let toggleableLayers = [
+      this.criticalFacilities,
+      this.slosh,
+      this.femaFirm,
+      this.currentSLRLayer,
+      this.currentRoadLayer,
+      this.criticalFacilitiesIntersection,
+    ]
     let map = this.map
 
     // CHECK TO SEE IF ALL THE LAYERS DO NOT EXIST - IF TRUE, ALERT THE USER TO ADD LAYERS
     if (
       !this.map.hasLayer(this.criticalFacilities) &&
       !this.map.hasLayer(this.slosh) &&
-      !this.map.hasLayer(this.femaFirm)
+      !this.map.hasLayer(this.femaFirm) &&
+      !this.map.hasLayer(this.currentSLRLayer) &&
+      !this.map.hasLayer(this.currentRoadLayer) &&
+      !this.map.hasLayer(this.criticalFacilitiesIntersection)
     ) {
       alert("Doh! This button doesn't do anything until you add layers.")
     }
@@ -698,6 +721,11 @@ class EsriMapStore {
       }
       return i
     })
+
+    this.criticalFacilitiesBackground = false
+    this.femaFirmBackground = false
+    this.sloshBackground = false
+    this.sliderToggle = false
   }
 
   @action
