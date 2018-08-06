@@ -4,9 +4,9 @@
 
 ## ROAD MAP
 **working branches:**
->
-> shawn-transparency-bStyling-info-legend --> Tackling 1-4 below.
->
+
+   shawn-transparency-bStyling-info-legend --> Tackling 1-4 below.
+
 **TODOs:**
  1. Add transparency/opacity for polygonal layers
  2. Style button (ON/OFF) on layer adding to/removing from map
