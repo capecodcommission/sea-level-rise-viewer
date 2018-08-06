@@ -6,6 +6,7 @@ import * as esri from 'esri-leaflet'
 import * as geocoder from 'esri-leaflet-geocoder'
 import css from './EsriLeafletMap.css'
 import {observer} from 'mobx-react'
+import easyPrint from 'leaflet-easyprint'
 
 // Reactive component https://mobx.js.org/refguide/observer-component.html
 @observer
@@ -31,7 +32,6 @@ class EsriLeafletMap extends Component {
 
     // Set constant using zoom level array from store
     const zoom_Level = RootStore.EsriMapStore.currentZoomLevel
-
     const streets = RootStore.EsriMapStore.currentBaseMapObject
 
     // Create and set leaflet map object into new store object using other store properties
@@ -59,8 +59,16 @@ class EsriLeafletMap extends Component {
         if (i) {
           results.addLayer(L.marker(i.latlng))
         }
+        return i
       })
     })
+
+    // Add custom Leaflet control to handle centered map printing in portrait and landscape formats
+    L.easyPrint({
+      title: 'Print',
+      position: 'bottomright',
+      sizeModes: ['A4Portrait', 'A4Landscape'],
+    }).addTo(map)
   }
 
   // Render html contents as component https://reactjs.org/docs/react-component.html

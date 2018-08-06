@@ -1,0 +1,41 @@
+.slideWrapper {
+  position: relative;
+  z-index: 2;
+  background: #636363;
+  margin-top: 0.25em;
+  padding: 1em;
+  padding-bottom: 2em;
+  left: 1%;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 0.5em;
+  text-align: center;
+}
+
+.Layer1 {
+  background: #416285;
+  padding: 1em;
+  margin-top: 0.5em;
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Layer2 {
+  background: green;
+  padding: 1em;
+  margin-top: 0.5em;
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Layer1:hover {
+  background-color: #ffeda0;
+  cursor: pointer;
+}
+
+.Layer1:active {
+  background-color: red;
+}

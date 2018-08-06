@@ -7,9 +7,10 @@ import * as esri from 'esri-leaflet'
 
 @observer
 class BaseMapSwitcher extends Component {
-  // constructor(props) {
-  //   super(props)
-  // }
+  constructor(props) {
+    super(props)
+  }
+
   // 'setBasemap' USES THE 'currentBaseMap' (Topographic) FROM THE 'RootStore' & UPDATES IT BASED ON THE USER SELECTION OF DROPDOWN VALUE
   setBasemap = event => {
     RootStore.EsriMapStore.setCurrentBaseMapName(event.target.value)
@@ -38,7 +39,7 @@ class BaseMapSwitcher extends Component {
           className={css.basemapSelector}
           onChange={this.setBasemap}
           value={RootStore.EsriMapStore.currentBaseMap}
-          defaultValue={'Gray'}
+          defaultValue={'NationalGeographic'}
         >
           <option value="Topographic">Topographic</option>
           <option value="Streets">Streets</option>

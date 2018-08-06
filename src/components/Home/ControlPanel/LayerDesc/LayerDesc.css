@@ -1,0 +1,13 @@
+.layerDescWrapper {
+  position: relative;
+  z-index: 2;
+  background: #636363;
+  color: white;
+  margin-top: 0.25em;
+  padding: 1em;
+  padding-bottom: 2em;
+  left: 1%;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 0.5em;
+  text-align: center;
+}

@@ -4,9 +4,11 @@ import RootStore from '../../../../store'
 import css from './ControlButtons.css'
 import {observer} from 'mobx-react'
 import {ButtonToolbar, Button} from 'react-bootstrap'
+// import * as esri from 'esri-leaflet'
 
 @observer
-class ZoomHome extends Component {
+class ControlButtons extends Component {
+  // Set map center and zoom level using state properties
   zoomHome = () => {
     RootStore.EsriMapStore.map.setView(
       RootStore.EsriMapStore.startView,
@@ -14,7 +16,11 @@ class ZoomHome extends Component {
     )
   }
 
-  // RENDER THE BASEMAP SWITCHER USING THE 'BaseMapSwitcher.css' & SOME MARKUP
+  // Create parameterized URL using state properties
+  saveURL = () => {
+    RootStore.EsriMapStore.saveURL()
+  }
+
   render = () => {
     return (
       <div className={css.componentsWrapper}>
@@ -33,6 +39,14 @@ class ZoomHome extends Component {
             bsStyle="primary"
             bsSize="small"
             className="glyphicon glyphicon-remove-sign"
+            onClick={RootStore.EsriMapStore.removeToggleableLayers}
+          />
+
+          <Button
+            bsStyle="primary"
+            bsSize="small"
+            className="glyphicon glyphicon-floppy-disk"
+            onClick={this.saveURL}
           />
         </ButtonToolbar>
       </div>
@@ -40,4 +54,4 @@ class ZoomHome extends Component {
   }
 }
 
-export default ZoomHome
+export default ControlButtons

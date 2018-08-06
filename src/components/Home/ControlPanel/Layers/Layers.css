@@ -1,4 +1,4 @@
-/* THE 'LayersWrapper' ID IS USED TO STYLE THE WRAPPER AROUND THE DROPDOWN */
+/* THE 'LayersWrapper' ID IS USED TO STYLE THE WRAPPER AROUND THE LAYERS IMAGES */
 .LayersWrapper {
   position: relative;
   z-index: 2;
@@ -25,22 +25,18 @@
   white-space: -o-pre-wrap;   /* Opera 7 */
   word-wrap: break-word;      /* IE */
 }
-
-.Layer1:hover,
-.Layer2:hover,
-.Layer3:hover {
-  background-color: #ffeda0;
+/* ADD SOME HOVER EFFECTS TO PROVIDE USER FEEDBACK */
+.criticalFacilities:hover,
+.slosh:hover,
+.femaFirm:hover,
+.clickedButton:hover {
+  padding: 0.1em;
+  transform: scale(1.025);
   cursor: pointer;
+  background-color: #3182bd;
 }
-
-/* NEED TO SWITCH BELOW TO TOGGLE CLASS TO TOGGLE BACKGROUND COLOR OF CLICKED LAYER(S) */
-.Layer1:active,
-.Layer2:active,
-.Layer3:active {
-  background-color: red;
-}
-
-.Layer1 {
+/* ADD LAYER IMAGE STYLING */
+.criticalFacilities {
   background: #416285;
   padding: 1em;
   margin-top: 0.5em;
@@ -50,7 +46,7 @@
   margin-right: auto;
 }
 
-.Layer2 {
+.slosh {
   background: #7bb6c6;
   padding: 1em;
   margin-top: 1em;
@@ -60,7 +56,7 @@
   margin-right: auto;
 }
 
-.Layer3 {
+.femaFirm {
   background: #416285;
   padding: 1em;
   margin-top: 1em;
@@ -68,4 +64,18 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.clickedButton {
+  background: #f0f0f0;
+  padding: 1em;
+  margin-top: 1em;
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* ADD A HOVER EFFECT TO PROVIDE USER FEEDBACK */
+.clickedButton:hover {
+  background: #f7fcb9;
 }
