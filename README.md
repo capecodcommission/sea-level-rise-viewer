@@ -6,7 +6,9 @@
 
 **working branches:**
 
-shawn-transparency-bStyling-info-legend --> Tackling 1-4 below.
+pointStyling-Mario --> Tackling items 5-8 below
+
+
 
 **TODOs:**
 
@@ -14,13 +16,10 @@ shawn-transparency-bStyling-info-legend --> Tackling 1-4 below.
 2.  Style button (ON/OFF) on layer adding to/removing from map
 3.  Add info button corresponding to text popup for layer information
 4.  Add layer legend on displaying of layer
-5.  Handle SLR / Critical Facility spatial intersect
-    *   Style Critical Facility points (intersecting/not intersecting SLR)
-6.  Construct SLR Horizontal Slider
-    *   Connect SLR Horizontal Slider to Critical Facility layer + Critical Facility styling (intersecting/not intersecting SLR)
-7.  Add 'Sea Level Impacts' button for summations of impacts @ each sea level interval (currently displayed in vertical slider container: [ CCC SLR Viewer ](http://www.capecodcommission.org/sealevelrise/))
-8.  Complete any outstanding application layout UI/UX tasks
-    *   TBD
+5.  Style non-intersecting Critical Facility points and clusters
+6.  Create Layer Description toggle, move descriptions next to slider to avoid scrolling
+7.  Diagnose Print Control css errors
+8.  Create Share button (Need to research React router parameters)
 
 
 ## **Build Setup**
