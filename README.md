@@ -12,16 +12,12 @@ pointStyling-Mario --> Tackling items 5-8 below
 
 **TODOs:**
 
-1.  Add transparency/opacity for polygonal layers
-2.  Style button (ON/OFF) on layer adding to/removing from map
-3.  Add info button corresponding to text popup for layer information
-4.  Add layer legend on displaying of layer
-5.  Style non-intersecting Critical Facility points and clusters
-6.  Create Layer Description toggle, move descriptions next to slider to avoid scrolling
-7.  Set calculated layer description properties into state, pull into layer descriptions
-8.  Diagnose Print Control css errors
-9.  Create Share button (Need to research React router parameters)
-
+1.  Add info button corresponding to text popup for layer information
+2.  Add layer legend on displaying of layer
+3.  Set calculated layer description properties into state, pull into layer descriptions
+4.  Diagnose Print Control css errors
+5.  Move Leaflet Geocoder to Control Panel as Control Button
+6.  Create Share button (Need to research React router parameters)
 
 ## **Build Setup**
 ``` bash
