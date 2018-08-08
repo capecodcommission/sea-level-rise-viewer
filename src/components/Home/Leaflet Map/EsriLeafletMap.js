@@ -5,7 +5,7 @@ import * as L from 'leaflet'
 import * as esri from 'esri-leaflet'
 import * as geocoder from 'esri-leaflet-geocoder'
 import css from './EsriLeafletMap.css'
-import {observer} from 'mobx-react'
+import {observer, Provider} from 'mobx-react'
 import easyPrint from 'leaflet-easyprint'
 
 // Reactive component https://mobx.js.org/refguide/observer-component.html
@@ -50,20 +50,24 @@ class EsriLeafletMap extends Component {
       .setPosition('topright')
       .addTo(map)
 
-    var results = L.layerGroup().addTo(map)
+    RootStore.EsriMapStore.searchResults.addTo(map)
 
     searchControl.on('results', function(data) {
-      results.clearLayers()
+      if (!map.hasLayer(RootStore.EsriMapStore.searchResults)) {
+        RootStore.EsriMapStore.searchResults.addTo(map)
+      }
 
       data.results.map(i => {
         if (i) {
-          results.addLayer(L.marker(i.latlng))
+          RootStore.EsriMapStore.searchResults.addLayer(L.marker(i.latlng))
         }
+
         return i
       })
     })
 
     // Add custom Leaflet control to handle centered map printing in portrait and landscape formats
+    // RootStore.EsriMapStore.printer.addTo(map)
     L.easyPrint({
       title: 'Print',
       position: 'bottomright',

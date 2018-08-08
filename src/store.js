@@ -9,20 +9,27 @@ import React, {Component} from 'react'
 import easyPrint from 'leaflet-easyprint'
 
 class EsriMapStore {
-  @observable currentZoomLevel: int = 13
-  @observable currentBaseMapName: string = 'NationalGeographic'
-  @observable currentBaseMapObject: null = {}
-  @observable currentSliderValue: int = 0
-  @observable sliderToggle: init = false
+  @observable
+  currentZoomLevel: int = 13
+  @observable
+  currentBaseMapName: string = 'NationalGeographic'
+  @observable
+  currentBaseMapObject: null = {}
+  @observable
+  currentSliderValue: int = 0
+  @observable
+  sliderToggle: init = false
   startView: init = [41.68, -70.3405]
-  @observable map: null = {}
+  @observable
+  map: null = {}
   currentSLRLayer: null = {}
   currentRoadLayer: null = {}
   tileLayer: null = {}
   criticalFacilitiesButtonValue = 1
   sloshButtonValue = 2
   femaFirmButtonValue = 3
-  @observable value: init = []
+  @observable
+  value: init = []
   townLines: init = esri.featureLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/Data_People/Boundary/MapServer/6',
@@ -140,6 +147,8 @@ class EsriMapStore {
   sloshBackground = false
   @observable
   femaFirmBackground = false
+  @observable
+  searchResults: init = L.layerGroup()
 
   @action
   handleButtonChange = e => {
@@ -166,14 +175,22 @@ class EsriMapStore {
     this.toggleCriticalFacilities()
     this.toggleCriticalFacilitiesBackground()
   }
-  @observable SLR_0ft_geojson: init = false
-  @observable SLR_1ft_geojson: init = false
-  @observable SLR_2ft_geojson: init = false
-  @observable SLR_3ft_geojson: init = false
-  @observable SLR_4ft_geojson: init = false
-  @observable SLR_5ft_geojson: init = false
-  @observable SLR_6ft_geojson: init = false
-  @observable currentSLR_geojson: init = false
+  @observable
+  SLR_0ft_geojson: init = false
+  @observable
+  SLR_1ft_geojson: init = false
+  @observable
+  SLR_2ft_geojson: init = false
+  @observable
+  SLR_3ft_geojson: init = false
+  @observable
+  SLR_4ft_geojson: init = false
+  @observable
+  SLR_5ft_geojson: init = false
+  @observable
+  SLR_6ft_geojson: init = false
+  @observable
+  currentSLR_geojson: init = false
   @observable
   criticalFacilitiesIntersection: init = L.geoJSON(
     {
@@ -197,10 +214,14 @@ class EsriMapStore {
       layer.feature.properties
     )
   })
-  @observable layerDesc: init = null
-  @observable layerDescShow: init = false
-  @observable critFacWhere: init = []
-  @observable loadingComplete: init = true
+  @observable
+  layerDesc: init = null
+  @observable
+  layerDescShow: init = false
+  @observable
+  critFacWhere: init = []
+  @observable
+  loadingComplete: init = true
   @observable
   marks: init = {
     0: {
@@ -259,28 +280,26 @@ class EsriMapStore {
       label: '6',
     },
   }
-  @observable affFacCount: init = 0
+  @observable
+  affFacCount: init = 0
+  @observable
+  printer: init = L.easyPrint({
+    title: 'Print',
+    position: 'bottomright',
+    sizeModes: ['A4Portrait', 'A4Landscape'],
+    hidden: true,
+  })
+
+  @action
+  printerMap = () => {
+    this.printer.printMap('CurrentSize', 'MyMap')
+  }
 
   // Creates unique URL of map center coordinates, zoom level, and toggled layers for sharing
   // TODO: Research react-router parameters, and how to parse route parameters on-start of the app
   @action
   saveURL = () => {
     console.log(window.location.href)
-    // var printContents = document.getElementById('mount').innerHTML
-    // var originalContents = document.body.innerHTML
-
-    // document.body.innerHTML = printContents
-
-    // window.print()
-
-    // document.body.innerHTML = originalContents
-
-    // var printControl = L.easyPrint({
-    //   hidden: true,
-    //   sizeModes: ['A4Portrait', 'A4Landscape'],
-    // }).addTo(this.map)
-
-    // printControl.printMap('A4Landscape', 'Sea Level Rise Viewer')
   }
 
   load_0ft_geojson = () => {
@@ -393,6 +412,7 @@ class EsriMapStore {
   }
 
   // Filteres CritFac cluster layer to hide overlapping intersection points using intersection-OBJECTID array
+  // Fills layer descriptions with number of critical faciliites affected
   handleWhereClauseReaction = value => {
     if (value) {
       this.loadingComplete = false
@@ -403,11 +423,16 @@ class EsriMapStore {
       reaction(
         () => whereClause.slice(),
         (where, reaction) => {
+          this.handleLayerDesc(this.currentSliderValue, whereClause.length)
+
           whereClause = whereClause.join(',')
+
           if (thisMap.hasLayer(critFac)) {
             critFac.setWhere('OBJECTID NOT IN (' + whereClause + ')')
           }
+
           reaction.dispose()
+
           this.loadingComplete = true
         },
         {
@@ -489,12 +514,9 @@ class EsriMapStore {
     this.currentSliderValue = value
   }
 
-  // Set layer description based on slider value
-  // TODO: Set calculated layer description properties into state, pull into layer descriptions
-  // EXAMPLE:
-  //  <li>{this.acreage} acres ({this.acreagePercent}%) of land is submerged</li>
-  //  <li>{this.numberOfFacilities} Critical Facilities are impacted.</li>
-  handleLayerDesc = value => {
+  // Set layer description and calculated properties
+  // Based on slider value and intersecting points array respectively
+  handleLayerDesc = (value, facCount = null) => {
     switch (value) {
       case 0:
         this.layerDesc = (
@@ -511,7 +533,7 @@ class EsriMapStore {
         this.layerDesc = (
           <ul style={{paddingLeft: 3}}>
             <li>5,760 acres (2%) of land is submerged.</li>
-            <li>8 Critical Facilities are impacted.</li>
+            <li>{facCount} Critical Facilities are impacted.</li>
             <li>3,007 Acres of Priority Habitat is lost.</li>
             <li>
               Sales of $43.7 million and 361 jobs are lost in 61 businesses.
@@ -528,7 +550,7 @@ class EsriMapStore {
         this.layerDesc = (
           <ul style={{paddingLeft: 3}}>
             <li>8,960 acres (4%) of land is submerged.</li>
-            <li>24 Critical Facilities are impacted.</li>
+            <li>{facCount} Critical Facilities are impacted.</li>
             <li>4,072 Acres of Priority Habitat is lost.</li>
             <li>
               Sales of $185.7 million and 851 jobs are lost in 97 businesses.
@@ -545,7 +567,7 @@ class EsriMapStore {
         this.layerDesc = (
           <ul style={{paddingLeft: 3}}>
             <li>12,800 acres (5%) of land is submerged.</li>
-            <li>52 Critical Facilities are impacted.</li>
+            <li>{facCount} Critical Facilities are impacted.</li>
             <li>5,644 Acres of Priority Habitat is lost.</li>
             <li>
               Sales of $288.8 million and 1,432 jobs are lost in 169 businesses.
@@ -562,7 +584,7 @@ class EsriMapStore {
         this.layerDesc = (
           <ul style={{paddingLeft: 3}}>
             <li>16,000 acres (7%) of land is submerged.</li>
-            <li>71 Critical Facilities are impacted.</li>
+            <li>{facCount} Critical Facilities are impacted.</li>
             <li>8,081 Acres of Priority Habitat is lost.</li>
             <li>
               Sales of $510.4 million and 2,657 jobs are lost in 304 businesses.
@@ -579,7 +601,7 @@ class EsriMapStore {
         this.layerDesc = (
           <ul style={{paddingLeft: 3}}>
             <li>19,200 acres (8%) of land is submerged.</li>
-            <li>102 Critical Facilities are impacted.</li>
+            <li>{facCount} Critical Facilities are impacted.</li>
             <li>10,033 Acres of Priority Habitat is lost.</li>
             <li>
               Sales of $796.9 million and 5,664 jobs are lost in 552 businesses.
@@ -596,7 +618,7 @@ class EsriMapStore {
         this.layerDesc = (
           <ul style={{paddingLeft: 3}}>
             <li>21,760 acres (9%) of land is submerged.</li>
-            <li>116 Critical Facilities are impacted.</li>
+            <li>{facCount} Critical Facilities are impacted.</li>
             <li>11,724 Acres of Priority Habitat is lost.</li>
             <li>
               Sales of $1.07 billion and 8,222 jobs are lost in 795 businesses.
@@ -619,7 +641,6 @@ class EsriMapStore {
     this.handleCurrents(value)
     this.handleLayerAdding()
     this.handleIntersection(value)
-    this.handleLayerDesc(value)
   }
 
   // Show/Hide SLR slider component, relevant SLR map layers, and layer descriptions
@@ -629,6 +650,7 @@ class EsriMapStore {
 
     if (this.sliderToggle) {
       this.switchSLRLayer(0)
+      this.handleLayerDesc(0)
       this.layerDescShow = true
     } else {
       this.handleLayerRemoval()
@@ -700,6 +722,7 @@ class EsriMapStore {
       this.currentSLRLayer,
       this.currentRoadLayer,
       this.criticalFacilitiesIntersection,
+      this.searchResults,
     ]
     let map = this.map
 
@@ -710,7 +733,8 @@ class EsriMapStore {
       !this.map.hasLayer(this.femaFirm) &&
       !this.map.hasLayer(this.currentSLRLayer) &&
       !this.map.hasLayer(this.currentRoadLayer) &&
-      !this.map.hasLayer(this.criticalFacilitiesIntersection)
+      !this.map.hasLayer(this.criticalFacilitiesIntersection) &&
+      !this.map.hasLayer(this.searchResults)
     ) {
       alert("Doh! This button doesn't do anything until you add layers.")
     }

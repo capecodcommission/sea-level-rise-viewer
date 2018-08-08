@@ -21,6 +21,10 @@ class ControlButtons extends Component {
     RootStore.EsriMapStore.saveURL()
   }
 
+  printMap = () => {
+    RootStore.EsriMapStore.printerMap()
+  }
+
   render = () => {
     return (
       <div className={css.componentsWrapper}>
@@ -40,13 +44,6 @@ class ControlButtons extends Component {
             bsSize="small"
             className="glyphicon glyphicon-remove-sign"
             onClick={RootStore.EsriMapStore.removeToggleableLayers}
-          />
-
-          <Button
-            bsStyle="primary"
-            bsSize="small"
-            className="glyphicon glyphicon-floppy-disk"
-            onClick={this.saveURL}
           />
         </ButtonToolbar>
       </div>
