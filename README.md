@@ -6,8 +6,8 @@
 
 **working branches:**
 
-shawn-info-button 
-mario-desc-print
+*   shawn-info-button 
+*   mario-desc-print
 
 
 
