@@ -31,9 +31,8 @@
   background: #416285;
   padding: 1em;
   margin: auto;
-  margin-top: 1em;
   width: 50%;
-  display: block;
+  justify-content: center;
 }
 
 .slosh {
@@ -41,8 +40,7 @@
   padding: 1em;
   margin: auto;
   width: 50%;
-  display: block;
-  margin-top: 1em;
+  justify-content: center;
 }
 
 .femaFirm {
@@ -50,17 +48,15 @@
   padding: 1em;
   margin: auto;
   width: 50%;
-  display: block;
-  margin-top: 1em;
+  justify-content: center;
 }
 
 .clickedButton {
-  background: red;
+  background: #201e1e;
   padding: 1em;
   margin: auto;
   width: 50%;
-  display: block;
-  margin-top: 1em;
+  justify-content: center;
 }
 
 .slrslider {
@@ -68,8 +64,7 @@
   padding: 1em;
   margin: auto;
   width: 50%;
-  display: block;
-  margin-top: 1em;
+  justify-content: center;
 }
 
 /* ADD SOME HOVER EFFECTS TO PROVIDE USER FEEDBACK */
@@ -84,5 +79,11 @@
 }
 
 .slider {
+  margin-top: 1em;
   margin-bottom: 1em;
+}
+
+.buttonToolbarWrapper {
+  margin-top: 1em;
+  width: 90%;
 }
