@@ -6,19 +6,18 @@
 
 **working branches:**
 
-*   shawn-info-button 
-*   mario-desc-print
+*   shawn-legend
+*   mario-legend
 
 
 
 **TODOs:**
 
-1.  Add info button corresponding to text popup for layer information
-2.  Add layer legend on displaying of layer
-3.  Set calculated layer description properties into state, pull into layer descriptions
-4.  Diagnose Print Control css errors
-5.  Move Leaflet Geocoder to Control Panel as Control Button
-6.  Create Share button (Need to research React router parameters)
+1.  ADD legend for all active layers
+2.  REFACTOR cod, restructing store and removing unnecessary commented code, etc.
+3.  UPDATE SLR Slider UI to D3/something like original presentation
+4.  CONFIGURE back-end to execute intersection logic and cache intersecting critical facilies/SLR levels
+5.  ?? ADD share functionality ??
 
 ## **Build Setup**
 ``` bash
