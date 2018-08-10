@@ -9,23 +9,36 @@ import React from 'react'
 import easyPrint from 'leaflet-easyprint'
 
 class EsriMapStore {
-  @observable currentZoomLevel: int = 13
-  @observable currentBaseMapName: string = 'NationalGeographic'
-  @observable currentBaseMapObject: null = {}
-  @observable currentSliderValue: int = 0
-  @observable sliderToggle: init = false
+  @observable
+  currentZoomLevel: int = 13
+  @observable
+  currentBaseMapName: string = 'NationalGeographic'
+  @observable
+  currentBaseMapObject: null = {}
+  @observable
+  currentSliderValue: int = 0
+  @observable
+  sliderToggle: init = false
   startView: init = [41.68, -70.3405]
-  @observable map: null = {}
+  @observable
+  map: null = {}
   currentSLRLayer: null = {}
   currentRoadLayer: null = {}
   tileLayer: null = {}
   criticalFacilitiesButtonValue = 1
   sloshButtonValue = 2
   femaFirmButtonValue = 3
-  @observable value: init = []
+  @observable
+  value: init = []
   townLines: init = esri.featureLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/Data_People/Boundary/MapServer/6',
+    style: function(feature) {
+      return {
+        color: '#7e8b9e',
+        weight: 2,
+      }
+    },
   })
   criticalFacilities: init = eLCluster
     .featureLayer({
@@ -39,6 +52,9 @@ class EsriMapStore {
             iconSize: [41, 37],
           }),
         })
+      },
+      polygonOptions: {
+        color: 'blue',
       },
     })
     .bindPopup(function(layer) {
@@ -134,10 +150,14 @@ class EsriMapStore {
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_6ft/MapServer',
   })
   // TODO: FIGURE OUT BUTTON BACKGROUND STYLING USING LOGIC BELOW & IN 'Layers.js'
-  @observable criticalFacilitiesBackground: init = false
-  @observable sloshBackground = false
-  @observable femaFirmBackground = false
-  @observable searchResults: init = L.layerGroup()
+  @observable
+  criticalFacilitiesBackground: init = false
+  @observable
+  sloshBackground = false
+  @observable
+  femaFirmBackground = false
+  @observable
+  searchResults: init = L.layerGroup()
 
   @action
   handleButtonChange = e => {
@@ -164,14 +184,22 @@ class EsriMapStore {
     this.toggleCriticalFacilities()
     this.toggleCriticalFacilitiesBackground()
   }
-  @observable SLR_0ft_geojson: init = false
-  @observable SLR_1ft_geojson: init = false
-  @observable SLR_2ft_geojson: init = false
-  @observable SLR_3ft_geojson: init = false
-  @observable SLR_4ft_geojson: init = false
-  @observable SLR_5ft_geojson: init = false
-  @observable SLR_6ft_geojson: init = false
-  @observable currentSLR_geojson: init = false
+  @observable
+  SLR_0ft_geojson: init = false
+  @observable
+  SLR_1ft_geojson: init = false
+  @observable
+  SLR_2ft_geojson: init = false
+  @observable
+  SLR_3ft_geojson: init = false
+  @observable
+  SLR_4ft_geojson: init = false
+  @observable
+  SLR_5ft_geojson: init = false
+  @observable
+  SLR_6ft_geojson: init = false
+  @observable
+  currentSLR_geojson: init = false
   @observable
   criticalFacilitiesIntersection: init = L.geoJSON(
     {
@@ -195,10 +223,14 @@ class EsriMapStore {
       layer.feature.properties
     )
   })
-  @observable layerDesc: init = null
-  @observable layerDescShow: init = false
-  @observable critFacWhere: init = []
-  @observable loadingComplete: init = true
+  @observable
+  layerDesc: init = null
+  @observable
+  layerDescShow: init = false
+  @observable
+  critFacWhere: init = []
+  @observable
+  loadingComplete: init = true
   @observable
   marks: init = {
     0: {
@@ -206,7 +238,7 @@ class EsriMapStore {
         color: 'white',
         zIndex: 3,
       },
-      label: '0',
+      label: '0 ft',
     },
 
     1: {
@@ -214,7 +246,7 @@ class EsriMapStore {
         color: 'white',
         zIndex: 3,
       },
-      label: '1',
+      label: '1 ft',
     },
 
     2: {
@@ -222,7 +254,7 @@ class EsriMapStore {
         color: 'white',
         zIndex: 3,
       },
-      label: '2',
+      label: '2 ft',
     },
 
     3: {
@@ -230,7 +262,7 @@ class EsriMapStore {
         color: 'white',
         zIndex: 3,
       },
-      label: '3',
+      label: '3 ft',
     },
 
     4: {
@@ -238,7 +270,7 @@ class EsriMapStore {
         color: 'white',
         zIndex: 3,
       },
-      label: '4',
+      label: '4 ft',
     },
 
     5: {
@@ -246,7 +278,7 @@ class EsriMapStore {
         color: 'white',
         zIndex: 3,
       },
-      label: '5',
+      label: '5 ft',
     },
 
     6: {
@@ -254,10 +286,11 @@ class EsriMapStore {
         color: 'white',
         zIndex: 3,
       },
-      label: '6',
+      label: '6 ft',
     },
   }
-  @observable affFacCount: init = 0
+  @observable
+  affFacCount: init = 0
   @observable
   printer: init = L.easyPrint({
     title: 'Print',

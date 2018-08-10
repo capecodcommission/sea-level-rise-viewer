@@ -1,0 +1,32 @@
+/* THE 'ControlsWrapper' ID IS USED TO STYLE THE WRAPPER AROUND THE DROPDOWN */
+.LegendWrapper {
+  position: absolute;
+  z-index: 2;
+  background: #4d4d4d;
+  margin-top: 10px;
+  padding: 1em;
+  margin-left: 10px;
+  opacity: 0.8;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 0.5em;
+  text-align: center;
+  width: 10%;
+  right: 1.5%;
+  bottom: 1%;
+  color: white;
+}
+
+.point {
+  width: 50%;
+  display: block;
+  margin-right: auto;
+}
+
+.colorBar {
+  height: 15px;
+  width: 30px;
+}
+
+.legendTitle {
+  color: white;
+}

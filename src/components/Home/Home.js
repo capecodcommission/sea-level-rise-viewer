@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import {observer} from 'mobx-react'
 import EsriLeafletMap from './Leaflet Map/EsriLeafletMap'
 import ControlPanel from './ControlPanel/ControlPanel'
+import Legend from './Legend/Legend'
 import {Grid, Row, Col} from 'react-bootstrap'
 import css from './Home.css'
 import RootStore from '../../store'
@@ -23,6 +24,7 @@ class Home extends Component {
           <Col>
             <ControlPanel />
             <EsriLeafletMap />
+            <Legend />
           </Col>
         </Row>
       </Grid>
