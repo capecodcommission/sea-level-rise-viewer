@@ -3,10 +3,9 @@
   position: absolute;
   z-index: 2;
   background: #bdbdbd;
-  margin-top: 1em;
+  margin-top: 10px;
   padding: 1em;
-  top: 12%;
-  left: 1.75%;
+  margin-left: 10px;
   opacity: 0.8;
   font-family: 'Open Sans', sans-serif;
   border-radius: 0.5em;

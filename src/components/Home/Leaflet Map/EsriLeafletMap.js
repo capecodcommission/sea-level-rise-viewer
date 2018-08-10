@@ -39,10 +39,25 @@ class EsriLeafletMap extends Component {
         center: RootStore.EsriMapStore.startView,
         zoom: zoom_Level,
         layers: [streets, townLines],
+        zoomControl: false,
       })
     )
 
     const map = RootStore.EsriMapStore.map
+
+    L.control
+      .zoom({
+        position: 'topright',
+      })
+      .addTo(map)
+
+    // Add custom Leaflet control to handle centered map printing in portrait and landscape formats
+    // RootStore.EsriMapStore.printer.addTo(map)
+    L.easyPrint({
+      title: 'Print',
+      position: 'topright',
+      sizeModes: ['A4Portrait', 'A4Landscape'],
+    }).addTo(map)
 
     var searchControl = geocoder
       .geosearch()
@@ -64,14 +79,6 @@ class EsriLeafletMap extends Component {
         return i
       })
     })
-
-    // Add custom Leaflet control to handle centered map printing in portrait and landscape formats
-    // RootStore.EsriMapStore.printer.addTo(map)
-    L.easyPrint({
-      title: 'Print',
-      position: 'bottomright',
-      sizeModes: ['A4Portrait', 'A4Landscape'],
-    }).addTo(map)
   }
 
   // Render html contents as component https://reactjs.org/docs/react-component.html

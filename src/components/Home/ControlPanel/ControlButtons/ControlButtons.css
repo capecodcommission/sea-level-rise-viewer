@@ -1,31 +1,14 @@
-.componentsWrapper {
-  position: relative;
+/* THE 'ControlsWrapper' ID IS USED TO STYLE THE WRAPPER AROUND THE DROPDOWN */
+.ControlsWrapper {
+  position: absolute;
   z-index: 2;
-  background: #636363;
-  padding: 0.25em;
+  background: #bdbdbd;
+  margin-top: 10px;
+  padding: 1em;
+  margin-left: 10px;
+  opacity: 0.8;
   font-family: 'Open Sans', sans-serif;
   border-radius: 0.5em;
-}
-
-.controlsTitle {
-  position: relative;
-  cursor: default;
-  font-size: 1em;
-  color: #3182bd;
-  font-family: 'Open Sans', sans-serif;
-  background: black;
-  border-radius: 0.3em;
-  padding: 0.25em;
-  white-space: pre-line;      /* Webkit */
-  white-space: -moz-pre-wrap; /* Firefox */
-  white-space: -pre-wrap;     /* Opera <7 */
-  white-space: -o-pre-wrap;   /* Opera 7 */
-  word-wrap: break-word;      /* IE */
   text-align: center;
-}
-
-.buttonToolbarWrapper {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  margin-left: 0.05em;
+  width: 15%;
 }
