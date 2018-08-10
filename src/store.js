@@ -3,33 +3,26 @@ import * as esri from 'esri-leaflet'
 import * as L from 'leaflet'
 import * as eLCluster from 'esri-leaflet-cluster'
 import * as leafletMarkerCluster from 'leaflet.markercluster'
-import {observable, action, reaction, autorun, toJS} from 'mobx'
+import {observable, action, reaction} from 'mobx'
 import axios from 'axios'
-import React, {Component} from 'react'
+import React from 'react'
 import easyPrint from 'leaflet-easyprint'
 
 class EsriMapStore {
-  @observable
-  currentZoomLevel: int = 13
-  @observable
-  currentBaseMapName: string = 'NationalGeographic'
-  @observable
-  currentBaseMapObject: null = {}
-  @observable
-  currentSliderValue: int = 0
-  @observable
-  sliderToggle: init = false
+  @observable currentZoomLevel: int = 13
+  @observable currentBaseMapName: string = 'NationalGeographic'
+  @observable currentBaseMapObject: null = {}
+  @observable currentSliderValue: int = 0
+  @observable sliderToggle: init = false
   startView: init = [41.68, -70.3405]
-  @observable
-  map: null = {}
+  @observable map: null = {}
   currentSLRLayer: null = {}
   currentRoadLayer: null = {}
   tileLayer: null = {}
   criticalFacilitiesButtonValue = 1
   sloshButtonValue = 2
   femaFirmButtonValue = 3
-  @observable
-  value: init = []
+  @observable value: init = []
   townLines: init = esri.featureLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/Data_People/Boundary/MapServer/6',
@@ -141,14 +134,10 @@ class EsriMapStore {
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_6ft/MapServer',
   })
   // TODO: FIGURE OUT BUTTON BACKGROUND STYLING USING LOGIC BELOW & IN 'Layers.js'
-  @observable
-  criticalFacilitiesBackground: init = false
-  @observable
-  sloshBackground = false
-  @observable
-  femaFirmBackground = false
-  @observable
-  searchResults: init = L.layerGroup()
+  @observable criticalFacilitiesBackground: init = false
+  @observable sloshBackground = false
+  @observable femaFirmBackground = false
+  @observable searchResults: init = L.layerGroup()
 
   @action
   handleButtonChange = e => {
@@ -175,22 +164,14 @@ class EsriMapStore {
     this.toggleCriticalFacilities()
     this.toggleCriticalFacilitiesBackground()
   }
-  @observable
-  SLR_0ft_geojson: init = false
-  @observable
-  SLR_1ft_geojson: init = false
-  @observable
-  SLR_2ft_geojson: init = false
-  @observable
-  SLR_3ft_geojson: init = false
-  @observable
-  SLR_4ft_geojson: init = false
-  @observable
-  SLR_5ft_geojson: init = false
-  @observable
-  SLR_6ft_geojson: init = false
-  @observable
-  currentSLR_geojson: init = false
+  @observable SLR_0ft_geojson: init = false
+  @observable SLR_1ft_geojson: init = false
+  @observable SLR_2ft_geojson: init = false
+  @observable SLR_3ft_geojson: init = false
+  @observable SLR_4ft_geojson: init = false
+  @observable SLR_5ft_geojson: init = false
+  @observable SLR_6ft_geojson: init = false
+  @observable currentSLR_geojson: init = false
   @observable
   criticalFacilitiesIntersection: init = L.geoJSON(
     {
@@ -214,14 +195,10 @@ class EsriMapStore {
       layer.feature.properties
     )
   })
-  @observable
-  layerDesc: init = null
-  @observable
-  layerDescShow: init = false
-  @observable
-  critFacWhere: init = []
-  @observable
-  loadingComplete: init = true
+  @observable layerDesc: init = null
+  @observable layerDescShow: init = false
+  @observable critFacWhere: init = []
+  @observable loadingComplete: init = true
   @observable
   marks: init = {
     0: {
@@ -280,8 +257,7 @@ class EsriMapStore {
       label: '6',
     },
   }
-  @observable
-  affFacCount: init = 0
+  @observable affFacCount: init = 0
   @observable
   printer: init = L.easyPrint({
     title: 'Print',
@@ -458,6 +434,7 @@ class EsriMapStore {
               fc.features.map(j => {
                 critFacIntersect.addData(j)
                 whereClause.push(j.id)
+                return j
               })
             }
           })
@@ -509,6 +486,9 @@ class EsriMapStore {
         this.currentRoadLayer = this.roads6ftSeaLevel
         this.currentSLR_geojson = this.SLR_6ft_geojson
         break
+
+      default:
+        console.log("Sorry, this isn't working.")
     }
 
     this.currentSliderValue = value
@@ -630,6 +610,9 @@ class EsriMapStore {
           </ul>
         )
         break
+
+      default:
+        console.log("Sorry, this isn't working.")
     }
   }
 

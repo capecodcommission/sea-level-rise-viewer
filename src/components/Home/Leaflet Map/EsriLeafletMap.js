@@ -5,8 +5,7 @@ import * as L from 'leaflet'
 import * as esri from 'esri-leaflet'
 import * as geocoder from 'esri-leaflet-geocoder'
 import css from './EsriLeafletMap.css'
-import {observer, Provider} from 'mobx-react'
-import easyPrint from 'leaflet-easyprint'
+import {observer} from 'mobx-react'
 
 // Reactive component https://mobx.js.org/refguide/observer-component.html
 @observer

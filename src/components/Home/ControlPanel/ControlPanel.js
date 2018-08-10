@@ -9,10 +9,6 @@ import css from './ControlPanel.css'
 
 @observer
 class ControlPanel extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   // Render all control panel sub-components in Bootstrap grid
   render = () => {
     return (
