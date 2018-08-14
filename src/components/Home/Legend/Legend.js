@@ -53,6 +53,14 @@ class Legend extends Component {
             <p>Critical Facilities</p>
           </td>
         </tr>
+        <tr>
+          <td>
+            <div className={[css.cluster, css.digits].join(' ')} />
+          </td>
+          <td>
+            <p>Clusters</p>
+          </td>
+        </tr>
       </tbody>
     )
 

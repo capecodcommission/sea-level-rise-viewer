@@ -6,7 +6,7 @@ import * as leafletMarkerCluster from 'leaflet.markercluster'
 import {observable, action, reaction} from 'mobx'
 import axios from 'axios'
 import React from 'react'
-import easyPrint from 'leaflet-easyprint'
+import css from './index.css'
 
 class EsriMapStore {
   @observable
@@ -54,12 +54,24 @@ class EsriMapStore {
         })
       },
       polygonOptions: {
-        color: 'blue',
+        color: '#2CA5C3',
+      },
+      iconCreateFunction: function(cluster) {
+        // Get number of points within cluster
+        var count = cluster.getChildCount()
+
+        // Create new cluster icon with point number in center
+        // Style using imported css
+        return new L.divIcon({
+          html: count,
+          className: [css.cluster, css.digits].join(' '),
+          iconSize: null,
+        })
       },
     })
     .bindPopup(function(layer) {
       return L.Util.template(
-        '<strong>{NAME}</strong> <p> {DESCRIPT} | {FULLADDR}</p>',
+        '<strong>{NAME}</strong> <p> {DESCRIPT} | {FULLADDR}</p> <p>{MUNICIPALI}</p>',
         layer.feature.properties
       )
     })
@@ -158,10 +170,213 @@ class EsriMapStore {
   femaFirmBackground = false
   @observable
   searchResults: init = L.layerGroup()
+  @observable
+  subTypeFIEArray: init = [
+    {
+      subTypeFIE: '701',
+      checked: true,
+    },
+    {
+      subTypeFIE: '710',
+      checked: true,
+    },
+    {
+      subTypeFIE: '720',
+      checked: true,
+    },
+    {
+      subTypeFIE: '730',
+      checked: true,
+    },
+    {
+      subTypeFIE: '740',
+      checked: true,
+    },
+    {
+      subTypeFIE: '750',
+      checked: true,
+    },
+    {
+      subTypeFIE: '790',
+      checked: true,
+    },
+    {
+      subTypeFIE: '800',
+      checked: true,
+    },
+    {
+      subTypeFIE: '810',
+      checked: true,
+    },
+    {
+      subTypeFIE: '820',
+      checked: true,
+    },
+    {
+      subTypeFIE: '830',
+      checked: true,
+    },
+    {
+      subTypeFIE: '850',
+      checked: true,
+    },
+    {
+      subTypeFIE: '880',
+      checked: true,
+    },
+  ]
+  @observable
+  townArray: init = [
+    {
+      town: 'Barnstable',
+      checked: true,
+    },
+    {
+      town: 'Bourne',
+      checked: true,
+    },
+    {
+      town: 'Brewster',
+      checked: true,
+    },
+    {
+      town: 'Chatham',
+      checked: true,
+    },
+    {
+      town: 'Dennis',
+      checked: true,
+    },
+    {
+      town: 'Eastham',
+      checked: true,
+    },
+    {
+      town: 'Falmouth',
+      checked: true,
+    },
+    {
+      town: 'Harwich',
+      checked: true,
+    },
+    {
+      town: 'Mashpee',
+      checked: true,
+    },
+    {
+      town: 'Orleans',
+      checked: true,
+    },
+    {
+      town: 'Provincetown',
+      checked: true,
+    },
+    {
+      town: 'Sandwich',
+      checked: true,
+    },
+    {
+      town: 'Truro',
+      checked: true,
+    },
+    {
+      town: 'Wellfleet',
+      checked: true,
+    },
+    {
+      town: 'Yarmouth',
+      checked: true,
+    },
+  ]
 
   @action
   handleButtonChange = e => {
     return (this.value = e)
+  }
+
+  // Filter Critical Facilities layer using checked sub types and towns
+  filterCritFac = () => {
+    // Create filtered subsets of type and town arrays using checked property
+    var townFilter = this.townArray.filter(i => {
+      return i.checked
+    })
+    var subFilter = this.subTypeFIEArray.filter(i => {
+      return i.checked
+    })
+
+    // Create array-like strings from filtered arrays to pass to Critical Facilities layer query
+    var queryTownString = townFilter
+      .map(i => {
+        return "'" + i.town + "'"
+      })
+      .join(',')
+    var querySubString = subFilter
+      .map(i => {
+        return i.subTypeFIE
+      })
+      .join(',')
+
+    if (this.map.hasLayer(this.criticalFacilities)) {
+      this.criticalFacilities.setWhere(
+        'MUNICIPALI IN (' +
+          queryTownString +
+          ') AND SUBTYPEFIE IN (' +
+          querySubString +
+          ')'
+      )
+    }
+  }
+
+  // Toggle check property for singular sub-type using passed sub-type value from checkbox
+  @action
+  handleSubTypeFilter = subTypeFIE => {
+    // Find object in type array that matches the passed type from checkbox, toggle checked property
+    var subRow = this.subTypeFIEArray.find(i => {
+      return i.subTypeFIE === subTypeFIE
+    })
+    subRow.checked = !subRow.checked
+
+    this.filterCritFac()
+  }
+
+  // Toggle check property for singular town using passed town value from checkbox
+  @action
+  handleTownFilter = town => {
+    // Find object in town array that matches the passed town from checkbox, toggle checked property
+    var townRow = this.townArray.find(i => {
+      return i.town === town
+    })
+    townRow.checked = !townRow.checked
+
+    this.filterCritFac()
+  }
+
+  // Check all types and towns, rerun Critical Facilities filter
+  @action
+  selectAll = () => {
+    // Check all items from types and towns arrays
+    this.subTypeFIEArray.map(i => {
+      i.checked = true
+    })
+    this.townArray.map(i => {
+      i.checked = true
+    })
+
+    this.filterCritFac()
+  }
+
+  // Uncheck all types and towns, rerun Critical Facilities filter
+  @action
+  selectNone = () => {
+    // Uncheck all items from types and towns arrays
+    this.subTypeFIEArray.map(i => {
+      i.checked = false
+    })
+    this.townArray.map(i => {
+      i.checked = false
+    })
+
+    this.filterCritFac()
   }
 
   @action
@@ -291,13 +506,6 @@ class EsriMapStore {
   }
   @observable
   affFacCount: init = 0
-  @observable
-  printer: init = L.easyPrint({
-    title: 'Print',
-    position: 'bottomright',
-    sizeModes: ['A4Portrait', 'A4Landscape'],
-    hidden: true,
-  })
 
   @action
   printerMap = () => {
@@ -480,7 +688,7 @@ class EsriMapStore {
     switch (value) {
       case 0:
         this.currentSLRLayer = this.zeroFtSeaLevel
-        this.currentRoadLayer = this.roads1ftSeaLevel
+        this.currentRoadLayer = this.roads
         this.currentSLR_geojson = this.SLR_0ft_geojson
         break
 

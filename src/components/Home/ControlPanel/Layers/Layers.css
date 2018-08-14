@@ -2,8 +2,8 @@
 .LayersWrapper {
   position: relative;
   z-index: 2;
-  background: #636363;
-  margin-top: 1em;
+  background: #4d4d4d;
+  margin-top: .5em;
   padding: 1em;
   top: 40%;
   left: 1%;

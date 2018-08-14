@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import BaseMapSwitcher from './BaseMapSwitcher/BaseMapSwitcher'
 import Layers from './Layers/Layers'
-import ControlButtons from './ControlButtons/ControlButtons'
+import Title from './Title/Title'
 import {observer} from 'mobx-react'
 import {Row, Col} from 'react-bootstrap'
 import css from './ControlPanel.css'
@@ -15,7 +15,7 @@ class ControlPanel extends Component {
       <div>
         <Row className={css.ControlsWrapper}>
           <Col>
-            <ControlButtons />
+            <Title />
             <BaseMapSwitcher />
             <Layers />
           </Col>

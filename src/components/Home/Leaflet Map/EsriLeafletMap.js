@@ -6,6 +6,7 @@ import * as esri from 'esri-leaflet'
 import * as geocoder from 'esri-leaflet-geocoder'
 import css from './EsriLeafletMap.css'
 import {observer} from 'mobx-react'
+import {easyPrint} from 'leaflet-easyprint'
 
 // Reactive component https://mobx.js.org/refguide/observer-component.html
 @observer
@@ -40,6 +41,7 @@ class EsriLeafletMap extends Component {
         zoom: zoom_Level,
         layers: [streets, townLines],
         zoomControl: false,
+        attributionControl: false,
       })
     )
 
@@ -79,6 +81,42 @@ class EsriLeafletMap extends Component {
         return i
       })
     })
+
+    L.Control.ZoomHome = L.Control.extend({
+      options: {
+        position: 'topright',
+      },
+      initialize: function(options) {
+        L.Util.setOptions(this, options)
+      },
+      onAdd: function(map) {
+        var homeButton = L.DomUtil.create(
+          'div',
+          'leaflet-bar leaflet-control leaflet-control-custom'
+        )
+        homeButton.style.backgroundColor = 'white'
+        homeButton.style.backgroundImage =
+          'url(https://image.flaticon.com/icons/svg/2/2144.svg)'
+        homeButton.style.backgroundSize = '30px 30px'
+        homeButton.style.width = '34px'
+        homeButton.style.height = '30px'
+        homeButton.style.marginTop = '10px'
+        homeButton.style.paddingTop = '10px'
+        homeButton.onclick = function() {
+          RootStore.EsriMapStore.map.setView(
+            RootStore.EsriMapStore.startView,
+            RootStore.EsriMapStore.currentZoomLevel
+          )
+        }
+        return homeButton
+      },
+    })
+
+    L.control.zoomHome = function(opts) {
+      return new L.Control.ZoomHome()
+    }
+
+    L.control.zoomHome().addTo(map)
   }
 
   // Render html contents as component https://reactjs.org/docs/react-component.html

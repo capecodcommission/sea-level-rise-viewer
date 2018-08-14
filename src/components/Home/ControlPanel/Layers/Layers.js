@@ -10,6 +10,10 @@ import {
   Glyphicon,
   Popover,
   OverlayTrigger,
+  FormGroup,
+  Checkbox,
+  Col,
+  Row,
 } from 'react-bootstrap'
 import {observer} from 'mobx-react'
 import Slider from 'rc-slider'
@@ -30,6 +34,14 @@ class Layers extends Component {
     RootStore.EsriMapStore.switchSLRLayer(value)
   }
 
+  checkSubType = e => {
+    RootStore.EsriMapStore.handleSubTypeFilter(e.target.value)
+  }
+
+  checkTown = e => {
+    RootStore.EsriMapStore.handleTownFilter(e.target.value)
+  }
+
   // RENDER THE LAYER ICONS USING 'Layers.css' & SOME MARKUP - REMOVE 'circle' ONCE FINAL IMGs MADE
   render = () => {
     let criticalFacilitiesDescription = (
@@ -43,7 +55,8 @@ class Layers extends Component {
           rel="noopener noreferrer"
         >
           here
-        </a>.
+        </a>
+        .
       </Popover>
     )
 
@@ -58,7 +71,8 @@ class Layers extends Component {
           rel="noopener noreferrer"
         >
           here
-        </a>.
+        </a>
+        .
       </Popover>
     )
 
@@ -73,7 +87,8 @@ class Layers extends Component {
           rel="noopener noreferrer"
         >
           here
-        </a>.
+        </a>
+        .
       </Popover>
     )
 
@@ -91,7 +106,241 @@ class Layers extends Component {
           rel="noopener noreferrer"
         >
           here
-        </a>.
+        </a>
+        .
+      </Popover>
+    )
+
+    let clearLayerDesc = (
+      <Popover id="clr" title="Clear All Layers">
+        This button allows the user to remove any toggled layer from the map
+      </Popover>
+    )
+
+    let critFacFilterPopover = (
+      <Popover id="filterPop" title="Filter by Type or Town">
+        <Row>
+          <Col md={6}>
+            <FormGroup>
+              <Checkbox
+                onChange={this.checkSubType}
+                value="701"
+                checked={RootStore.EsriMapStore.subTypeFIEArray[0].checked}
+              >
+                Agriculture, Food &amp; Livestock
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkSubType}
+                value="710"
+                checked={RootStore.EsriMapStore.subTypeFIEArray[1].checked}
+              >
+                Industry
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkSubType}
+                value="720"
+                checked={RootStore.EsriMapStore.subTypeFIEArray[2].checked}
+              >
+                Commercial &amp; Retail
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkSubType}
+                value="730"
+                checked={RootStore.EsriMapStore.subTypeFIEArray[3].checked}
+              >
+                Education
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkSubType}
+                value="740"
+                checked={RootStore.EsriMapStore.subTypeFIEArray[4].checked}
+              >
+                Emergency Response &amp; Law Enforcement
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkSubType}
+                value="750"
+                checked={RootStore.EsriMapStore.subTypeFIEArray[5].checked}
+              >
+                Energy
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkSubType}
+                value="790"
+                checked={RootStore.EsriMapStore.subTypeFIEArray[6].checked}
+              >
+                Building General
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkSubType}
+                value="800"
+                checked={RootStore.EsriMapStore.subTypeFIEArray[7].checked}
+              >
+                Health &amp; Medical
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkSubType}
+                value="810"
+                checked={RootStore.EsriMapStore.subTypeFIEArray[8].checked}
+              >
+                Transportation Facilities
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkSubType}
+                value="820"
+                checked={RootStore.EsriMapStore.subTypeFIEArray[9].checked}
+              >
+                Public Attraction &amp; Landmark Buildings
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkSubType}
+                value="830"
+                checked={RootStore.EsriMapStore.subTypeFIEArray[10].checked}
+              >
+                Government &amp; Military
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkSubType}
+                value="850"
+                checked={RootStore.EsriMapStore.subTypeFIEArray[11].checked}
+              >
+                Water Supply &amp; Treatment
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkSubType}
+                value="880"
+                checked={RootStore.EsriMapStore.subTypeFIEArray[12].checked}
+              >
+                Information &amp; Communication
+              </Checkbox>
+            </FormGroup>
+          </Col>
+          <Col md={6}>
+            <FormGroup>
+              <Checkbox
+                onChange={this.checkTown}
+                value="Barnstable"
+                checked={RootStore.EsriMapStore.townArray[0].checked}
+              >
+                Barnstable
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkTown}
+                value="Bourne"
+                checked={RootStore.EsriMapStore.townArray[1].checked}
+              >
+                Bourne
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkTown}
+                value="Brewster"
+                checked={RootStore.EsriMapStore.townArray[2].checked}
+              >
+                Brewster
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkTown}
+                value="Chatham"
+                checked={RootStore.EsriMapStore.townArray[3].checked}
+              >
+                Chatham
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkTown}
+                value="Dennis"
+                checked={RootStore.EsriMapStore.townArray[4].checked}
+              >
+                Dennis
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkTown}
+                value="Eastham"
+                checked={RootStore.EsriMapStore.townArray[5].checked}
+              >
+                Eastham
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkTown}
+                value="Falmouth"
+                checked={RootStore.EsriMapStore.townArray[6].checked}
+              >
+                Falmouth
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkTown}
+                value="Harwich"
+                checked={RootStore.EsriMapStore.townArray[7].checked}
+              >
+                Harwich
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkTown}
+                value="Mashpee"
+                checked={RootStore.EsriMapStore.townArray[8].checked}
+              >
+                Mashpee
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkTown}
+                value="Orleans"
+                checked={RootStore.EsriMapStore.townArray[9].checked}
+              >
+                Orleans
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkTown}
+                value="Provincetown"
+                checked={RootStore.EsriMapStore.townArray[10].checked}
+              >
+                Provincetown
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkTown}
+                value="Sandwich"
+                checked={RootStore.EsriMapStore.townArray[11].checked}
+              >
+                Sandwich
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkTown}
+                value="Truro"
+                checked={RootStore.EsriMapStore.townArray[12].checked}
+              >
+                Truro
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkTown}
+                value="Wellfleet"
+                checked={RootStore.EsriMapStore.townArray[13].checked}
+              >
+                Wellfleet
+              </Checkbox>
+              <Checkbox
+                onChange={this.checkTown}
+                value="Yarmouth"
+                checked={RootStore.EsriMapStore.townArray[14].checked}
+              >
+                Yarmouth
+              </Checkbox>
+            </FormGroup>
+          </Col>
+        </Row>
+        <Button
+          bsStyle="info"
+          bsSize="small"
+          className={'glyphicon glyphicon-star'}
+          onClick={RootStore.EsriMapStore.selectAll.bind(this)}
+        >
+          Select All
+        </Button>
+        <Button
+          bsStyle="info"
+          bsSize="small"
+          className={'glyphicon glyphicon-star-empty pull-right'}
+          onClick={RootStore.EsriMapStore.selectNone.bind(this)}
+        >
+          Select None
+        </Button>
       </Popover>
     )
 
@@ -248,12 +497,58 @@ class Layers extends Component {
       </ButtonToolbar>
     )
 
+    let removeLayersButton = (
+      <OverlayTrigger
+        trigger={['hover', 'focus']}
+        rootClose
+        placement="right"
+        overlay={clearLayerDesc}
+      >
+        <Button
+          bsStyle="primary"
+          bsSize="small"
+          className={'glyphicon glyphicon-remove-sign pull-right'}
+          onClick={RootStore.EsriMapStore.removeToggleableLayers}
+        />
+      </OverlayTrigger>
+    )
+
+    let critFacFiltersButton = (
+      <OverlayTrigger
+        trigger="click"
+        rootClose
+        placement="right"
+        overlay={critFacFilterPopover}
+      >
+        <Button
+          bsStyle="success"
+          bsSize="small"
+          className={'glyphicon glyphicon-filter'}
+        />
+      </OverlayTrigger>
+    )
+
+    let layerToggles = [
+      RootStore.EsriMapStore.criticalFacilitiesBackground,
+      RootStore.EsriMapStore.femaFirmBackground,
+      RootStore.EsriMapStore.sloshBackground,
+      RootStore.EsriMapStore.sliderToggle,
+    ]
+
     return (
       <div className={css.LayersWrapper}>
-        <span className={css.LayerMenuTitle}>
-          <strong>MAP LAYERS</strong>
+        <span className="text-center">
+          <span className={css.LayerMenuTitle}>
+            <strong>MAP LAYERS</strong>
+          </span>
+          {layerToggles.every(i => !i) ? null : removeLayersButton}
         </span>
-        {critFacImage}
+        <span>
+          {critFacImage}
+          {RootStore.EsriMapStore.criticalFacilitiesBackground
+            ? critFacFiltersButton
+            : null}
+        </span>
         {sloshImage}
         {femaImage}
         {RootStore.EsriMapStore.sliderToggle ? slrWithInfo : slrWithoutInfo}

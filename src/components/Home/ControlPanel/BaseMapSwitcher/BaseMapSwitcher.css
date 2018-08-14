@@ -2,8 +2,8 @@
 .basemapsWrapper {
   position: relative;
   z-index: 2;
-  background: #636363;
-  margin-top: 0.25em;
+  background: #4d4d4d;
+  margin-top: .5em;
   padding: 1em;
   left: 1%;
   font-family: 'Open Sans', sans-serif;
