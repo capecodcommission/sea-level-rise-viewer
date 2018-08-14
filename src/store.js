@@ -9,27 +9,23 @@ import React from 'react'
 import css from './index.css'
 
 class EsriMapStore {
-  @observable
-  currentZoomLevel: int = 13
-  @observable
-  currentBaseMapName: string = 'NationalGeographic'
-  @observable
-  currentBaseMapObject: null = {}
-  @observable
-  currentSliderValue: int = 0
-  @observable
-  sliderToggle: init = false
+  @observable currentZoomLevel: int = 13
+  @observable currentBaseMapName: string = 'NationalGeographic'
+  @observable currentBaseMapObject: null = {}
+  @observable currentSliderValue: int = 0
+  @observable currentLiquidValue = 0
+  startColor = '#0ca4ff'
+  endColor = '#0077be'
+  @observable sliderToggle: init = false
   startView: init = [41.68, -70.3405]
-  @observable
-  map: null = {}
+  @observable map: null = {}
   currentSLRLayer: null = {}
   currentRoadLayer: null = {}
   tileLayer: null = {}
   criticalFacilitiesButtonValue = 1
   sloshButtonValue = 2
   femaFirmButtonValue = 3
-  @observable
-  value: init = []
+  @observable value: init = []
   townLines: init = esri.featureLayer({
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/Data_People/Boundary/MapServer/6',
@@ -399,22 +395,14 @@ class EsriMapStore {
     this.toggleCriticalFacilities()
     this.toggleCriticalFacilitiesBackground()
   }
-  @observable
-  SLR_0ft_geojson: init = false
-  @observable
-  SLR_1ft_geojson: init = false
-  @observable
-  SLR_2ft_geojson: init = false
-  @observable
-  SLR_3ft_geojson: init = false
-  @observable
-  SLR_4ft_geojson: init = false
-  @observable
-  SLR_5ft_geojson: init = false
-  @observable
-  SLR_6ft_geojson: init = false
-  @observable
-  currentSLR_geojson: init = false
+  @observable SLR_0ft_geojson: init = false
+  @observable SLR_1ft_geojson: init = false
+  @observable SLR_2ft_geojson: init = false
+  @observable SLR_3ft_geojson: init = false
+  @observable SLR_4ft_geojson: init = false
+  @observable SLR_5ft_geojson: init = false
+  @observable SLR_6ft_geojson: init = false
+  @observable currentSLR_geojson: init = false
   @observable
   criticalFacilitiesIntersection: init = L.geoJSON(
     {
@@ -438,14 +426,10 @@ class EsriMapStore {
       layer.feature.properties
     )
   })
-  @observable
-  layerDesc: init = null
-  @observable
-  layerDescShow: init = false
-  @observable
-  critFacWhere: init = []
-  @observable
-  loadingComplete: init = true
+  @observable layerDesc: init = null
+  @observable layerDescShow: init = false
+  @observable critFacWhere: init = []
+  @observable loadingComplete: init = true
   @observable
   marks: init = {
     0: {
@@ -587,6 +571,11 @@ class EsriMapStore {
       .then(response => {
         this.SLR_6ft_geojson = L.geoJSON(response.data)
       })
+  }
+
+  @action
+  handleLiquidChange = () => {
+    this.currentLiquidValue = (this.currentSliderValue / 6) * 100
   }
 
   // Use Axios to request geojson from Open Data Portal, set response into unique state properties
@@ -865,6 +854,7 @@ class EsriMapStore {
     this.handleCurrents(value)
     this.handleLayerAdding()
     this.handleIntersection(value)
+    this.handleLiquidChange()
   }
 
   // Show/Hide SLR slider component, relevant SLR map layers, and layer descriptions

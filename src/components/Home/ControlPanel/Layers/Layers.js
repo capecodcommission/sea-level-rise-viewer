@@ -17,6 +17,9 @@ import {
 } from 'react-bootstrap'
 import {observer} from 'mobx-react'
 import Slider from 'rc-slider'
+import {color} from 'd3-color'
+import {interpolateRgb} from 'd3-interpolate'
+import LiquidFillGauge from 'react-liquid-gauge'
 
 @observer
 class Layers extends Component {
@@ -434,10 +437,65 @@ class Layers extends Component {
         min={0}
         max={6}
         onAfterChange={this.setSliderValue}
-        dots={true}
-        marks={RootStore.EsriMapStore.marks}
+        railStyle={{backgroundColor: 'grey', height: 2}}
+        trackStyle={{
+          backgroundColor: RootStore.EsriMapStore.endColor,
+          height: 8,
+          marginTop: -2,
+        }}
+        dotStyle={{borderColor: 'grey'}}
+        activeDotStyle={{
+          backgroundColor: RootStore.EsriMapStore.endColor,
+          borderColor: RootStore.EsriMapStore.endColor,
+        }}
+        handleStyle={{
+          img: 'src=liquidFillGauge',
+          borderColor: 'grey',
+          height: 20,
+          width: 20,
+          marginLeft: -5,
+          marginTop: -7,
+          backgroundColor: '#0077be',
+        }}
+        // handle={liquidFillGauge} NEED TO MAKE A f(x) RE: https://react-component.github.io/slider/examples/handle.html
       />
     )
+
+    const radius = 30
+
+    const interpolate = interpolateRgb(
+      RootStore.EsriMapStore.startColor,
+      RootStore.EsriMapStore.endColor
+    )
+
+    const fillColor = interpolate(
+      RootStore.EsriMapStore.currentLiquidValue / 100
+    )
+
+    const gradientStops = [
+      {
+        key: '0',
+        stopColor: color(fillColor)
+          .darker(0.5)
+          .toString(),
+        stopOpacity: 1,
+        offset: '0%',
+      },
+      {
+        key: '50',
+        stopColor: fillColor,
+        stopOpacity: 0.75,
+        offset: '50%',
+      },
+      {
+        key: '100',
+        stopColor: color(fillColor)
+          .brighter(0.5)
+          .toString(),
+        stopOpacity: 0.5,
+        offset: '100%',
+      },
+    ]
 
     let slrWithInfo = (
       <ButtonToolbar className={css.buttonToolbarWrapper}>
@@ -535,6 +593,56 @@ class Layers extends Component {
       RootStore.EsriMapStore.sliderToggle,
     ]
 
+    let liquidFillGauge = (
+      <LiquidFillGauge
+        style={{
+          margin: '2.75em auto 0',
+        }}
+        width={radius * 2}
+        height={radius * 2}
+        value={RootStore.EsriMapStore.currentLiquidValue}
+        textSize={1}
+        textOffsetX={0}
+        textOffsetY={10}
+        textRenderer={props => {
+          const value = RootStore.EsriMapStore.currentSliderValue
+          const radius = Math.min(props.height / 2.5, props.width / 2)
+          const textPixels = (props.textSize * radius) / 1.5
+          const valueStyle = {
+            fontSize: textPixels,
+          }
+
+          return (
+            <tspan>
+              <tspan className="value" style={valueStyle}>
+                {value} ft
+              </tspan>
+            </tspan>
+          )
+        }}
+        riseAnimation
+        waveAnimation
+        waveFrequency={2}
+        waveAmplitude={4}
+        gradient
+        gradientStops={gradientStops}
+        circleStyle={{
+          fill: fillColor,
+        }}
+        waveStyle={{
+          fill: fillColor,
+        }}
+        textStyle={{
+          fill: color('#fff').toString(),
+          fontFamily: 'Open Sans',
+        }}
+        waveTextStyle={{
+          fill: color('#fff').toString(),
+          fontFamily: 'Open Sans',
+        }}
+      />
+    )
+
     return (
       <div className={css.LayersWrapper}>
         <span className="text-center">
@@ -553,6 +661,7 @@ class Layers extends Component {
         {femaImage}
         {RootStore.EsriMapStore.sliderToggle ? slrWithInfo : slrWithoutInfo}
         {RootStore.EsriMapStore.sliderToggle ? slider : <p />}
+        {RootStore.EsriMapStore.sliderToggle ? liquidFillGauge : <p />}
       </div>
     )
   }
