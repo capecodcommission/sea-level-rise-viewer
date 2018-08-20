@@ -24,12 +24,12 @@ import LiquidFillGauge from 'react-liquid-gauge'
 @observer
 class Layers extends Component {
   componentDidMount = () => {
-    RootStore.EsriMapStore.loadAllSLR()
+    RootStore.GeoJSONStore.loadAllSLR()
   }
 
   // Show/Hide slider
   toggleSlider = () => {
-    RootStore.EsriMapStore.toggleSlider()
+    RootStore.ControlPanelStore.toggleSlider()
   }
 
   // Switch out map layers based on slider value
@@ -38,11 +38,11 @@ class Layers extends Component {
   }
 
   checkSubType = e => {
-    RootStore.EsriMapStore.handleSubTypeFilter(e.target.value)
+    RootStore.ControlPanelStore.handleSubTypeFilter(e.target.value)
   }
 
   checkTown = e => {
-    RootStore.EsriMapStore.handleTownFilter(e.target.value)
+    RootStore.ControlPanelStore.handleTownFilter(e.target.value)
   }
 
   // RENDER THE LAYER ICONS USING 'Layers.css' & SOME MARKUP - REMOVE 'circle' ONCE FINAL IMGs MADE
@@ -124,204 +124,212 @@ class Layers extends Component {
       <Popover id="filterPop" title="Filter by Type or Town">
         <Row>
           <Col md={6}>
+            <strong>Types</strong>
             <FormGroup>
               <Checkbox
                 onChange={this.checkSubType}
                 value="701"
-                checked={RootStore.EsriMapStore.subTypeFIEArray[0].checked}
+                checked={RootStore.ControlPanelStore.subTypeFIEArray[0].checked}
               >
                 Agriculture, Food &amp; Livestock
               </Checkbox>
               <Checkbox
                 onChange={this.checkSubType}
                 value="710"
-                checked={RootStore.EsriMapStore.subTypeFIEArray[1].checked}
+                checked={RootStore.ControlPanelStore.subTypeFIEArray[1].checked}
               >
                 Industry
               </Checkbox>
               <Checkbox
                 onChange={this.checkSubType}
                 value="720"
-                checked={RootStore.EsriMapStore.subTypeFIEArray[2].checked}
+                checked={RootStore.ControlPanelStore.subTypeFIEArray[2].checked}
               >
                 Commercial &amp; Retail
               </Checkbox>
               <Checkbox
                 onChange={this.checkSubType}
                 value="730"
-                checked={RootStore.EsriMapStore.subTypeFIEArray[3].checked}
+                checked={RootStore.ControlPanelStore.subTypeFIEArray[3].checked}
               >
                 Education
               </Checkbox>
               <Checkbox
                 onChange={this.checkSubType}
                 value="740"
-                checked={RootStore.EsriMapStore.subTypeFIEArray[4].checked}
+                checked={RootStore.ControlPanelStore.subTypeFIEArray[4].checked}
               >
                 Emergency Response &amp; Law Enforcement
               </Checkbox>
               <Checkbox
                 onChange={this.checkSubType}
                 value="750"
-                checked={RootStore.EsriMapStore.subTypeFIEArray[5].checked}
+                checked={RootStore.ControlPanelStore.subTypeFIEArray[5].checked}
               >
                 Energy
               </Checkbox>
               <Checkbox
                 onChange={this.checkSubType}
                 value="790"
-                checked={RootStore.EsriMapStore.subTypeFIEArray[6].checked}
+                checked={RootStore.ControlPanelStore.subTypeFIEArray[6].checked}
               >
                 Building General
               </Checkbox>
               <Checkbox
                 onChange={this.checkSubType}
                 value="800"
-                checked={RootStore.EsriMapStore.subTypeFIEArray[7].checked}
+                checked={RootStore.ControlPanelStore.subTypeFIEArray[7].checked}
               >
                 Health &amp; Medical
               </Checkbox>
               <Checkbox
                 onChange={this.checkSubType}
                 value="810"
-                checked={RootStore.EsriMapStore.subTypeFIEArray[8].checked}
+                checked={RootStore.ControlPanelStore.subTypeFIEArray[8].checked}
               >
                 Transportation Facilities
               </Checkbox>
               <Checkbox
                 onChange={this.checkSubType}
                 value="820"
-                checked={RootStore.EsriMapStore.subTypeFIEArray[9].checked}
+                checked={RootStore.ControlPanelStore.subTypeFIEArray[9].checked}
               >
                 Public Attraction &amp; Landmark Buildings
               </Checkbox>
               <Checkbox
                 onChange={this.checkSubType}
                 value="830"
-                checked={RootStore.EsriMapStore.subTypeFIEArray[10].checked}
+                checked={
+                  RootStore.ControlPanelStore.subTypeFIEArray[10].checked
+                }
               >
                 Government &amp; Military
               </Checkbox>
               <Checkbox
                 onChange={this.checkSubType}
                 value="850"
-                checked={RootStore.EsriMapStore.subTypeFIEArray[11].checked}
+                checked={
+                  RootStore.ControlPanelStore.subTypeFIEArray[11].checked
+                }
               >
                 Water Supply &amp; Treatment
               </Checkbox>
               <Checkbox
                 onChange={this.checkSubType}
                 value="880"
-                checked={RootStore.EsriMapStore.subTypeFIEArray[12].checked}
+                checked={
+                  RootStore.ControlPanelStore.subTypeFIEArray[12].checked
+                }
               >
                 Information &amp; Communication
               </Checkbox>
             </FormGroup>
           </Col>
           <Col md={6}>
+            <strong className="text-center">Towns</strong>
             <FormGroup>
               <Checkbox
                 onChange={this.checkTown}
                 value="Barnstable"
-                checked={RootStore.EsriMapStore.townArray[0].checked}
+                checked={RootStore.ControlPanelStore.townArray[0].checked}
               >
                 Barnstable
               </Checkbox>
               <Checkbox
                 onChange={this.checkTown}
                 value="Bourne"
-                checked={RootStore.EsriMapStore.townArray[1].checked}
+                checked={RootStore.ControlPanelStore.townArray[1].checked}
               >
                 Bourne
               </Checkbox>
               <Checkbox
                 onChange={this.checkTown}
                 value="Brewster"
-                checked={RootStore.EsriMapStore.townArray[2].checked}
+                checked={RootStore.ControlPanelStore.townArray[2].checked}
               >
                 Brewster
               </Checkbox>
               <Checkbox
                 onChange={this.checkTown}
                 value="Chatham"
-                checked={RootStore.EsriMapStore.townArray[3].checked}
+                checked={RootStore.ControlPanelStore.townArray[3].checked}
               >
                 Chatham
               </Checkbox>
               <Checkbox
                 onChange={this.checkTown}
                 value="Dennis"
-                checked={RootStore.EsriMapStore.townArray[4].checked}
+                checked={RootStore.ControlPanelStore.townArray[4].checked}
               >
                 Dennis
               </Checkbox>
               <Checkbox
                 onChange={this.checkTown}
                 value="Eastham"
-                checked={RootStore.EsriMapStore.townArray[5].checked}
+                checked={RootStore.ControlPanelStore.townArray[5].checked}
               >
                 Eastham
               </Checkbox>
               <Checkbox
                 onChange={this.checkTown}
                 value="Falmouth"
-                checked={RootStore.EsriMapStore.townArray[6].checked}
+                checked={RootStore.ControlPanelStore.townArray[6].checked}
               >
                 Falmouth
               </Checkbox>
               <Checkbox
                 onChange={this.checkTown}
                 value="Harwich"
-                checked={RootStore.EsriMapStore.townArray[7].checked}
+                checked={RootStore.ControlPanelStore.townArray[7].checked}
               >
                 Harwich
               </Checkbox>
               <Checkbox
                 onChange={this.checkTown}
                 value="Mashpee"
-                checked={RootStore.EsriMapStore.townArray[8].checked}
+                checked={RootStore.ControlPanelStore.townArray[8].checked}
               >
                 Mashpee
               </Checkbox>
               <Checkbox
                 onChange={this.checkTown}
                 value="Orleans"
-                checked={RootStore.EsriMapStore.townArray[9].checked}
+                checked={RootStore.ControlPanelStore.townArray[9].checked}
               >
                 Orleans
               </Checkbox>
               <Checkbox
                 onChange={this.checkTown}
                 value="Provincetown"
-                checked={RootStore.EsriMapStore.townArray[10].checked}
+                checked={RootStore.ControlPanelStore.townArray[10].checked}
               >
                 Provincetown
               </Checkbox>
               <Checkbox
                 onChange={this.checkTown}
                 value="Sandwich"
-                checked={RootStore.EsriMapStore.townArray[11].checked}
+                checked={RootStore.ControlPanelStore.townArray[11].checked}
               >
                 Sandwich
               </Checkbox>
               <Checkbox
                 onChange={this.checkTown}
                 value="Truro"
-                checked={RootStore.EsriMapStore.townArray[12].checked}
+                checked={RootStore.ControlPanelStore.townArray[12].checked}
               >
                 Truro
               </Checkbox>
               <Checkbox
                 onChange={this.checkTown}
                 value="Wellfleet"
-                checked={RootStore.EsriMapStore.townArray[13].checked}
+                checked={RootStore.ControlPanelStore.townArray[13].checked}
               >
                 Wellfleet
               </Checkbox>
               <Checkbox
                 onChange={this.checkTown}
                 value="Yarmouth"
-                checked={RootStore.EsriMapStore.townArray[14].checked}
+                checked={RootStore.ControlPanelStore.townArray[14].checked}
               >
                 Yarmouth
               </Checkbox>
@@ -332,7 +340,7 @@ class Layers extends Component {
           bsStyle="info"
           bsSize="small"
           className={'glyphicon glyphicon-star'}
-          onClick={RootStore.EsriMapStore.selectAll.bind(this)}
+          onClick={RootStore.ControlPanelStore.selectAll.bind(this)}
         >
           Select All
         </Button>
@@ -340,7 +348,7 @@ class Layers extends Component {
           bsStyle="info"
           bsSize="small"
           className={'glyphicon glyphicon-star-empty pull-right'}
-          onClick={RootStore.EsriMapStore.selectNone.bind(this)}
+          onClick={RootStore.ControlPanelStore.selectNone.bind(this)}
         >
           Select None
         </Button>
@@ -360,11 +368,11 @@ class Layers extends Component {
           </Button>
         </OverlayTrigger>
         <Image
-          onClick={RootStore.EsriMapStore.handleCriticalFacilitiesClick.bind(
+          onClick={RootStore.ControlPanelStore.handleCriticalFacilitiesClick.bind(
             this
           )}
           className={
-            RootStore.EsriMapStore.criticalFacilitiesBackground
+            RootStore.ControlPanelStore.criticalFacilitiesBackground
               ? css.clickedButton
               : css.criticalFacilities
           }
@@ -388,9 +396,9 @@ class Layers extends Component {
           </Button>
         </OverlayTrigger>
         <Image
-          onClick={RootStore.EsriMapStore.handleSloshClick.bind(this)}
+          onClick={RootStore.ControlPanelStore.handleSloshClick.bind(this)}
           className={
-            RootStore.EsriMapStore.sloshBackground
+            RootStore.ControlPanelStore.sloshBackground
               ? css.clickedButton
               : css.slosh
           }
@@ -414,9 +422,9 @@ class Layers extends Component {
           </Button>
         </OverlayTrigger>
         <Image
-          onClick={RootStore.EsriMapStore.handleFemaFirmClick.bind(this)}
+          onClick={RootStore.ControlPanelStore.handleFemaFirmClick.bind(this)}
           className={
-            RootStore.EsriMapStore.femaFirmBackground
+            RootStore.ControlPanelStore.femaFirmBackground
               ? css.clickedButton
               : css.femaFirm
           }
@@ -428,7 +436,7 @@ class Layers extends Component {
     )
 
     let layerDesc = (
-      <Popover id="popover">{RootStore.EsriMapStore.layerDesc}</Popover>
+      <Popover id="popover">{RootStore.ControlPanelStore.layerDesc}</Popover>
     )
 
     let slider = (
@@ -439,14 +447,14 @@ class Layers extends Component {
         onAfterChange={this.setSliderValue}
         railStyle={{backgroundColor: 'grey', height: 2}}
         trackStyle={{
-          backgroundColor: RootStore.EsriMapStore.endColor,
+          backgroundColor: RootStore.ControlPanelStore.endColor,
           height: 8,
           marginTop: -2,
         }}
         dotStyle={{borderColor: 'grey'}}
         activeDotStyle={{
-          backgroundColor: RootStore.EsriMapStore.endColor,
-          borderColor: RootStore.EsriMapStore.endColor,
+          backgroundColor: RootStore.ControlPanelStore.endColor,
+          borderColor: RootStore.ControlPanelStore.endColor,
         }}
         handleStyle={{
           img: 'src=liquidFillGauge',
@@ -464,12 +472,12 @@ class Layers extends Component {
     const radius = 30
 
     const interpolate = interpolateRgb(
-      RootStore.EsriMapStore.startColor,
-      RootStore.EsriMapStore.endColor
+      RootStore.ControlPanelStore.startColor,
+      RootStore.ControlPanelStore.endColor
     )
 
     const fillColor = interpolate(
-      RootStore.EsriMapStore.currentLiquidValue / 100
+      RootStore.ControlPanelStore.currentLiquidValue / 100
     )
 
     const gradientStops = [
@@ -517,7 +525,7 @@ class Layers extends Component {
           <Image
             onClick={this.toggleSlider}
             className={
-              RootStore.EsriMapStore.sliderToggle
+              RootStore.ControlPanelStore.sliderToggle
                 ? css.clickedButton
                 : css.slrslider
             }
@@ -544,7 +552,7 @@ class Layers extends Component {
         <Image
           onClick={this.toggleSlider}
           className={
-            RootStore.EsriMapStore.sliderToggle
+            RootStore.ControlPanelStore.sliderToggle
               ? css.clickedButton
               : css.slrslider
           }
@@ -587,10 +595,10 @@ class Layers extends Component {
     )
 
     let layerToggles = [
-      RootStore.EsriMapStore.criticalFacilitiesBackground,
-      RootStore.EsriMapStore.femaFirmBackground,
-      RootStore.EsriMapStore.sloshBackground,
-      RootStore.EsriMapStore.sliderToggle,
+      RootStore.ControlPanelStore.criticalFacilitiesBackground,
+      RootStore.ControlPanelStore.femaFirmBackground,
+      RootStore.ControlPanelStore.sloshBackground,
+      RootStore.ControlPanelStore.sliderToggle,
     ]
 
     let liquidFillGauge = (
@@ -600,12 +608,12 @@ class Layers extends Component {
         }}
         width={radius * 2}
         height={radius * 2}
-        value={RootStore.EsriMapStore.currentLiquidValue}
+        value={RootStore.ControlPanelStore.currentLiquidValue}
         textSize={1}
         textOffsetX={0}
         textOffsetY={10}
         textRenderer={props => {
-          const value = RootStore.EsriMapStore.currentSliderValue
+          const value = RootStore.ControlPanelStore.currentSliderValue
           const radius = Math.min(props.height / 2.5, props.width / 2)
           const textPixels = (props.textSize * radius) / 1.5
           const valueStyle = {
@@ -653,15 +661,17 @@ class Layers extends Component {
         </span>
         <span>
           {critFacImage}
-          {RootStore.EsriMapStore.criticalFacilitiesBackground
+          {RootStore.ControlPanelStore.criticalFacilitiesBackground
             ? critFacFiltersButton
             : null}
         </span>
         {sloshImage}
         {femaImage}
-        {RootStore.EsriMapStore.sliderToggle ? slrWithInfo : slrWithoutInfo}
-        {RootStore.EsriMapStore.sliderToggle ? slider : <p />}
-        {RootStore.EsriMapStore.sliderToggle ? liquidFillGauge : <p />}
+        {RootStore.ControlPanelStore.sliderToggle
+          ? slrWithInfo
+          : slrWithoutInfo}
+        {RootStore.ControlPanelStore.sliderToggle ? slider : <p />}
+        {RootStore.ControlPanelStore.sliderToggle ? liquidFillGauge : <p />}
       </div>
     )
   }

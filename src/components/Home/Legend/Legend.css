@@ -16,6 +16,7 @@
   color: white;
   display: flex;
   flex-wrap: wrap;
+  flex-shrink: inherit;
 }
 
 .point {

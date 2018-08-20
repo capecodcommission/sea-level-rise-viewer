@@ -170,13 +170,15 @@ class Legend extends Component {
               </tr>
             </thead>
             {townLinesLegend}
-            {Rootstore.EsriMapStore.sliderToggle ? disConRoadsLegend : null}
-            {Rootstore.EsriMapStore.criticalFacilitiesBackground
+            {Rootstore.ControlPanelStore.sliderToggle
+              ? disConRoadsLegend
+              : null}
+            {Rootstore.ControlPanelStore.criticalFacilitiesBackground
               ? critFacLegend
               : null}
-            {Rootstore.EsriMapStore.sliderToggle ? intersectLegend : null}
-            {Rootstore.EsriMapStore.sloshBackground ? sloshLegend : null}
-            {Rootstore.EsriMapStore.femaFirmBackground ? femaLegend : null}
+            {Rootstore.ControlPanelStore.sliderToggle ? intersectLegend : null}
+            {Rootstore.ControlPanelStore.sloshBackground ? sloshLegend : null}
+            {Rootstore.ControlPanelStore.femaFirmBackground ? femaLegend : null}
           </Table>
         </Col>
       </Row>

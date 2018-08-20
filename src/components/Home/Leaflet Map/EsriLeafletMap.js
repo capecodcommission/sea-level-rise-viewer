@@ -23,12 +23,12 @@ class EsriLeafletMap extends Component {
   initiateMap = () => {
     // Set basemap and feature layer constants to be fed into the leaflet map object
     const esriStreets = esri.basemapLayer(
-      RootStore.EsriMapStore.currentBaseMapName
+      RootStore.ControlPanelStore.currentBaseMapName
     )
 
     RootStore.EsriMapStore.setCurrentBaseMapObject(esriStreets)
 
-    const townLines = RootStore.EsriMapStore.townLines
+    const townLines = RootStore.MapServicesStore.townLines
 
     // Set constant using zoom level array from store
     const zoom_Level = RootStore.EsriMapStore.currentZoomLevel
@@ -66,16 +66,16 @@ class EsriLeafletMap extends Component {
       .setPosition('topright')
       .addTo(map)
 
-    RootStore.EsriMapStore.searchResults.addTo(map)
+    RootStore.MapServicesStore.searchResults.addTo(map)
 
     searchControl.on('results', function(data) {
-      if (!map.hasLayer(RootStore.EsriMapStore.searchResults)) {
-        RootStore.EsriMapStore.searchResults.addTo(map)
+      if (!map.hasLayer(RootStore.MapServicesStore.searchResults)) {
+        RootStore.MapServicesStore.searchResults.addTo(map)
       }
 
       data.results.map(i => {
         if (i) {
-          RootStore.EsriMapStore.searchResults.addLayer(L.marker(i.latlng))
+          RootStore.MapServicesStore.searchResults.addLayer(L.marker(i.latlng))
         }
 
         return i
