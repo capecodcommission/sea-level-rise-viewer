@@ -12,6 +12,11 @@ import RootStore from '../../store'
 // Show loading gif and background on toggle of boolean state property
 @observer
 class Home extends Component {
+  // Set app title on sucessful Home mount
+  componentDidMount = () => {
+    document.title = 'CCC ~ Sea Level Rise Viewer'
+  }
+
   render = () => {
     return (
       <Grid>

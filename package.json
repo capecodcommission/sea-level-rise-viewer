@@ -1,5 +1,6 @@
 {
   "private": true,
+  "homepage": "http://gis-services.capecodcommission.org/apps/Public/SLR",
   "dependencies": {
     "autoprefixer": "7.1.2",
     "axios": "^0.18.0",
