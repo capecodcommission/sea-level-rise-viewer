@@ -15,6 +15,7 @@ import {
   Table,
   Col,
   Row,
+  ButtonGroup,
 } from 'react-bootstrap'
 import {observer} from 'mobx-react'
 import Slider from 'rc-slider'
@@ -225,6 +226,24 @@ class Layers extends Component {
                 Information &amp; Communication
               </Checkbox>
             </FormGroup>
+            <ButtonGroup>
+              <Button
+                bsStyle="info"
+                bsSize="xsmall"
+                className={'glyphicon glyphicon-star'}
+                onClick={RootStore.ControlPanelStore.selectAllTypes.bind(this)}
+              >
+                All
+              </Button>
+              <Button
+                bsStyle="info"
+                bsSize="xsmall"
+                className={'glyphicon glyphicon-star-empty pull-right'}
+                onClick={RootStore.ControlPanelStore.selectNoTypes.bind(this)}
+              >
+                None
+              </Button>
+            </ButtonGroup>
           </Col>
           <Col md={6}>
             <strong className="text-center">Towns</strong>
@@ -335,9 +354,27 @@ class Layers extends Component {
                 Yarmouth
               </Checkbox>
             </FormGroup>
+            <ButtonGroup>
+              <Button
+                bsStyle="info"
+                bsSize="xsmall"
+                className={'glyphicon glyphicon-star'}
+                onClick={RootStore.ControlPanelStore.selectAllTowns.bind(this)}
+              >
+                All
+              </Button>
+              <Button
+                bsStyle="info"
+                bsSize="xsmall"
+                className={'glyphicon glyphicon-star-empty pull-right'}
+                onClick={RootStore.ControlPanelStore.selectNoTowns.bind(this)}
+              >
+                None
+              </Button>
+            </ButtonGroup>
           </Col>
         </Row>
-        <Button
+        {/* <Button
           bsStyle="info"
           bsSize="xsmall"
           onClick={RootStore.ControlPanelStore.selectAll.bind(this)}
@@ -352,7 +389,7 @@ class Layers extends Component {
         >
           <Glyphicon glyph="glyphicon glyphicon-star-empty" />
           Select None
-        </Button>
+        </Button> */}
       </Popover>
     )
 

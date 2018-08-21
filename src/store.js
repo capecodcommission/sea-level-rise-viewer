@@ -206,9 +206,9 @@ class EsriMapStore {
       this.RootStore.MapServicesStore.criticalFacilities,
       this.RootStore.MapServicesStore.slosh,
       this.RootStore.MapServicesStore.femaFirm,
-      this.RootStore.MapServicesStore.currentSLRLayer,
-      this.RootStore.MapServicesStore.currentRoadLayer,
-      this.RootStore.MapServicesStore.criticalFacilitiesIntersection,
+      this.RootStore.GeoJSONStore.currentSLRLayer,
+      this.RootStore.GeoJSONStore.currentRoadLayer,
+      this.RootStore.GeoJSONStore.criticalFacilitiesIntersection,
       this.RootStore.MapServicesStore.searchResults,
     ]
     let map = this.map
@@ -218,10 +218,10 @@ class EsriMapStore {
       !this.map.hasLayer(this.RootStore.MapServicesStore.criticalFacilities) &&
       !this.map.hasLayer(this.RootStore.MapServicesStore.slosh) &&
       !this.map.hasLayer(this.RootStore.MapServicesStore.femaFirm) &&
-      !this.map.hasLayer(this.RootStore.MapServicesStore.currentSLRLayer) &&
-      !this.map.hasLayer(this.RootStore.MapServicesStore.currentRoadLayer) &&
+      !this.map.hasLayer(this.RootStore.GeoJSONStore.currentSLRLayer) &&
+      !this.map.hasLayer(this.RootStore.GeoJSONStore.currentRoadLayer) &&
       !this.map.hasLayer(
-        this.RootStore.MapServicesStore.criticalFacilitiesIntersection
+        this.RootStore.GeoJSONStore.criticalFacilitiesIntersection
       ) &&
       !this.map.hasLayer(this.RootStore.MapServicesStore.searchResults)
     ) {
@@ -526,11 +526,8 @@ class ControlPanelStore {
 
   // Check all types and towns, rerun Critical Facilities filter
   @action
-  selectAll = () => {
-    // Check all items from types and towns arrays
-    this.subTypeFIEArray.map(i => {
-      i.checked = true
-    })
+  selectAllTowns = () => {
+    // Check all items from towns array
     this.townArray.map(i => {
       i.checked = true
     })
@@ -538,14 +535,32 @@ class ControlPanelStore {
     this.RootStore.EsriMapStore.filterCritFac()
   }
 
-  // Uncheck all types and towns, rerun Critical Facilities filter
   @action
-  selectNone = () => {
-    // Uncheck all items from types and towns arrays
+  selectAllTypes = () => {
+    // Check all items from types array
     this.subTypeFIEArray.map(i => {
+      i.checked = true
+    })
+
+    this.RootStore.EsriMapStore.filterCritFac()
+  }
+
+  // Uncheck all towns, rerun Critical Facilities filter
+  @action
+  selectNoTowns = () => {
+    // Uncheck all items from towns array
+    this.townArray.map(i => {
       i.checked = false
     })
-    this.townArray.map(i => {
+
+    this.RootStore.EsriMapStore.filterCritFac()
+  }
+
+  // Uncheck all types, rerun Critical Facilities filter
+  @action
+  selectNoTypes = () => {
+    // Uncheck all items from types array
+    this.subTypeFIEArray.map(i => {
       i.checked = false
     })
 

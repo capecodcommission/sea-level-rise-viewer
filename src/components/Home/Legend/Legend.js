@@ -159,7 +159,10 @@ class Legend extends Component {
     let legendTable = (
       <Row className={css.LegendWrapper}>
         <Col>
-          <Table>
+          <Table
+            className={css.fitWidth}
+            style={{tableLayout: 'fixed', overflowX: 'hidden'}}
+          >
             <caption style={{color: 'white', textAlign: 'center'}}>
               <b>Legend</b>
             </caption>

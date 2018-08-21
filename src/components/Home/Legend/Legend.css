@@ -5,22 +5,19 @@
   background: #4d4d4d;
   margin-top: 10px;
   padding: 1em;
-  margin-left: 10px;
   opacity: 0.8;
   font-family: 'Open Sans', sans-serif;
   border-radius: 0.5em;
   text-align: center;
-  width: 10%;
-  right: 1.5%;
-  bottom: 1%;
+  width: 12%;
+  right: 20px;
+  bottom: 10px;
   color: white;
-  display: flex;
-  flex-wrap: wrap;
-  flex-shrink: inherit;
 }
 
 .point {
-  width: 50%;
+  height: 28px;
+  width: 27px;
   display: block;
   margin-right: auto;
 }
@@ -28,6 +25,7 @@
 .colorBar {
   height: 15px;
   width: 30px;
+  display: block;
 }
 
 .legendTitle {
@@ -50,4 +48,10 @@
   width: 27px;
   /* line-height: 47px; */
   border-width: 3px;
+}
+
+.fitWidth {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
 }

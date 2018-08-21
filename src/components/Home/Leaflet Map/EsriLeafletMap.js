@@ -59,6 +59,7 @@ class EsriLeafletMap extends Component {
       title: 'Print',
       position: 'topright',
       sizeModes: ['A4Portrait', 'A4Landscape'],
+      customWindowTitle: 'CCC ~ Sea Level Rise Viewer',
     }).addTo(map)
 
     var searchControl = geocoder
