@@ -6,18 +6,16 @@
 
 **working branches:**
 
-*   shawn-legend
-*   mario-legend
+*   shawn-button-hierarchy
+*   mario-legend-fix
 
 
 
 **TODOs:**
 
-1.  ADD legend for all active layers
-2.  REFACTOR cod, restructing store and removing unnecessary commented code, etc.
-3.  UPDATE SLR Slider UI to D3/something like original presentation
-4.  CONFIGURE back-end to execute intersection logic and cache intersecting critical facilies/SLR levels
-5.  ?? ADD share functionality ??
+1.  UPDATE button hierarchy
+2.  UPDATE legend layout formatting
+3.  CONFIGURE back-end to execute intersection logic and cache intersecting critical facilies/SLR levels
 
 ## **Build Setup**
 ``` bash
