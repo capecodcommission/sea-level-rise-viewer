@@ -1,21 +1,22 @@
 /* THE 'LayersWrapper' ID IS USED TO STYLE THE WRAPPER AROUND THE LAYERS IMAGES */
 .LayersWrapper {
   position: relative;
-  z-index: 2;
   background: #4d4d4d;
-  margin-top: .5em;
+  margin-top: 0.5em;
   padding: 1em;
-  top: 40%;
-  left: 1%;
   font-family: 'Open Sans', sans-serif;
   border-radius: 0.5em;
-  text-align: center;
 }
 
 .LayerMenuTitle {
+  text-align: center;
+}
+
+.mapLayerTitle {
   cursor: default;
   font-size: 1em;
   color: #3182bd;
+  font-family: 'Open Sans', sans-serif;
   background: black;
   border-radius: 0.3em;
   padding: 0.5em;
@@ -30,41 +31,26 @@
 .criticalFacilities {
   background: #416285;
   padding: 1em;
-  margin: auto;
-  width: 50%;
-  justify-content: center;
 }
 
 .slosh {
   background: #7bb6c6;
   padding: 1em;
-  margin: auto;
-  width: 50%;
-  justify-content: center;
 }
 
 .femaFirm {
   background: #416285;
   padding: 1em;
-  margin: auto;
-  width: 50%;
-  justify-content: center;
 }
 
 .clickedButton {
   background: #201e1e;
   padding: 1em;
-  margin: auto;
-  width: 50%;
-  justify-content: center;
 }
 
 .slrslider {
   background: #7bb6c6;
   padding: 1em;
-  margin: auto;
-  width: 50%;
-  justify-content: center;
 }
 
 /* ADD SOME HOVER EFFECTS TO PROVIDE USER FEEDBACK */
@@ -73,17 +59,11 @@
 .slosh:hover,
 .femaFirm:hover,
 .clickedButton:hover {
-  transform: scale(1.025);
   cursor: pointer;
   background-color: #f7fcb9;
 }
 
 .slider {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin: auto;
 }
 
-.buttonToolbarWrapper {
-  margin-top: 1em;
-  width: 90%;
-}

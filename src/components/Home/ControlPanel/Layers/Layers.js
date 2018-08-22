@@ -12,6 +12,7 @@ import {
   OverlayTrigger,
   FormGroup,
   Checkbox,
+  Table,
   Col,
   Row,
 } from 'react-bootstrap'
@@ -338,32 +339,32 @@ class Layers extends Component {
         </Row>
         <Button
           bsStyle="info"
-          bsSize="small"
-          className={'glyphicon glyphicon-star'}
+          bsSize="xsmall"
           onClick={RootStore.ControlPanelStore.selectAll.bind(this)}
         >
+          <Glyphicon glyph="glyphicon glyphicon-star" />
           Select All
         </Button>
         <Button
           bsStyle="info"
-          bsSize="small"
-          className={'glyphicon glyphicon-star-empty pull-right'}
+          bsSize="xsmall"
           onClick={RootStore.ControlPanelStore.selectNone.bind(this)}
         >
+          <Glyphicon glyph="glyphicon glyphicon-star-empty" />
           Select None
         </Button>
       </Popover>
     )
 
     let critFacImage = (
-      <ButtonToolbar className={css.buttonToolbarWrapper}>
+      <ButtonToolbar>
         <OverlayTrigger
           trigger="click"
           rootClose
           placement="top"
           overlay={criticalFacilitiesDescription}
         >
-          <Button bsSize="xsmall" className={css.buttonPosition}>
+          <Button bsSize="xsmall">
             <Glyphicon glyph="glyphicon glyphicon-info-sign" />
           </Button>
         </OverlayTrigger>
@@ -376,7 +377,7 @@ class Layers extends Component {
               ? css.clickedButton
               : css.criticalFacilities
           }
-          src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Flooded_house_icon.svg"
+          src={require('./img/critFac.svg')}
           responsive
           circle
         />
@@ -384,14 +385,14 @@ class Layers extends Component {
     )
 
     let sloshImage = (
-      <ButtonToolbar className={css.buttonToolbarWrapper}>
+      <ButtonToolbar>
         <OverlayTrigger
           trigger="click"
           rootClose
           placement="top"
           overlay={sloshDescription}
         >
-          <Button bsSize="xsmall" className={css.buttonPosition}>
+          <Button bsSize="xsmall">
             <Glyphicon glyph="glyphicon glyphicon-info-sign" />
           </Button>
         </OverlayTrigger>
@@ -402,7 +403,7 @@ class Layers extends Component {
               ? css.clickedButton
               : css.slosh
           }
-          src="https://cdn.onlinewebfonts.com/svg/img_540212.png"
+          src={require('./img/slosh2.svg')}
           responsive
           circle
         />
@@ -410,14 +411,14 @@ class Layers extends Component {
     )
 
     let femaImage = (
-      <ButtonToolbar className={css.buttonToolbarWrapper}>
+      <ButtonToolbar>
         <OverlayTrigger
           trigger="click"
           rootClose
           placement="top"
           overlay={femaFirmDescription}
         >
-          <Button bsSize="xsmall" className={css.buttonPosition}>
+          <Button bsSize="xsmall">
             <Glyphicon glyph="glyphicon glyphicon-info-sign" />
           </Button>
         </OverlayTrigger>
@@ -428,7 +429,7 @@ class Layers extends Component {
               ? css.clickedButton
               : css.femaFirm
           }
-          src="http://public.gmmb.com/fs//images/icons/IconWarning.svg"
+          src={require('./img/fema.svg')}
           responsive
           circle
         />
@@ -465,7 +466,6 @@ class Layers extends Component {
           marginTop: -7,
           backgroundColor: '#0077be',
         }}
-        // handle={liquidFillGauge} NEED TO MAKE A f(x) RE: https://react-component.github.io/slider/examples/handle.html
       />
     )
 
@@ -506,14 +506,14 @@ class Layers extends Component {
     ]
 
     let slrWithInfo = (
-      <ButtonToolbar className={css.buttonToolbarWrapper}>
+      <ButtonToolbar>
         <OverlayTrigger
           trigger="click"
           rootClose
           placement="top"
           overlay={slrDescription}
         >
-          <Button bsSize="xsmall" className={css.buttonPosition}>
+          <Button bsSize="xsmall">
             <Glyphicon glyph="glyphicon glyphicon-info-sign" />
           </Button>
         </OverlayTrigger>
@@ -529,7 +529,7 @@ class Layers extends Component {
                 ? css.clickedButton
                 : css.slrslider
             }
-            src="https://1motal1rjacba143y34bvqcn-wpengine.netdna-ssl.com/industrial-manufacturing/wp-content/uploads/sites/72/2016/08/Food_Icons_Frame7a_3Circles.png"
+            src={require('./img/slr.svg')}
             responsive
             circle
           />
@@ -538,14 +538,14 @@ class Layers extends Component {
     )
 
     let slrWithoutInfo = (
-      <ButtonToolbar className={css.buttonToolbarWrapper}>
+      <ButtonToolbar>
         <OverlayTrigger
           trigger="click"
           rootClose
           placement="top"
           overlay={slrDescription}
         >
-          <Button bsSize="xsmall" className={css.buttonPosition}>
+          <Button bsSize="xsmall">
             <Glyphicon glyph="glyphicon glyphicon-info-sign" />
           </Button>
         </OverlayTrigger>
@@ -556,7 +556,7 @@ class Layers extends Component {
               ? css.clickedButton
               : css.slrslider
           }
-          src="https://1motal1rjacba143y34bvqcn-wpengine.netdna-ssl.com/industrial-manufacturing/wp-content/uploads/sites/72/2016/08/Food_Icons_Frame7a_3Circles.png"
+          src={require('./img/slr.svg')}
           responsive
           circle
         />
@@ -571,11 +571,12 @@ class Layers extends Component {
         overlay={clearLayerDesc}
       >
         <Button
-          bsStyle="primary"
-          bsSize="small"
-          className={'glyphicon glyphicon-remove-sign pull-right'}
+          className="pull-right"
+          bsSize="xsmall"
           onClick={RootStore.EsriMapStore.removeToggleableLayers}
-        />
+        >
+          <Glyphicon glyph="glyphicon glyphicon-remove-sign" />
+        </Button>
       </OverlayTrigger>
     )
 
@@ -586,11 +587,9 @@ class Layers extends Component {
         placement="right"
         overlay={critFacFilterPopover}
       >
-        <Button
-          bsStyle="success"
-          bsSize="small"
-          className={'glyphicon glyphicon-filter'}
-        />
+        <Button bsSize="xsmall">
+          <Glyphicon glyph="glyphicon glyphicon-filter" />
+        </Button>
       </OverlayTrigger>
     )
 
@@ -604,7 +603,7 @@ class Layers extends Component {
     let liquidFillGauge = (
       <LiquidFillGauge
         style={{
-          margin: '2.75em auto 0',
+          margin: '1em auto 0',
         }}
         width={radius * 2}
         height={radius * 2}
@@ -653,25 +652,65 @@ class Layers extends Component {
 
     return (
       <div className={css.LayersWrapper}>
-        <span className="text-center">
-          <span className={css.LayerMenuTitle}>
-            <strong>MAP LAYERS</strong>
-          </span>
-          {layerToggles.every(i => !i) ? null : removeLayersButton}
-        </span>
-        <span>
-          {critFacImage}
-          {RootStore.ControlPanelStore.criticalFacilitiesBackground
-            ? critFacFiltersButton
-            : null}
-        </span>
-        {sloshImage}
-        {femaImage}
-        {RootStore.ControlPanelStore.sliderToggle
-          ? slrWithInfo
-          : slrWithoutInfo}
-        {RootStore.ControlPanelStore.sliderToggle ? slider : <p />}
-        {RootStore.ControlPanelStore.sliderToggle ? liquidFillGauge : <p />}
+        <Row>
+          <Col>
+            <Table>
+              <thead>
+                <tr>
+                  <th>
+                    <div style={{textAlign: 'center'}}>
+                      <strong className={css.mapLayerTitle}>MAP LAYERS</strong>
+                      {layerToggles.every(i => !i) ? null : removeLayersButton}
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <Row>
+                      <Col md={6} mdOffset={3}>
+                        {RootStore.ControlPanelStore.sliderToggle
+                          ? slrWithInfo
+                          : slrWithoutInfo}
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={12}>
+                        {RootStore.ControlPanelStore.sliderToggle ? (
+                          slider
+                        ) : (
+                          <p />
+                        )}
+                        {RootStore.ControlPanelStore.sliderToggle ? (
+                          liquidFillGauge
+                        ) : (
+                          <p />
+                        )}
+                      </Col>
+                    </Row>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Col md={6} mdOffset={3}>
+                      {critFacImage}
+                      {RootStore.ControlPanelStore.criticalFacilitiesBackground
+                        ? critFacFiltersButton
+                        : null}
+                    </Col>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Col md={6}>{sloshImage}</Col>
+                    <Col md={6}>{femaImage}</Col>
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+          </Col>
+        </Row>
       </div>
     )
   }
