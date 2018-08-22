@@ -440,7 +440,7 @@ class Layers extends Component {
               ? css.clickedButton
               : css.slosh
           }
-          src={require('./img/slosh2.svg')}
+          src={require('./img/slosh.svg')}
           responsive
           circle
         />
@@ -608,6 +608,7 @@ class Layers extends Component {
         overlay={clearLayerDesc}
       >
         <Button
+          style={{paddingBottom: '0', marginBottom: '0'}}
           className="pull-right"
           bsSize="xsmall"
           onClick={RootStore.EsriMapStore.removeToggleableLayers}

@@ -1,6 +1,5 @@
 // IMPORT DEPENDENCIES
 import React, {Component} from 'react'
-import RootStore from '../../../../store'
 import css from './Title.css'
 import {observer} from 'mobx-react'
 

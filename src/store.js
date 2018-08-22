@@ -529,7 +529,7 @@ class ControlPanelStore {
   selectAllTowns = () => {
     // Check all items from towns array
     this.townArray.map(i => {
-      i.checked = true
+      return (i.checked = true)
     })
 
     this.RootStore.EsriMapStore.filterCritFac()
@@ -539,7 +539,7 @@ class ControlPanelStore {
   selectAllTypes = () => {
     // Check all items from types array
     this.subTypeFIEArray.map(i => {
-      i.checked = true
+      return (i.checked = true)
     })
 
     this.RootStore.EsriMapStore.filterCritFac()
@@ -550,7 +550,7 @@ class ControlPanelStore {
   selectNoTowns = () => {
     // Uncheck all items from towns array
     this.townArray.map(i => {
-      i.checked = false
+      return (i.checked = false)
     })
 
     this.RootStore.EsriMapStore.filterCritFac()
@@ -561,7 +561,7 @@ class ControlPanelStore {
   selectNoTypes = () => {
     // Uncheck all items from types array
     this.subTypeFIEArray.map(i => {
-      i.checked = false
+      return (i.checked = false)
     })
 
     this.RootStore.EsriMapStore.filterCritFac()
