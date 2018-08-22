@@ -6,16 +6,11 @@
 
 **working branches:**
 
-*   shawn-button-hierarchy
-*   mario-legend-fix
-
 
 
 **TODOs:**
 
-1.  UPDATE button hierarchy
-2.  UPDATE legend layout formatting
-3.  CONFIGURE back-end to execute intersection logic and cache intersecting critical facilies/SLR levels
+1.  CONFIGURE back-end to execute intersection logic and cache intersecting critical facilies/SLR levels
 
 ## **Build Setup**
 ``` bash
