@@ -45,7 +45,7 @@ class Legend extends Component {
           <td>
             <Image
               className={css.point}
-              src="https://cdn3.iconfinder.com/data/icons/home-insurance-2/380/2-512.png"
+              src={require('../ControlPanel/Layers/img/critFac.svg')}
               circle
             />
           </td>
@@ -146,7 +146,7 @@ class Legend extends Component {
           <td>
             <Image
               className={css.point}
-              src="https://cdn3.iconfinder.com/data/icons/weather-round-corner-glyph/614/439_-_Flood_Symbol-512.png"
+              src={require('../ControlPanel/Layers/img/slr.svg')}
             />
           </td>
           <td>
