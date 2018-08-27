@@ -230,6 +230,9 @@ class EsriMapStore {
     // LOOP THROUGH THE toggleableLayers, WHICHEVER LAYER(S) THE MAP HAS, REMOVE THE LAYER(S), RETURN THE VALUE FOR THE CALLBACK f(x)
     toggleableLayers.map(i => {
       if (map.hasLayer(i)) {
+        if (i === this.RootStore.GeoJSONStore.criticalFacilitiesIntersection) {
+          i.clearLayers()
+        }
         map.removeLayer(i)
       }
       return i
