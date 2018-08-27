@@ -728,27 +728,7 @@ class MapServicesStore {
       url:
         'http://gis-services.capecodcommission.org/arcgis/rest/services/Data_People/Infrastructure/MapServer/12',
       pointToLayer: function(feature, latlng) {
-        // const critFacStyling = `
-        //   background-color: #583470;
-        //   width: 3rem;
-        //   height: 3rem;
-        //   display: block;
-        //   left: -1.5rem;
-        //   top: -1.5rem;
-        //   position: relative;
-        //   border-radius: 3rem 3rem 0;
-        //   transform: rotate(45deg);
-        //   border: 1px solid #FFFFFF`
-
         return L.marker(latlng, {
-          // icon: L.divIcon({
-          //   className: 'my-custom-pin',
-          //   iconSize: [41, 37],
-          //   iconAnchor: [0, 24],
-          //   labelAnchor: [-6, 0],
-          //   popupAnchor: [0, -36],
-          //   html: '<span style = "${critFacStyling}"  />',
-          // }),
           icon: L.icon({
             iconUrl: require('./components/Home/ControlPanel/Layers/img/critFac.svg'),
             iconSize: [41, 37],

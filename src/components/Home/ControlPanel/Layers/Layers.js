@@ -374,22 +374,6 @@ class Layers extends Component {
             </ButtonGroup>
           </Col>
         </Row>
-        {/* <Button
-          bsStyle="info"
-          bsSize="xsmall"
-          onClick={RootStore.ControlPanelStore.selectAll.bind(this)}
-        >
-          <Glyphicon glyph="glyphicon glyphicon-star" />
-          Select All
-        </Button>
-        <Button
-          bsStyle="info"
-          bsSize="xsmall"
-          onClick={RootStore.ControlPanelStore.selectNone.bind(this)}
-        >
-          <Glyphicon glyph="glyphicon glyphicon-star-empty" />
-          Select None
-        </Button> */}
       </Popover>
     )
 
@@ -480,6 +464,7 @@ class Layers extends Component {
     let slider = (
       <Slider
         className={css.slider}
+        dots
         min={0}
         max={6}
         onAfterChange={this.setSliderValue}
@@ -489,7 +474,7 @@ class Layers extends Component {
           height: 8,
           marginTop: -2,
         }}
-        dotStyle={{borderColor: 'grey'}}
+        dotStyle={{borderColor: '#6d7177'}}
         activeDotStyle={{
           backgroundColor: RootStore.ControlPanelStore.endColor,
           borderColor: RootStore.ControlPanelStore.endColor,
@@ -597,6 +582,27 @@ class Layers extends Component {
           responsive
           circle
         />
+        {/* <OverlayTrigger
+          trigger="click"
+          rootClose
+          placement="top"
+          overlay={slrDescription}
+        >
+          <Button bsSize="xsmall">
+            <Glyphicon glyph="glyphicon glyphicon-info-sign" />
+          </Button>
+        </OverlayTrigger>
+        <Image
+          onClick={this.toggleSlider}
+          className={
+            RootStore.ControlPanelStore.sliderToggle
+              ? css.clickedButton
+              : css.slrslider
+          }
+          src={require('./img/slr.svg')}
+          responsive
+          circle
+        /> */}
       </ButtonToolbar>
     )
 
