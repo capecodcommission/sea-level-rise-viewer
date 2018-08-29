@@ -405,6 +405,46 @@ class ControlPanelStore {
   startColor = '#0ca4ff'
   @observable
   endColor = '#0077be'
+  @observable
+  marks: init = {
+    0: {},
+    1: {
+      label: '1',
+      style: {
+        color: 'white',
+      },
+    },
+    2: {
+      label: '2',
+      style: {
+        color: 'white',
+      },
+    },
+    3: {
+      label: '3',
+      style: {
+        color: 'white',
+      },
+    },
+    4: {
+      label: '4',
+      style: {
+        color: 'white',
+      },
+    },
+    5: {
+      label: '5',
+      style: {
+        color: 'white',
+      },
+    },
+    6: {
+      label: '6',
+      style: {
+        color: 'white',
+      },
+    },
+  }
 
   // Set currently selected layers based on slider value
   handleCurrents = value => {

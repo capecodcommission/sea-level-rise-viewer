@@ -465,6 +465,7 @@ class Layers extends Component {
       <Slider
         className={css.slider}
         dots
+        marks={RootStore.ControlPanelStore.marks}
         min={0}
         max={6}
         onAfterChange={this.setSliderValue}
@@ -484,7 +485,7 @@ class Layers extends Component {
           borderColor: 'grey',
           height: 20,
           width: 20,
-          marginLeft: -5,
+          marginLeft: -10,
           marginTop: -7,
           backgroundColor: '#0077be',
         }}
@@ -545,64 +546,12 @@ class Layers extends Component {
           overlay={layerDesc}
         >
           <Image
-            onClick={this.toggleSlider}
-            className={
-              RootStore.ControlPanelStore.sliderToggle
-                ? css.clickedButton
-                : css.slrslider
-            }
+            className={css.slrslider}
             src={require('./img/slr.svg')}
             responsive
             circle
           />
         </OverlayTrigger>
-      </ButtonToolbar>
-    )
-
-    let slrWithoutInfo = (
-      <ButtonToolbar>
-        <OverlayTrigger
-          trigger="click"
-          rootClose
-          placement="top"
-          overlay={slrDescription}
-        >
-          <Button bsSize="xsmall">
-            <Glyphicon glyph="glyphicon glyphicon-info-sign" />
-          </Button>
-        </OverlayTrigger>
-        <Image
-          onClick={this.toggleSlider}
-          className={
-            RootStore.ControlPanelStore.sliderToggle
-              ? css.clickedButton
-              : css.slrslider
-          }
-          src={require('./img/slr.svg')}
-          responsive
-          circle
-        />
-        {/* <OverlayTrigger
-          trigger="click"
-          rootClose
-          placement="top"
-          overlay={slrDescription}
-        >
-          <Button bsSize="xsmall">
-            <Glyphicon glyph="glyphicon glyphicon-info-sign" />
-          </Button>
-        </OverlayTrigger>
-        <Image
-          onClick={this.toggleSlider}
-          className={
-            RootStore.ControlPanelStore.sliderToggle
-              ? css.clickedButton
-              : css.slrslider
-          }
-          src={require('./img/slr.svg')}
-          responsive
-          circle
-        /> */}
       </ButtonToolbar>
     )
 
@@ -641,13 +590,13 @@ class Layers extends Component {
       RootStore.ControlPanelStore.criticalFacilitiesBackground,
       RootStore.ControlPanelStore.femaFirmBackground,
       RootStore.ControlPanelStore.sloshBackground,
-      RootStore.ControlPanelStore.sliderToggle,
     ]
 
     let liquidFillGauge = (
       <LiquidFillGauge
         style={{
           margin: '1em auto 0',
+          marginTop: '12%',
         }}
         width={radius * 2}
         height={radius * 2}
@@ -698,10 +647,10 @@ class Layers extends Component {
       <div className={css.LayersWrapper}>
         <Row>
           <Col>
-            <Table>
+            <Table style={{marginBottom: '0'}}>
               <thead>
                 <tr>
-                  <th>
+                  <th className={css.noBottomBorder}>
                     <div style={{textAlign: 'center'}}>
                       <strong className={css.mapLayerTitle}>MAP LAYERS</strong>
                       {layerToggles.every(i => !i) ? null : removeLayersButton}
@@ -711,32 +660,22 @@ class Layers extends Component {
               </thead>
               <tbody>
                 <tr>
-                  <td>
+                  <td className={css.noTopBorder}>
                     <Row>
                       <Col md={6} mdOffset={3}>
-                        {RootStore.ControlPanelStore.sliderToggle
-                          ? slrWithInfo
-                          : slrWithoutInfo}
+                        {slrWithInfo}
                       </Col>
                     </Row>
                     <Row>
                       <Col md={12}>
-                        {RootStore.ControlPanelStore.sliderToggle ? (
-                          slider
-                        ) : (
-                          <p />
-                        )}
-                        {RootStore.ControlPanelStore.sliderToggle ? (
-                          liquidFillGauge
-                        ) : (
-                          <p />
-                        )}
+                        {slider}
+                        {liquidFillGauge}
                       </Col>
                     </Row>
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className={css.noTopBorder}>
                     <Col md={6} mdOffset={3}>
                       {critFacImage}
                       {RootStore.ControlPanelStore.criticalFacilitiesBackground
@@ -746,7 +685,7 @@ class Layers extends Component {
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className={css.noTopBorder}>
                     <Col md={6}>{sloshImage}</Col>
                     <Col md={6}>{femaImage}</Col>
                   </td>

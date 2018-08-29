@@ -118,6 +118,8 @@ class EsriLeafletMap extends Component {
     }
 
     L.control.zoomHome().addTo(map)
+
+    RootStore.ControlPanelStore.toggleSlider()
   }
 
   // Render html contents as component https://reactjs.org/docs/react-component.html
