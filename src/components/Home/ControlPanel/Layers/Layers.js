@@ -99,12 +99,12 @@ class Layers extends Component {
 
     let slrDescription = (
       <Popover id="slr" title="Sea Level Rise">
-        The datalayer displayed at sea level intervals represents the Cape Cod
-        Commission's <strong>Sea Level Rise</strong> modeling for Barnstable
-        County. The critical facilities intersecting with the sea level at each
-        interval are styled differently to represent intersection and potential
-        coastal flooding. More information and the data for sea level models is
-        available{' '}
+        The datalayer displays sea level intervals relative to mean high water
+        representing the Cape Cod Commission's <strong>Sea Level Rise</strong>{' '}
+        modeling for Barnstable County. The critical facilities intersecting
+        with the sea level at each interval are styled differently to represent
+        intersection and potential coastal flooding. More information and the
+        data for sea level models is available{' '}
         <a
           href="http://gis-cccommission.opendata.arcgis.com/datasets?q=sea%20level"
           target="_blank"
@@ -463,6 +463,11 @@ class Layers extends Component {
 
     let slider = (
       <Slider
+        style={{
+          margin: '1em auto 0',
+          marginTop: '2%',
+          marginBottom: '10%',
+        }}
         className={css.slider}
         dots
         marks={RootStore.ControlPanelStore.marks}
@@ -483,16 +488,16 @@ class Layers extends Component {
         handleStyle={{
           img: 'src=liquidFillGauge',
           borderColor: 'grey',
-          height: 20,
-          width: 20,
-          marginLeft: -10,
-          marginTop: -7,
+          height: 12,
+          width: 12,
+          marginLeft: -5,
+          marginTop: -4,
           backgroundColor: '#0077be',
         }}
       />
     )
 
-    const radius = 30
+    const radius = 40
 
     const interpolate = interpolateRgb(
       RootStore.ControlPanelStore.startColor,
@@ -527,33 +532,6 @@ class Layers extends Component {
         offset: '100%',
       },
     ]
-
-    let slrWithInfo = (
-      <ButtonToolbar>
-        <OverlayTrigger
-          trigger="click"
-          rootClose
-          placement="top"
-          overlay={slrDescription}
-        >
-          <Button bsSize="xsmall">
-            <Glyphicon glyph="glyphicon glyphicon-info-sign" />
-          </Button>
-        </OverlayTrigger>
-        <OverlayTrigger
-          trigger={['hover', 'focus']}
-          placement="right"
-          overlay={layerDesc}
-        >
-          <Image
-            className={css.slrslider}
-            src={require('./img/slr.svg')}
-            responsive
-            circle
-          />
-        </OverlayTrigger>
-      </ButtonToolbar>
-    )
 
     let removeLayersButton = (
       <OverlayTrigger
@@ -593,54 +571,83 @@ class Layers extends Component {
     ]
 
     let liquidFillGauge = (
-      <LiquidFillGauge
-        style={{
-          margin: '1em auto 0',
-          marginTop: '12%',
-        }}
-        width={radius * 2}
-        height={radius * 2}
-        value={RootStore.ControlPanelStore.currentLiquidValue}
-        textSize={1}
-        textOffsetX={0}
-        textOffsetY={10}
-        textRenderer={props => {
-          const value = RootStore.ControlPanelStore.currentSliderValue
-          const radius = Math.min(props.height / 2.5, props.width / 2)
-          const textPixels = (props.textSize * radius) / 1.5
-          const valueStyle = {
-            fontSize: textPixels,
-          }
+      <ButtonToolbar>
+        <OverlayTrigger
+          trigger="click"
+          rootClose
+          placement="top"
+          overlay={slrDescription}
+        >
+          <Button bsSize="xsmall">
+            <Glyphicon glyph="glyphicon glyphicon-info-sign" />
+          </Button>
+        </OverlayTrigger>
+        <OverlayTrigger
+          trigger={['hover', 'focus']}
+          placement="right"
+          overlay={layerDesc}
+        >
+          <LiquidFillGauge
+            style={{
+              margin: '1em auto 0',
+            }}
+            width={radius * 2}
+            height={radius * 2}
+            value={RootStore.ControlPanelStore.currentLiquidValue}
+            textSize={1}
+            textOffsetX={0}
+            textOffsetY={1}
+            textRenderer={props => {
+              const value = RootStore.ControlPanelStore.currentSliderValue
+              const radius = Math.min(props.height / 2.5, props.width / 2)
+              const ftPixels = (props.textSize * radius) / 2
+              const slrPixels = (props.textSize * radius) / 1.75
+              const ftStyle = {
+                fontSize: ftPixels,
+                fontFamily: 'sans-serif',
+              }
+              const slrStyle = {
+                fontSize: slrPixels,
+                fontFamily: 'sans-serif',
+              }
 
-          return (
-            <tspan>
-              <tspan className="value" style={valueStyle}>
-                {value} ft
-              </tspan>
-            </tspan>
-          )
-        }}
-        riseAnimation
-        waveAnimation
-        waveFrequency={2}
-        waveAmplitude={4}
-        gradient
-        gradientStops={gradientStops}
-        circleStyle={{
-          fill: fillColor,
-        }}
-        waveStyle={{
-          fill: fillColor,
-        }}
-        textStyle={{
-          fill: color('#fff').toString(),
-          fontFamily: 'Open Sans',
-        }}
-        waveTextStyle={{
-          fill: color('#fff').toString(),
-          fontFamily: 'Open Sans',
-        }}
-      />
+              return (
+                <tspan>
+                  <tspan dy="-0.9em" x="0" style={slrStyle}>
+                    Sea
+                  </tspan>
+                  <tspan dy="1em" x="0" style={slrStyle}>
+                    Level
+                  </tspan>
+                  <tspan dy="1.5em" x="0" style={ftStyle}>
+                    {value} ft
+                  </tspan>
+                </tspan>
+              )
+            }}
+            riseAnimation
+            waveAnimation
+            waveFrequency={2}
+            waveAmplitude={4}
+            gradient
+            gradientStops={gradientStops}
+            circleStyle={{
+              fill: fillColor,
+            }}
+            waveStyle={{
+              fill: fillColor,
+            }}
+            textStyle={{
+              fill: color('#fff').toString(),
+              fontFamily: 'Open Sans',
+            }}
+            waveTextStyle={{
+              fill: color('#fff').toString(),
+              fontFamily: 'Open Sans',
+            }}
+          />
+        </OverlayTrigger>
+      </ButtonToolbar>
     )
 
     return (
@@ -662,14 +669,9 @@ class Layers extends Component {
                 <tr>
                   <td className={css.noTopBorder}>
                     <Row>
-                      <Col md={6} mdOffset={3}>
-                        {slrWithInfo}
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col md={12}>
-                        {slider}
+                      <Col md={12} style={{width: '100%', height: 'auto'}}>
                         {liquidFillGauge}
+                        {slider}
                       </Col>
                     </Row>
                   </td>

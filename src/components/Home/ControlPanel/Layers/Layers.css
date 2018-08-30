@@ -8,10 +8,6 @@
   border-radius: 0.5em;
 }
 
-.LayerMenuTitle {
-  text-align: center;
-}
-
 .mapLayerTitle {
   cursor: default;
   font-size: 1em;
@@ -48,13 +44,7 @@
   padding: 1em;
 }
 
-.slrslider {
-  background: #7bb6c6;
-  padding: 1em;
-}
-
-/* ADD SOME HOVER EFFECTS TO PROVIDE USER FEEDBACK */
-.slrslider:hover,
+/* ADD HOVER EFFECTS TO PROVIDE USER FEEDBACK */
 .criticalFacilities:hover,
 .slosh:hover,
 .femaFirm:hover,
