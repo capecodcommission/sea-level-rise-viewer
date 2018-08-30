@@ -378,83 +378,95 @@ class Layers extends Component {
     )
 
     let critFacImage = (
-      <ButtonToolbar>
-        <OverlayTrigger
-          trigger="click"
-          rootClose
-          placement="top"
-          overlay={criticalFacilitiesDescription}
-        >
-          <Button bsSize="xsmall">
-            <Glyphicon glyph="glyphicon glyphicon-info-sign" />
-          </Button>
-        </OverlayTrigger>
-        <Image
-          onClick={RootStore.ControlPanelStore.handleCriticalFacilitiesClick.bind(
-            this
-          )}
-          className={
-            RootStore.ControlPanelStore.criticalFacilitiesBackground
-              ? css.clickedButton
-              : css.criticalFacilities
-          }
-          src={require('./img/critFac.svg')}
-          responsive
-          circle
-        />
-      </ButtonToolbar>
+      <div>
+        <Col xs={1} xsOffset={2}>
+          <OverlayTrigger
+            trigger="click"
+            rootClose
+            placement="top"
+            overlay={criticalFacilitiesDescription}
+          >
+            <Button bsSize="xsmall">
+              <Glyphicon glyph="glyphicon glyphicon-info-sign" />
+            </Button>
+          </OverlayTrigger>
+        </Col>
+        <Col md={6}>
+          <Image
+            onClick={RootStore.ControlPanelStore.handleCriticalFacilitiesClick.bind(
+              this
+            )}
+            className={
+              RootStore.ControlPanelStore.criticalFacilitiesBackground
+                ? css.clickedButton
+                : css.criticalFacilities
+            }
+            src={require('./img/critFac.svg')}
+            responsive
+            circle
+          />
+        </Col>
+      </div>
     )
 
     let sloshImage = (
-      <ButtonToolbar>
-        <OverlayTrigger
-          trigger="click"
-          rootClose
-          placement="top"
-          overlay={sloshDescription}
-        >
-          <Button bsSize="xsmall">
-            <Glyphicon glyph="glyphicon glyphicon-info-sign" />
-          </Button>
-        </OverlayTrigger>
-        <Image
-          onClick={RootStore.ControlPanelStore.handleSloshClick.bind(this)}
-          className={
-            RootStore.ControlPanelStore.sloshBackground
-              ? css.clickedButton
-              : css.slosh
-          }
-          src={require('./img/slosh.svg')}
-          responsive
-          circle
-        />
-      </ButtonToolbar>
+      <div>
+        <Col style={{paddingLeft: '0'}} xs={1}>
+          <OverlayTrigger
+            trigger="click"
+            rootClose
+            placement="top"
+            overlay={sloshDescription}
+          >
+            <Button bsSize="xsmall">
+              <Glyphicon glyph="glyphicon glyphicon-info-sign" />
+            </Button>
+          </OverlayTrigger>
+        </Col>
+        <Col style={{paddingRight: '0', paddingLeft: '30'}} xs={11}>
+          <Image
+            onClick={RootStore.ControlPanelStore.handleSloshClick.bind(this)}
+            className={
+              RootStore.ControlPanelStore.sloshBackground
+                ? css.clickedButton
+                : css.slosh
+            }
+            src={require('./img/slosh.svg')}
+            responsive
+            circle
+          />
+        </Col>
+      </div>
     )
 
     let femaImage = (
-      <ButtonToolbar>
-        <OverlayTrigger
-          trigger="click"
-          rootClose
-          placement="top"
-          overlay={femaFirmDescription}
-        >
-          <Button bsSize="xsmall">
-            <Glyphicon glyph="glyphicon glyphicon-info-sign" />
-          </Button>
-        </OverlayTrigger>
-        <Image
-          onClick={RootStore.ControlPanelStore.handleFemaFirmClick.bind(this)}
-          className={
-            RootStore.ControlPanelStore.femaFirmBackground
-              ? css.clickedButton
-              : css.femaFirm
-          }
-          src={require('./img/fema.svg')}
-          responsive
-          circle
-        />
-      </ButtonToolbar>
+      <div>
+        <Col style={{paddingLeft: '0'}} xs={1}>
+          <OverlayTrigger
+            trigger="click"
+            rootClose
+            placement="top"
+            overlay={femaFirmDescription}
+          >
+            <Button bsSize="xsmall">
+              <Glyphicon glyph="glyphicon glyphicon-info-sign" />
+            </Button>
+          </OverlayTrigger>
+        </Col>
+        <Col style={{paddingRight: '0', paddingLeft: '30'}} xs={11}>
+          <Image
+            onClick={RootStore.ControlPanelStore.handleFemaFirmClick.bind(this)}
+            className={
+              RootStore.ControlPanelStore.femaFirmBackground
+                ? css.clickedButton
+                : css.femaFirm
+            }
+            src={require('./img/fema.svg')}
+            responsive
+            circle
+          />
+        </Col>
+      </div>
     )
 
     let layerDesc = (
@@ -532,6 +544,37 @@ class Layers extends Component {
         offset: '100%',
       },
     ]
+
+    let slrWithInfo = (
+      <div>
+        <Col xs={1} xsOffset={2}>
+          <OverlayTrigger
+            trigger="click"
+            rootClose
+            placement="top"
+            overlay={slrDescription}
+          >
+            <Button bsSize="xsmall">
+              <Glyphicon glyph="glyphicon glyphicon-info-sign" />
+            </Button>
+          </OverlayTrigger>
+        </Col>
+        <Col xs={6}>
+          <OverlayTrigger
+            trigger={['hover', 'focus']}
+            placement="right"
+            overlay={layerDesc}
+          >
+            <Image
+              className={css.slrslider}
+              src={require('./img/slr.svg')}
+              responsive
+              circle
+            />
+          </OverlayTrigger>
+        </Col>
+      </div>
+    )
 
     let removeLayersButton = (
       <OverlayTrigger
@@ -678,7 +721,7 @@ class Layers extends Component {
                 </tr>
                 <tr>
                   <td className={css.noTopBorder}>
-                    <Col md={6} mdOffset={3}>
+                    <Col md={12}>
                       {critFacImage}
                       {RootStore.ControlPanelStore.criticalFacilitiesBackground
                         ? critFacFiltersButton
@@ -688,8 +731,12 @@ class Layers extends Component {
                 </tr>
                 <tr>
                   <td className={css.noTopBorder}>
-                    <Col md={6}>{sloshImage}</Col>
-                    <Col md={6}>{femaImage}</Col>
+                    <Col style={{paddingLeft: '0', paddingRight: '0'}} xs={6}>
+                      {sloshImage}
+                    </Col>
+                    <Col style={{paddingLeft: '0', paddingRight: '0'}} xs={6}>
+                      {femaImage}
+                    </Col>
                   </td>
                 </tr>
               </tbody>
