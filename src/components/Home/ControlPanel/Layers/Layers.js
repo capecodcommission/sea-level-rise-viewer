@@ -621,7 +621,7 @@ class Layers extends Component {
           placement="top"
           overlay={slrDescription}
         >
-          <Button style={{marginLeft: '58px'}} bsSize="xsmall">
+          <Button bsSize="xsmall">
             <Glyphicon glyph="glyphicon glyphicon-info-sign" />
           </Button>
         </OverlayTrigger>
