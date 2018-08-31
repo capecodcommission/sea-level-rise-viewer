@@ -423,7 +423,7 @@ class Layers extends Component {
             </Button>
           </OverlayTrigger>
         </Col>
-        <Col style={{paddingRight: '0', paddingLeft: '30'}} xs={11}>
+        <Col style={{paddingRight: '0', paddingLeft: '30px'}} xs={11}>
           <Image
             onClick={RootStore.ControlPanelStore.handleSloshClick.bind(this)}
             className={
@@ -621,7 +621,7 @@ class Layers extends Component {
           placement="top"
           overlay={slrDescription}
         >
-          <Button bsSize="xsmall">
+          <Button style={{marginLeft: '58px'}} bsSize="xsmall">
             <Glyphicon glyph="glyphicon glyphicon-info-sign" />
           </Button>
         </OverlayTrigger>
@@ -631,9 +631,7 @@ class Layers extends Component {
           overlay={layerDesc}
         >
           <LiquidFillGauge
-            style={{
-              margin: '1em auto 0',
-            }}
+            style={{margin: '0 auto 0'}}
             width={radius * 2}
             height={radius * 2}
             value={RootStore.ControlPanelStore.currentLiquidValue}
@@ -721,22 +719,23 @@ class Layers extends Component {
                 </tr>
                 <tr>
                   <td className={css.noTopBorder}>
-                    <Col md={12}>
-                      {critFacImage}
-                      {RootStore.ControlPanelStore.criticalFacilitiesBackground
-                        ? critFacFiltersButton
-                        : null}
-                    </Col>
+                    <Row>
+                      <Col md={12}>
+                        {critFacImage}
+                        {RootStore.ControlPanelStore
+                          .criticalFacilitiesBackground
+                          ? critFacFiltersButton
+                          : null}
+                      </Col>
+                    </Row>
                   </td>
                 </tr>
                 <tr>
                   <td className={css.noTopBorder}>
-                    <Col style={{paddingLeft: '0', paddingRight: '0'}} xs={6}>
-                      {sloshImage}
-                    </Col>
-                    <Col style={{paddingLeft: '0', paddingRight: '0'}} xs={6}>
-                      {femaImage}
-                    </Col>
+                    <Row>
+                      <Col xs={6}>{sloshImage}</Col>
+                      <Col xs={6}>{femaImage}</Col>
+                    </Row>
                   </td>
                 </tr>
               </tbody>
