@@ -13,18 +13,19 @@
   right: 20px;
   bottom: 10px;
   color: white;
+  word-wrap: break-word;
 }
 
 .point {
-  height: 28px;
-  width: 27px;
+  height: 100%;
+  width: 100%;
   display: block;
-  margin-right: auto;
+  /* margin-right: auto; */
 }
 
 .colorBar {
-  height: 15px;
-  width: 30px;
+  height: 5px;
+  width: 100%;
   display: block;
 }
 

@@ -6,13 +6,11 @@ import css from './Layers.css'
 import {
   Image,
   Button,
-  ButtonToolbar,
   Glyphicon,
   Popover,
   OverlayTrigger,
   FormGroup,
   Checkbox,
-  Table,
   Col,
   Row,
   ButtonGroup,
@@ -45,6 +43,10 @@ class Layers extends Component {
 
   checkTown = e => {
     RootStore.ControlPanelStore.handleTownFilter(e.target.value)
+  }
+
+  setVal = val => {
+    RootStore.ControlPanelStore.currentSliderValue = val
   }
 
   // RENDER THE LAYER ICONS USING 'Layers.css' & SOME MARKUP - REMOVE 'circle' ONCE FINAL IMGs MADE
@@ -379,7 +381,7 @@ class Layers extends Component {
 
     let critFacImage = (
       <div>
-        <Col xs={1} xsOffset={2}>
+        <Col mdOffset={2} md={1}>
           <OverlayTrigger
             trigger="click"
             rootClose
@@ -392,26 +394,34 @@ class Layers extends Component {
           </OverlayTrigger>
         </Col>
         <Col md={6}>
-          <Image
-            onClick={RootStore.ControlPanelStore.handleCriticalFacilitiesClick.bind(
-              this
-            )}
-            className={
-              RootStore.ControlPanelStore.criticalFacilitiesBackground
-                ? css.clickedButton
-                : css.criticalFacilities
-            }
-            src={require('./img/critFac.svg')}
-            responsive
-            circle
-          />
+          <OverlayTrigger
+            trigger={['hover', 'focus']}
+            placement="right"
+            overlay={critFacFilterPopover}
+            delayHide={10000}
+            rootClose
+          >
+            <Image
+              onClick={RootStore.ControlPanelStore.handleCriticalFacilitiesClick.bind(
+                this
+              )}
+              className={
+                RootStore.ControlPanelStore.criticalFacilitiesBackground
+                  ? css.clickedButton
+                  : css.criticalFacilities
+              }
+              src={require('./img/critFac.svg')}
+              responsive
+              circle
+            />
+          </OverlayTrigger>
         </Col>
       </div>
     )
 
     let sloshImage = (
       <div>
-        <Col style={{paddingLeft: '0'}} xs={1}>
+        <Col style={{paddingLeft: '0px', paddingRight: '0px'}} xs={1}>
           <OverlayTrigger
             trigger="click"
             rootClose
@@ -423,7 +433,7 @@ class Layers extends Component {
             </Button>
           </OverlayTrigger>
         </Col>
-        <Col style={{paddingRight: '0', paddingLeft: '30px'}} xs={11}>
+        <Col style={{paddingLeft: '0px', paddingRight: '0px'}} xs={4}>
           <Image
             onClick={RootStore.ControlPanelStore.handleSloshClick.bind(this)}
             className={
@@ -441,7 +451,11 @@ class Layers extends Component {
 
     let femaImage = (
       <div>
-        <Col style={{paddingLeft: '0'}} xs={1}>
+        <Col
+          xsOffset={2}
+          style={{paddingLeft: '0px', paddingRight: '0px'}}
+          xs={1}
+        >
           <OverlayTrigger
             trigger="click"
             rootClose
@@ -453,7 +467,7 @@ class Layers extends Component {
             </Button>
           </OverlayTrigger>
         </Col>
-        <Col style={{paddingRight: '0', paddingLeft: '30'}} xs={11}>
+        <Col style={{paddingLeft: '0px', paddingRight: '0px'}} xs={4}>
           <Image
             onClick={RootStore.ControlPanelStore.handleFemaFirmClick.bind(this)}
             className={
@@ -480,6 +494,8 @@ class Layers extends Component {
           marginTop: '2%',
           marginBottom: '10%',
         }}
+        onChange={this.setVal}
+        value={RootStore.ControlPanelStore.currentSliderValue}
         className={css.slider}
         dots
         marks={RootStore.ControlPanelStore.marks}
@@ -545,37 +561,6 @@ class Layers extends Component {
       },
     ]
 
-    let slrWithInfo = (
-      <div>
-        <Col xs={1} xsOffset={2}>
-          <OverlayTrigger
-            trigger="click"
-            rootClose
-            placement="top"
-            overlay={slrDescription}
-          >
-            <Button bsSize="xsmall">
-              <Glyphicon glyph="glyphicon glyphicon-info-sign" />
-            </Button>
-          </OverlayTrigger>
-        </Col>
-        <Col xs={6}>
-          <OverlayTrigger
-            trigger={['hover', 'focus']}
-            placement="right"
-            overlay={layerDesc}
-          >
-            <Image
-              className={css.slrslider}
-              src={require('./img/slr.svg')}
-              responsive
-              circle
-            />
-          </OverlayTrigger>
-        </Col>
-      </div>
-    )
-
     let removeLayersButton = (
       <OverlayTrigger
         trigger={['hover', 'focus']}
@@ -585,24 +570,10 @@ class Layers extends Component {
       >
         <Button
           style={{paddingBottom: '0', marginBottom: '0'}}
-          className="pull-right"
           bsSize="xsmall"
           onClick={RootStore.EsriMapStore.removeToggleableLayers}
         >
           <Glyphicon glyph="glyphicon glyphicon-remove-sign" />
-        </Button>
-      </OverlayTrigger>
-    )
-
-    let critFacFiltersButton = (
-      <OverlayTrigger
-        trigger="click"
-        rootClose
-        placement="right"
-        overlay={critFacFilterPopover}
-      >
-        <Button bsSize="xsmall">
-          <Glyphicon glyph="glyphicon glyphicon-filter" />
         </Button>
       </OverlayTrigger>
     )
@@ -693,53 +664,28 @@ class Layers extends Component {
 
     return (
       <div className={css.LayersWrapper}>
+        <Row style={{marginBottom: '20px'}}>
+          <Col md={12}>
+            <strong className={css.mapLayerTitle}>MAP LAYERS</strong>
+            {layerToggles.every(i => !i) ? null : removeLayersButton}
+          </Col>
+        </Row>
         <Row>
-          <Col>
-            <Table style={{marginBottom: '0'}}>
-              <thead>
-                <tr>
-                  <th className={css.noBottomBorder}>
-                    <div style={{textAlign: 'center'}}>
-                      <strong className={css.mapLayerTitle}>MAP LAYERS</strong>
-                      {layerToggles.every(i => !i) ? null : removeLayersButton}
-                    </div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className={css.noTopBorder}>
-                    <Row>
-                      <Col md={12} style={{width: '100%', height: 'auto'}}>
-                        {liquidFillGauge}
-                        {slider}
-                      </Col>
-                    </Row>
-                  </td>
-                </tr>
-                <tr>
-                  <td className={css.noTopBorder}>
-                    <Row>
-                      <Col md={12}>
-                        {critFacImage}
-                        {RootStore.ControlPanelStore
-                          .criticalFacilitiesBackground
-                          ? critFacFiltersButton
-                          : null}
-                      </Col>
-                    </Row>
-                  </td>
-                </tr>
-                <tr>
-                  <td className={css.noTopBorder}>
-                    <Row>
-                      <Col xs={6}>{sloshImage}</Col>
-                      <Col xs={6}>{femaImage}</Col>
-                    </Row>
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
+          <Col md={12}>{slrWithInfo}</Col>
+        </Row>
+        <Row>
+          <Col md={12}>{slider}</Col>
+        </Row>
+        <Row>
+          <Col md={12}>{liquidFillGauge}</Col>
+        </Row>
+        <Row>
+          <Col md={12}>{critFacImage}</Col>
+        </Row>
+        <Row>
+          <Col style={{paddingLeft: '0px', paddingRight: '0px'}} xs={12}>
+            {sloshImage}
+            {femaImage}
           </Col>
         </Row>
       </div>

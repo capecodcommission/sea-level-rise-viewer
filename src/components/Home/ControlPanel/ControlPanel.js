@@ -4,7 +4,7 @@ import BaseMapSwitcher from './BaseMapSwitcher/BaseMapSwitcher'
 import Layers from './Layers/Layers'
 import Title from './Title/Title'
 import {observer} from 'mobx-react'
-import {Row, Col} from 'react-bootstrap'
+import {Row, Col, Grid} from 'react-bootstrap'
 import css from './ControlPanel.css'
 
 @observer
@@ -12,7 +12,7 @@ class ControlPanel extends Component {
   // Render all control panel sub-components in Bootstrap grid
   render = () => {
     return (
-      <div>
+      <Grid>
         <Row className={css.ControlsWrapper}>
           <Col>
             <Title />
@@ -20,7 +20,7 @@ class ControlPanel extends Component {
             <Layers />
           </Col>
         </Row>
-      </div>
+      </Grid>
     )
   }
 }

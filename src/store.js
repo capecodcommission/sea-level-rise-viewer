@@ -203,8 +203,8 @@ class EsriMapStore {
       this.RootStore.MapServicesStore.criticalFacilities,
       this.RootStore.MapServicesStore.slosh,
       this.RootStore.MapServicesStore.femaFirm,
-      this.RootStore.GeoJSONStore.currentSLRLayer,
-      this.RootStore.GeoJSONStore.currentRoadLayer,
+      // this.RootStore.GeoJSONStore.currentSLRLayer,
+      // this.RootStore.GeoJSONStore.currentRoadLayer,
       this.RootStore.GeoJSONStore.criticalFacilitiesIntersection,
       this.RootStore.MapServicesStore.searchResults,
     ]
@@ -215,8 +215,8 @@ class EsriMapStore {
       !this.map.hasLayer(this.RootStore.MapServicesStore.criticalFacilities) &&
       !this.map.hasLayer(this.RootStore.MapServicesStore.slosh) &&
       !this.map.hasLayer(this.RootStore.MapServicesStore.femaFirm) &&
-      !this.map.hasLayer(this.RootStore.GeoJSONStore.currentSLRLayer) &&
-      !this.map.hasLayer(this.RootStore.GeoJSONStore.currentRoadLayer) &&
+      // !this.map.hasLayer(this.RootStore.GeoJSONStore.currentSLRLayer) &&
+      // !this.map.hasLayer(this.RootStore.GeoJSONStore.currentRoadLayer) &&
       !this.map.hasLayer(
         this.RootStore.GeoJSONStore.criticalFacilitiesIntersection
       ) &&
@@ -238,7 +238,9 @@ class EsriMapStore {
     this.RootStore.ControlPanelStore.criticalFacilitiesBackground = false
     this.RootStore.ControlPanelStore.femaFirmBackground = false
     this.RootStore.ControlPanelStore.sloshBackground = false
-    this.RootStore.ControlPanelStore.sliderToggle = false
+    // this.RootStore.ControlPanelStore.sliderToggle = false
+
+    this.switchSLRLayer(0)
   }
 
   @action
