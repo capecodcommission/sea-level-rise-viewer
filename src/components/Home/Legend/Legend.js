@@ -146,7 +146,7 @@ class Legend extends Component {
           <td>
             <Image
               className={css.point}
-              src={require('../ControlPanel/Layers/img/slr.svg')}
+              src={require('../ControlPanel/Layers/img/critFac.svg')}
             />
           </td>
           <td>

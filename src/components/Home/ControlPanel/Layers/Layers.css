@@ -68,3 +68,15 @@
 .buttonBeside {
   display: inline-block !important;
 }
+
+.intersectingIcon {
+  background-image: url('./img/critFac.svg');
+  background-color: #de2d26;
+  border-radius: 15%;
+}
+
+.nonIntersectingIcon {
+  background-image: url('./img/critFac.svg');
+  background-color: #2ca5c3;
+  border-radius: 15%;
+}
