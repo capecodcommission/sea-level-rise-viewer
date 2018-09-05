@@ -8,6 +8,10 @@
   border-radius: 0.5em;
 }
 
+.LayerMenuTitle {
+  text-align: center;
+}
+
 .mapLayerTitle {
   cursor: default;
   font-size: 1em;

@@ -423,7 +423,7 @@ class Layers extends Component {
             </Button>
           </OverlayTrigger>
         </Col>
-        <Col style={{paddingRight: '0', paddingLeft: '30px'}} xs={11}>
+        <Col style={{paddingRight: '0'}} xs={11}>
           <Image
             onClick={RootStore.ControlPanelStore.handleSloshClick.bind(this)}
             className={
@@ -453,7 +453,7 @@ class Layers extends Component {
             </Button>
           </OverlayTrigger>
         </Col>
-        <Col style={{paddingRight: '0', paddingLeft: '30'}} xs={11}>
+        <Col style={{paddingRight: '0'}} xs={11}>
           <Image
             onClick={RootStore.ControlPanelStore.handleFemaFirmClick.bind(this)}
             className={
@@ -544,37 +544,6 @@ class Layers extends Component {
         offset: '100%',
       },
     ]
-
-    let slrWithInfo = (
-      <div>
-        <Col xs={1} xsOffset={2}>
-          <OverlayTrigger
-            trigger="click"
-            rootClose
-            placement="top"
-            overlay={slrDescription}
-          >
-            <Button bsSize="xsmall">
-              <Glyphicon glyph="glyphicon glyphicon-info-sign" />
-            </Button>
-          </OverlayTrigger>
-        </Col>
-        <Col xs={6}>
-          <OverlayTrigger
-            trigger={['hover', 'focus']}
-            placement="right"
-            overlay={layerDesc}
-          >
-            <Image
-              className={css.slrslider}
-              src={require('./img/slr.svg')}
-              responsive
-              circle
-            />
-          </OverlayTrigger>
-        </Col>
-      </div>
-    )
 
     let removeLayersButton = (
       <OverlayTrigger
