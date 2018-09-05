@@ -7,17 +7,14 @@ import {observable, action, reaction} from 'mobx'
 import axios from 'axios'
 import React from 'react'
 import css from './index.css'
+import layersCSS from './components/Home/ControlPanel/Layers/Layers.css'
 
 class EsriMapStore {
-  @observable
-  currentZoomLevel: int = 13
-  @observable
-  currentBaseMapObject: null = {}
+  @observable currentZoomLevel: int = 13
+  @observable currentBaseMapObject: null = {}
   startView: init = [41.68, -70.3405]
-  @observable
-  map: null = {}
-  @observable
-  loadingComplete: init = true
+  @observable map: null = {}
+  @observable loadingComplete: init = true
 
   // Filter Critical Facilities layer using checked sub types and towns
   filterCritFac = () => {
@@ -265,16 +262,11 @@ class EsriMapStore {
 }
 
 class ControlPanelStore {
-  @observable
-  sliderToggle: init = false
-  @observable
-  layerDesc: init = null
-  @observable
-  layerDescShow: init = false
-  @observable
-  currentSliderValue: init = 0
-  @observable
-  currentLiquidValue: init = 0
+  @observable sliderToggle: init = false
+  @observable layerDesc: init = null
+  @observable layerDescShow: init = false
+  @observable currentSliderValue: init = 0
+  @observable currentLiquidValue: init = 0
   @observable
   subTypeFIEArray: init = [
     {
@@ -393,18 +385,12 @@ class ControlPanelStore {
       checked: true,
     },
   ]
-  @observable
-  criticalFacilitiesBackground: init = false
-  @observable
-  sloshBackground = false
-  @observable
-  femaFirmBackground: init = false
-  @observable
-  currentBaseMapName: string = 'NationalGeographic'
-  @observable
-  startColor = '#0ca4ff'
-  @observable
-  endColor = '#0077be'
+  @observable criticalFacilitiesBackground: init = false
+  @observable sloshBackground = false
+  @observable femaFirmBackground: init = false
+  @observable currentBaseMapName: string = 'NationalGeographic'
+  @observable startColor = '#0ca4ff'
+  @observable endColor = '#0077be'
   @observable
   marks: init = {
     0: {},
@@ -768,12 +754,15 @@ class MapServicesStore {
       url:
         'http://gis-services.capecodcommission.org/arcgis/rest/services/Data_People/Infrastructure/MapServer/12',
       pointToLayer: function(feature, latlng) {
-        return L.marker(latlng, {
-          icon: L.icon({
-            iconUrl: require('./components/Home/ControlPanel/Layers/img/critFac.svg'),
-            iconSize: [41, 37],
-          }),
+        // CONSTRUCT A LEAFLET 'divIcon' TO INSERT INTO THE LEAFLET MARKER BELOW -
+        // ALLOWING US TO STYLE THE BACKGROUND OF THE IMAGE PROGRAMMATICALLY
+        let myIcon = L.divIcon({
+          className: layersCSS.nonIntersectingIcon,
+          html: '<div style="className"></div>',
+          iconSize: new L.Point(20, 20),
         })
+        // INSERT THE 'divIcon' FROM ABOVE AS THE LEAFLET 'marker icon'
+        return L.marker(latlng, {icon: myIcon})
       },
       polygonOptions: {
         color: '#2CA5C3',
@@ -883,8 +872,7 @@ class MapServicesStore {
     url:
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_6ft/MapServer',
   })
-  @observable
-  searchResults: init = L.layerGroup()
+  @observable searchResults: init = L.layerGroup()
 
   constructor(RootStore) {
     this.RootStore = RootStore
@@ -892,24 +880,15 @@ class MapServicesStore {
 }
 
 class GeoJSONStore {
-  @observable
-  SLR_0ft_geojson: init = false
-  @observable
-  SLR_1ft_geojson: init = false
-  @observable
-  SLR_2ft_geojson: init = false
-  @observable
-  SLR_3ft_geojson: init = false
-  @observable
-  SLR_4ft_geojson: init = false
-  @observable
-  SLR_5ft_geojson: init = false
-  @observable
-  SLR_6ft_geojson: init = false
-  @observable
-  currentSLR_geojson: init = false
-  @observable
-  critFacWhere: init = []
+  @observable SLR_0ft_geojson: init = false
+  @observable SLR_1ft_geojson: init = false
+  @observable SLR_2ft_geojson: init = false
+  @observable SLR_3ft_geojson: init = false
+  @observable SLR_4ft_geojson: init = false
+  @observable SLR_5ft_geojson: init = false
+  @observable SLR_6ft_geojson: init = false
+  @observable currentSLR_geojson: init = false
+  @observable critFacWhere: init = []
   currentSLRLayer: null = {}
   currentRoadLayer: null = {}
   @observable
@@ -920,12 +899,15 @@ class GeoJSONStore {
     },
     {
       pointToLayer: function(feature, latlng) {
-        return L.marker(latlng, {
-          icon: L.icon({
-            iconUrl: require('./components/Home/ControlPanel/Layers/img/slr.svg'),
-            iconSize: [41, 37],
-          }),
+        // CONSTRUCT A LEAFLET 'divIcon' TO INSERT INTO THE LEAFLET MARKER BELOW -
+        // ALLOWING US TO STYLE THE BACKGROUND OF THE IMAGE PROGRAMMATICALLY
+        let myIcon = L.divIcon({
+          className: layersCSS.intersectingIcon,
+          html: '<div style="className"></div>',
+          iconSize: new L.Point(20, 20),
         })
+        // INSERT THE 'divIcon' FROM ABOVE AS THE LEAFLET 'marker icon'
+        return L.marker(latlng, {icon: myIcon})
       },
     }
   ).bindPopup(function(layer) {
