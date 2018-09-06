@@ -1,58 +1,29 @@
-/* THE 'ControlsWrapper' ID IS USED TO STYLE THE WRAPPER AROUND THE DROPDOWN */
-.LegendWrapper {
-  position: absolute;
+.titleWrapper {
+  position: relative;
   z-index: 2;
-  background: #4d4d4d;
-  margin-top: 10px;
-  padding: 1em;
-  opacity: 0.8;
+  background: #0e0e0e;
+  padding: 0.25em;
   font-family: 'Open Sans', sans-serif;
   border-radius: 0.5em;
+  background-repeat: no-repeat;
+  background-image: url('https://i.imgur.com/BS2wH8V.png');
+  background-size: contain;
+  background-position: center;
+}
+
+.title {
+  position: relative;
+  cursor: default;
+  font-size: 2em;
+  color: #88cfff;
+  font-family: 'Open Sans', sans-serif;
+  /* background: black; */
+  border-radius: 0.3em;
+  padding: 0.25em;
+  white-space: pre-line;      /* Webkit */
+  white-space: -moz-pre-wrap; /* Firefox */
+  white-space: -pre-wrap;     /* Opera <7 */
+  white-space: -o-pre-wrap;   /* Opera 7 */
+  word-wrap: break-word;      /* IE */
   text-align: center;
-  width: 12%;
-  right: 20px;
-  bottom: 10px;
-  color: white;
-  word-wrap: break-word;
-}
-
-.point {
-  height: 100%;
-  width: 100%;
-  display: block;
-  /* margin-right: auto; */
-}
-
-.colorBar {
-  height: 5px;
-  width: 100%;
-  display: block;
-}
-
-.legendTitle {
-  color: white;
-}
-
-.cluster {
-  background: #2ca5c3;
-  border-radius: 50%;
-  text-align: center;
-  color: white;
-  font-weight: 700;
-  border: 1px solid white;
-  font-family: monospace;
-}
-
-.digits {
-  font-size: 18px;
-  height: 28px;
-  width: 27px;
-  /* line-height: 47px; */
-  border-width: 3px;
-}
-
-.fitWidth {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
 }
