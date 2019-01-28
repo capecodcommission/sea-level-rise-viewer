@@ -2,15 +2,6 @@
 
 > A visualization of bathtub sea level, showing flooding extent upon critical facilities and roads with related reference layers.
 
-## ROAD MAP
-
-**working branches:**
-
-
-
-**TODOs:**
-
-1.  CONFIGURE back-end to execute intersection logic and cache intersecting critical facilies/SLR levels
 
 ## **Build Setup**
 ``` bash
