@@ -1,10 +1,11 @@
-version: '2.1'
+version: "3.1"
 
 services:
-  ccc-sea-level-rise-viewer:
-    image: ccc-sea-level-rise-viewer
-    build: .
-    environment:
-      NODE_ENV: production
+
+  slrfrontdev:
+    container_name: slrfrontdev
+    build: "."
     ports:
       - 3000:3000
+    volumes:
+      - ./src:/app/src:rw
