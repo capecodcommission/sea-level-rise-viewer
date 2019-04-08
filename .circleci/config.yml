@@ -38,7 +38,7 @@ jobs:
             docker push ${registryName}.azurecr.io/${frontImageDev}
 workflows:
   version: 2
-  CCCP_Workflow:
+  SLR_Workflow:
     jobs:
       - BuildPushMaster:
           filters:
