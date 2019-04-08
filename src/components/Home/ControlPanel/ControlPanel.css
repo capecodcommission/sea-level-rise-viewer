@@ -1,14 +1,60 @@
 /* THE 'ControlsWrapper' ID IS USED TO STYLE THE WRAPPER AROUND THE DROPDOWN */
-.ControlsWrapper {
+.ControlsWrapperClosed {
+  position: absolute;
+  z-index: 2;
+  background: #bdbdbd;
+  margin-top: 1em;
+  padding: 1em;
+  opacity: 0.8;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 0.5em;
+  text-align: center;
+  width: 275px;
+  transition: margin .5s;
+  margin: 0 0 0 -290px;
+}
+
+.ControlsWrapperOpen {
   position: absolute;
   z-index: 2;
   background: #bdbdbd;
   margin-top: 10px;
   padding: 1em;
-  margin-left: 10px;
   opacity: 0.8;
   font-family: 'Open Sans', sans-serif;
   border-radius: 0.5em;
   text-align: center;
-  width: 15%;
+  width: 275px;
+  transition: margin .5s;
+  margin: 0 0 1em 0em;
+}
+
+.panelToggleBtn {
+  width: 35px;
+  height: 35px;
+  border-radius: .5em;
+  border-color: black;
+  border-width: 2px;
+}
+
+.panelToggleBtn:hover {
+  width: 35px;
+  height: 35px;
+  border-radius: .5em;
+  border-color: orange;
+  border-width: 2px;
+}
+
+.panelToggleImageClosed {
+  width: 32px;
+  height: 32px;
+  transition: transform .5s;
+  transform: translate(-13px, -6px) rotate(180deg);
+}
+
+.panelToggleImageOpen {
+  width: 32px;
+  height: 32px;
+  transition: transform .5s;
+  transform: translate(-13px, -6px) rotate(0deg);
 }

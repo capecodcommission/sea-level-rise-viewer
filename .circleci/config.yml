@@ -1,54 +1,41 @@
-version: 2.0
+version: 2.1
 jobs:
-  BuildPushMaster:
+  BuildPush:
+    description: Build the SLRV front tagged image.
+    parameters:
+      imageName:
+        description: "The name of the SLRV image"
+        type: string
+        default: slr-image:tag
     docker:
       - image: circleci/node
     steps:
       - setup_remote_docker
       - checkout
       - run:
-          name: Build and Push to ACR
+          name: Build and push to ACR.
           command: |
-            docker build . -t ${registryName}.azurecr.io/${frontImageLatest}
+            docker build . -t ${registryName}.azurecr.io/<<parameters.imageName>>
             docker login ${registryName}.azurecr.io -u ${registryName} -p ${registryPassword}
-            docker push ${registryName}.azurecr.io/${frontImageLatest}
-  BuildPushUAT:
-    docker:
-      - image: circleci/node
-    steps:
-      - setup_remote_docker
-      - checkout
-      - run:
-          name: Build and Push to ACR
-          command: |
-            docker build . -t ${registryName}.azurecr.io/${frontImageUat}
-            docker login ${registryName}.azurecr.io -u ${registryName} -p ${registryPassword}
-            docker push ${registryName}.azurecr.io/${frontImageUat}
-  BuildPushDev:
-    docker:
-      - image: circleci/node
-    steps:
-      - setup_remote_docker
-      - checkout
-      - run:
-          name: Build and Push to ACR
-          command: |
-            docker build . -t ${registryName}.azurecr.io/${frontImageDev}
-            docker login ${registryName}.azurecr.io -u ${registryName} -p ${registryPassword}
-            docker push ${registryName}.azurecr.io/${frontImageDev}
+            docker push ${registryName}.azurecr.io/<<parameters.imageName>>
 workflows:
-  version: 2
-  SLR_Workflow:
+  workflow:
     jobs:
-      - BuildPushMaster:
+      - BuildPush:
+          imageName: slr-front:latest
+          name: BuildPushMaster
           filters:
             branches:
               only: master
-      - BuildPushUAT:
+      - BuildPush:
+          imageName: slr-front:uat
+          name: BuildPushUAT
           filters:
             branches:
               only: uat
-      - BuildPushDev:
+      - BuildPush:
+          imageName: slr-front:dev
+          name: BuildPushDev
           filters:
             branches:
               only: dev

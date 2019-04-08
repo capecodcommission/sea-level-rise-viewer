@@ -6,6 +6,8 @@
   padding: 1em;
   font-family: 'Open Sans', sans-serif;
   border-radius: 0.5em;
+  padding-right: 25px;
+  padding-left: 25px;
 }
 
 .LayerMenuTitle {
@@ -13,6 +15,8 @@
 }
 
 .mapLayerTitle {
+  vertical-align: center;
+  position: static;
   cursor: default;
   font-size: 1em;
   color: #3182bd;
@@ -20,41 +24,45 @@
   background: black;
   border-radius: 0.3em;
   padding: 0.5em;
-  white-space: pre-line;      /* Webkit */
-  white-space: -moz-pre-wrap; /* Firefox */
-  white-space: -pre-wrap;     /* Opera <7 */
-  white-space: -o-pre-wrap;   /* Opera 7 */
-  word-wrap: break-word;      /* IE */
+  white-space: pre-line;      
+  white-space: -moz-pre-wrap; 
+  white-space: -pre-wrap;     
+  white-space: -o-pre-wrap;   
+  word-wrap: break-word;      
 }
 
 /* ADD LAYER IMAGE STYLING */
 .criticalFacilities {
-  background: #416285;
-  padding: 1em;
+  background: #2ca5c3;
+  width: 75px;
+  height: 75px;
 }
 
-.slosh {
+.coastalFloodHazardComposite {
   background: #7bb6c6;
-  padding: 1em;
+  width: 75px;
+  height: 75px;
 }
 
-.femaFirm {
-  background: #416285;
-  padding: 1em;
+.slr {
+  background: #7bb6c6;
+  width: 110px;
+  height: 110px;
 }
 
 .clickedButton {
-  background: #201e1e;
-  padding: 1em;
+  background: #2ca5c3;
+  border: 3px solid white;
+  width: 75px;
+  height: 75px;
 }
 
 /* ADD HOVER EFFECTS TO PROVIDE USER FEEDBACK */
 .criticalFacilities:hover,
-.slosh:hover,
-.femaFirm:hover,
+.coastalFloodHazardComposite:hover,
 .clickedButton:hover {
   cursor: pointer;
-  background-color: #f7fcb9;
+  border: solid 0.25em white;
 }
 
 .slider {
@@ -74,13 +82,45 @@
 }
 
 .intersectingIcon {
-  background-image: url('./img/critFac.svg');
+  background-image: url('./img/critical-facilities-affected.svg');
   background-color: #de2d26;
-  border-radius: 15%;
+  background-size: cover;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }
 
 .nonIntersectingIcon {
-  background-image: url('./img/critFac.svg');
+  background-image: url('./img/critical-facilities.svg');
   background-color: #2ca5c3;
-  border-radius: 15%;
+  background-size: cover;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.layerTitle {
+  vertical-align: center;
+  position: static;
+  cursor: default;
+  font-size: 13.9px;
+  color: #3182bd;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  background: black;
+  border-radius: 0.3em;
+  padding: 0.25em;
+  margin-left: 0.33em;
+  opacity: 0.7;
+  white-space: pre-line;      /* Webkit */
+  white-space: -moz-pre-wrap; /* Firefox */
+  white-space: -pre-wrap;     /* Opera <7 */
+  white-space: -o-pre-wrap;   /* Opera 7 */
+  word-wrap: break-word;      /* IE */
+}
+
+.fillGauge {
+  margin: 0 auto 0;
+  background-image: url('../img/SLR.png');
+  background-size: cover;
 }

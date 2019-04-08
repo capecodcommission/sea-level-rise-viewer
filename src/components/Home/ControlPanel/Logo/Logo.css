@@ -1,12 +1,13 @@
-.titleWrapper {
+.logoWrapper {
   position: relative;
   z-index: 2;
   background: #0e0e0e;
-  height: 10em;
+  height: 7em;
   font-family: 'Open Sans', sans-serif;
   border-radius: 0.5em;
   background-repeat: no-repeat;
-  background-image: url('../img/SLR-viewer-logo-sq-white.png');
+  background-image: url('../img/CCC-logo-screen-grey.png');
   background-size: contain;
   background-position: center;
+  margin-top: 0.5em;
 }

@@ -53,68 +53,54 @@ class Layers extends Component {
   render = () => {
     let criticalFacilitiesDescription = (
       <Popover id="critical-facilities" title="Critical Facilities">
-        These are the <strong>critical facilities</strong> as identified by
-        Barnstable county and municipal representatives. The data and more
+        <p>These are the <strong>critical facilities</strong> as identified by
+        Barnstable county and municipal representatives.</p> <p>The data and more
         information is available{' '}
-        <a
-          href="http://gis-cccommission.opendata.arcgis.com/datasets/critical-facilities"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          here
-        </a>
+          <a
+            href="http://gis-cccommission.opendata.arcgis.com/datasets/critical-facilities"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            here
+          </a>
         .
+        </p>
       </Popover>
     )
 
-    let sloshDescription = (
-      <Popover id="slosh" title="SLOSH">
-        This is the <strong>SLOSH</strong> (Sea, Lake and Overland Surge from
-        Hurricane) model visualization for Barnstable County. The data and more
+    let noaaCoastalFloodHazardCompositeDescription = (
+      <Popover id="coastalFloodHazardComposite" title="NOAA Coastal Flood Hazard Composite">
+        <p>The <strong>NOAA Coastal Flood Hazard Composite</strong> datalayer shows the spatial extents of multiple flood hazard data sets combined.</p> <p>The data and more
         information is available{' '}
-        <a
-          href="http://gis-cccommission.opendata.arcgis.com/datasets/sea-lake-and-overland-surge-from-hurricanes-slosh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          here
-        </a>
+          <a
+            href="https://coast.noaa.gov/data/digitalcoast/pdf/flood-exposure-data.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            here
+          </a>
         .
-      </Popover>
-    )
-
-    let femaFirmDescription = (
-      <Popover id="fema" title="FEMA FIRM">
-        This is the <strong>FEMA FIRM</strong> Digital Flood Insurance Rate Maps
-        (DFIRM) for Barnstable County. More information and the data is
-        available{' '}
-        <a
-          href="http://gis-cccommission.opendata.arcgis.com/datasets/fema-floodplains"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          here
-        </a>
-        .
+        </p>
       </Popover>
     )
 
     let slrDescription = (
       <Popover id="slr" title="Sea Level Rise">
-        The datalayer displays sea level intervals relative to mean high water
+        <p>The datalayer displays sea level intervals relative to mean high water
         representing the Cape Cod Commission's <strong>Sea Level Rise</strong>{' '}
-        modeling for Barnstable County. The critical facilities intersecting
+        modeling for Barnstable County.</p> <p>The critical facilities intersecting
         with the sea level at each interval are styled differently to represent
-        intersection and potential coastal flooding. More information and the
+        intersection and potential coastal flooding. </p> <p>More information and the
         data for sea level models is available{' '}
-        <a
-          href="http://gis-cccommission.opendata.arcgis.com/datasets?q=sea%20level"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          here
-        </a>
+          <a
+            href="http://gis-cccommission.opendata.arcgis.com/search?collection=Dataset&q=sea%20level"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            here
+          </a>
         .
+        </p>
       </Popover>
     )
 
@@ -125,9 +111,9 @@ class Layers extends Component {
     )
 
     let critFacFilterPopover = (
-      <Popover id="filterPop" title="Filter by Type or Town">
+      <Popover style = {{transform: 'translate(0px, -30px)'}} id="filterPop" title="Filter by Type or Town">
         <Row>
-          <Col md={6}>
+          <Col xs={6} md={6} lg={6}>
             <strong>Types</strong>
             <FormGroup>
               <Checkbox
@@ -247,7 +233,7 @@ class Layers extends Component {
               </Button>
             </ButtonGroup>
           </Col>
-          <Col md={6}>
+          <Col xs={6} md={6} lg={6}>
             <strong className="text-center">Towns</strong>
             <FormGroup>
               <Checkbox
@@ -381,7 +367,7 @@ class Layers extends Component {
 
     let critFacImage = (
       <div>
-        <Col mdOffset={2} md={1}>
+        <Col xs={12} md={12} lg={12}>
           <OverlayTrigger
             trigger="click"
             rootClose
@@ -392,12 +378,14 @@ class Layers extends Component {
               <Glyphicon glyph="glyphicon glyphicon-info-sign" />
             </Button>
           </OverlayTrigger>
-        </Col>
-        <Col md={6}>
+          <Col><strong className = {css.layerTitle}>Critical Facilities</strong></Col>
           <OverlayTrigger
             trigger={['hover', 'focus']}
             placement="right"
-            overlay={critFacFilterPopover}
+            overlay={RootStore.ControlPanelStore.criticalFacilitiesBackground
+              ? critFacFilterPopover
+              : <Popover style = {{display: 'none'}} id = 'null'></Popover>
+            }
             delayHide={10000}
             rootClose
           >
@@ -410,8 +398,7 @@ class Layers extends Component {
                   ? css.clickedButton
                   : css.criticalFacilities
               }
-              src={require('./img/critFac.svg')}
-              responsive
+              src={require('../img/critical-facilities.png')}
               circle
             />
           </OverlayTrigger>
@@ -419,64 +406,30 @@ class Layers extends Component {
       </div>
     )
 
-    let sloshImage = (
+    let noaaCoastalFloodHazardCompositeImage = (
       <div>
-        <Col style={{paddingLeft: '0px', paddingRight: '0px'}} xs={1}>
+        <Col xs={12} md={12} lg={12}>
           <OverlayTrigger
             trigger="click"
             rootClose
             placement="top"
-            overlay={sloshDescription}
+            overlay={noaaCoastalFloodHazardCompositeDescription}
           >
             <Button bsSize="xsmall">
               <Glyphicon glyph="glyphicon glyphicon-info-sign" />
             </Button>
           </OverlayTrigger>
-        </Col>
-        <Col style={{paddingLeft: '0px', paddingRight: '0px'}} xs={4}>
+          <Col><strong className = {css.layerTitle}>NOAA Coastal Flood Hazard Composite</strong></Col>
           <Image
-            onClick={RootStore.ControlPanelStore.handleSloshClick.bind(this)}
+            onClick={RootStore.ControlPanelStore.handleSloshClick.bind(
+              this
+            )}
             className={
               RootStore.ControlPanelStore.sloshBackground
                 ? css.clickedButton
-                : css.slosh
+                : css.coastalFloodHazardComposite
             }
-            src={require('./img/slosh.svg')}
-            responsive
-            circle
-          />
-        </Col>
-      </div>
-    )
-
-    let femaImage = (
-      <div>
-        <Col
-          xsOffset={2}
-          style={{paddingLeft: '0px', paddingRight: '0px'}}
-          xs={1}
-        >
-          <OverlayTrigger
-            trigger="click"
-            rootClose
-            placement="top"
-            overlay={femaFirmDescription}
-          >
-            <Button bsSize="xsmall">
-              <Glyphicon glyph="glyphicon glyphicon-info-sign" />
-            </Button>
-          </OverlayTrigger>
-        </Col>
-        <Col style={{paddingLeft: '0px', paddingRight: '0px'}} xs={4}>
-          <Image
-            onClick={RootStore.ControlPanelStore.handleFemaFirmClick.bind(this)}
-            className={
-              RootStore.ControlPanelStore.femaFirmBackground
-                ? css.clickedButton
-                : css.femaFirm
-            }
-            src={require('./img/fema.svg')}
-            responsive
+            src={require('../img/SLOSH.png')}
             circle
           />
         </Col>
@@ -492,15 +445,15 @@ class Layers extends Component {
         style={{
           margin: '1em auto 0',
           marginTop: '2%',
-          marginBottom: '10%',
+          marginBottom: '15%',
         }}
         onChange={this.setVal}
         value={RootStore.ControlPanelStore.currentSliderValue}
         className={css.slider}
         dots
         marks={RootStore.ControlPanelStore.marks}
-        min={0}
         max={6}
+        
         onAfterChange={this.setSliderValue}
         railStyle={{backgroundColor: 'grey', height: 2}}
         trackStyle={{
@@ -561,6 +514,13 @@ class Layers extends Component {
       },
     ]
 
+    let layerToggles = [
+      RootStore.ControlPanelStore.criticalFacilitiesBackground,
+      RootStore.ControlPanelStore.sloshBackground,
+      RootStore.ControlPanelStore.currentLiquidValue,
+      RootStore.ControlPanelStore.currentSliderValue,
+    ]
+
     let removeLayersButton = (
       <OverlayTrigger
         trigger={['hover', 'focus']}
@@ -569,7 +529,7 @@ class Layers extends Component {
         overlay={clearLayerDesc}
       >
         <Button
-          style={{paddingBottom: '0', marginBottom: '0'}}
+          style={{paddingBottom: '0em', marginTop: '0.4em', marginBottom: '0em', transform: 'translate(-25px, -5px)', visibility: layerToggles.every(i => !i) ? 'hidden' : 'visible'}}
           bsSize="xsmall"
           onClick={RootStore.EsriMapStore.removeToggleableLayers}
         >
@@ -578,36 +538,34 @@ class Layers extends Component {
       </OverlayTrigger>
     )
 
-    let layerToggles = [
-      RootStore.ControlPanelStore.criticalFacilitiesBackground,
-      RootStore.ControlPanelStore.femaFirmBackground,
-      RootStore.ControlPanelStore.sloshBackground,
-    ]
-
     let liquidFillGauge = (
       <div>
-        <Col md={1} mdOffset={2}>
-          <OverlayTrigger
-            trigger="click"
-            rootClose
-            placement="top"
-            overlay={slrDescription}
-          >
-            <Button bsSize="xsmall">
-              <Glyphicon glyph="glyphicon glyphicon-info-sign" />
-            </Button>
-          </OverlayTrigger>
+        <Col xs={1} md={1} lg={1} mdOffset={1}>
+          <Row>
+            <OverlayTrigger
+              trigger="click"
+              rootClose
+              placement="top"
+              overlay={slrDescription}
+            >
+              <Button
+                bsSize="xsmall"
+              >
+                <Glyphicon glyph="glyphicon glyphicon-info-sign" />
+              </Button>
+            </OverlayTrigger>
+          </Row>
         </Col>
-        <Col md={6}>
-          <OverlayTrigger
-            trigger={['hover', 'focus']}
-            placement="right"
-            overlay={layerDesc}
-          >
+        <OverlayTrigger
+          trigger={['hover']}
+          placement="right"
+          overlay={layerDesc}
+        >
+          <Col style = {{paddingLeft: '0em'}} xs={6} md={6} lg={6}>
             <LiquidFillGauge
-              style={{margin: '0 auto 0'}}
-              width={radius * 2}
-              height={radius * 2}
+              style={{margin: '0 auto 0', backgroundImage: 'url(' + require('../img/SLR.png') + ')', backgroundSize: 'cover'}}
+              width={radius * 3}
+              height={radius * 3}
               value={RootStore.ControlPanelStore.currentLiquidValue}
               textSize={1}
               textOffsetX={0}
@@ -624,6 +582,8 @@ class Layers extends Component {
                 const slrStyle = {
                   fontSize: slrPixels,
                   fontFamily: 'sans-serif',
+                  textTransform: 'uppercase',
+                  fontWeight: 'bold',
                 }
 
                 return (
@@ -651,6 +611,7 @@ class Layers extends Component {
               }}
               waveStyle={{
                 fill: fillColor,
+                opacity: '1',
               }}
               textStyle={{
                 fill: color('#fff').toString(),
@@ -661,33 +622,32 @@ class Layers extends Component {
                 fontFamily: 'Open Sans',
               }}
             />
-          </OverlayTrigger>
-        </Col>
+          </Col>
+        </OverlayTrigger>
       </div>
     )
 
     return (
       <div className={css.LayersWrapper}>
         <Row style={{marginBottom: '20px'}}>
-          <Col md={12}>
+          <Col md = {8} mdOffset={2}>
             <strong className={css.mapLayerTitle}>MAP LAYERS</strong>
-            {layerToggles.every(i => !i) ? null : removeLayersButton}
+          </Col>
+          <Col md = {1}>
+            {removeLayersButton}
           </Col>
         </Row>
         <Row>
-          <Col md={12}>{liquidFillGauge}</Col>
+          <Col xs={12} md={12} lg={12}>{liquidFillGauge}</Col>
         </Row>
         <Row>
-          <Col md={12}>{slider}</Col>
+          <Col xs={12} md={12} lg={12}>{slider}</Col>
         </Row>
         <Row>
-          <Col md={12}>{critFacImage}</Col>
+          <Col style = {{marginTop: '5px'}}>{critFacImage}</Col>
         </Row>
         <Row>
-          <Col style={{paddingLeft: '0px', paddingRight: '0px'}} xs={12}>
-            {sloshImage}
-            {femaImage}
-          </Col>
+          <Col style = {{marginTop: '5px'}}>{noaaCoastalFloodHazardCompositeImage}</Col>
         </Row>
       </div>
     )

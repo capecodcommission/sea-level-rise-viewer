@@ -1,58 +1,181 @@
-/* THE 'ControlsWrapper' ID IS USED TO STYLE THE WRAPPER AROUND THE DROPDOWN */
-.LegendWrapper {
+.gridContainerOpen {
   position: absolute;
-  z-index: 2;
-  background: #4d4d4d;
-  margin-top: 10px;
-  padding: 1em;
-  opacity: 0.8;
-  font-family: 'Open Sans', sans-serif;
+  width: 20%;
+  height: 25%;
+  bottom: 2em;
+  right: 2em;
+  border: 0.25em solid black;
+  z-index: 1;
+  padding: 0.2em;
   border-radius: 0.5em;
-  text-align: center;
-  width: 12%;
-  right: 20px;
-  bottom: 10px;
-  color: white;
-  word-wrap: break-word;
-}
-
-.point {
-  height: 100%;
-  width: 100%;
-  display: block;
-  /* margin-right: auto; */
-}
-
-.colorBar {
-  height: 5px;
-  width: 100%;
-  display: block;
-}
-
-.legendTitle {
-  color: white;
-}
-
-.cluster {
-  background: #2ca5c3;
-  border-radius: 50%;
-  text-align: center;
-  color: white;
-  font-weight: 700;
-  border: 1px solid white;
-  font-family: monospace;
-}
-
-.digits {
-  font-size: 18px;
-  height: 28px;
-  width: 27px;
-  /* line-height: 47px; */
-  border-width: 3px;
-}
-
-.fitWidth {
+  transition: margin 0.5s;
+  margin: 0 0 0px 0;
   overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
+  display: grid;
+  grid-gap: 0.05em 0.05em;
+  grid-template-columns: repeat(3, [col] 33.3%);
+  grid-template-rows: repeat(3, [row] 50%);
+}
+
+.gridContainerClosed {
+  position: absolute;
+  width: 20%;
+  height: 25%;
+  bottom: 1em;
+  right: 1em;
+  border: 0.25em solid black;
+  z-index: 1;
+  padding: 0.2em;
+  border-radius: 0.5em;
+  transition: margin 0.5s;
+  margin: 0 0 -30em 0;
+  overflow: hidden;
+  display: grid;
+  grid-gap: 0.05em 0.05em;
+  grid-template-columns: repeat(3, [col] 33.3%);
+  grid-template-rows: repeat(3, [row] 50%);
+}
+
+.seaLevelRise {
+  background-image: url('../ControlPanel/img/SLR.png');
+  background-size: 90%;
+  background-color: #4d4d4d;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0.08em solid white;
+  opacity: 0.7;
+  cursor: default;
+  border-radius: 0.5em;
+}
+
+.seaLevelRiseOff {
+  background-image: url('../ControlPanel/img/SLR.png');
+  background-size: 90%;
+  background-color: #4d4d4d;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0.08em solid white;
+  opacity: 0.15;
+  cursor: default;
+  border-radius: 0.5em;
+}
+
+.lowLyingAreas {
+  background-image: url('./img/low-lying-areas.png');
+  background-size: 90%;
+  background-color: #4d4d4d;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0.08em solid white;
+  opacity: 0.7;
+  cursor: default;
+  border-radius: 0.5em;
+}
+
+.lowLyingAreasOff {
+  background-image: url('./img/low-lying-areas.png');
+  background-size: 90%;
+  background-color: #4d4d4d;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0.08em solid white;
+  opacity: 0.15;
+  cursor: default;
+  border-radius: 0.5em;
+}
+
+.criticalFacilities {
+  background-image: url('../ControlPanel/img/critical-facilities.png');
+  background-size: 90%;
+  background-color: #3182bd;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0.08em solid white;
+  opacity: 0.7;
+  cursor: default;
+  border-radius: 0.5em;
+}
+
+.criticalFacilitiesOff {
+  background-image: url('../ControlPanel/img/critical-facilities.png');
+  background-size: 90%;
+  background-color: #3182bd;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0.08em solid white;
+  opacity: 0.15;
+  cursor: default;
+  border-radius: 0.5em;
+}
+
+.criticalFacilitiesAffected {
+  background-image: url('../ControlPanel/img/critical-facilities-affected.png');
+  background-size: 90%;
+  background-color: rgb(182, 9, 9);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0.08em solid white;
+  opacity: 0.7;
+  cursor: default;
+  border-radius: 0.5em;
+}
+
+.criticalFacilitiesAffectedOff {
+  background-image: url('../ControlPanel/img/critical-facilities-affected.png');
+  background-size: 90%;
+  background-color: rgb(182, 9, 9);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0.08em solid white;
+  opacity: 0.15;
+  cursor: default;
+  border-radius: 0.5em;
+}
+
+.disconnectedRoads {
+  background-image: url('https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/location-48.png');
+  background-size: 90%;
+  background-color: #4d4d4d;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0.08em solid white;
+  opacity: 0.7;
+  cursor: default;
+  border-radius: 0.5em;
+}
+
+.disconnectedRoadsOff {
+  background-image: url('https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/location-48.png');
+  background-size: 90%;
+  background-color: #4d4d4d;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0.08em solid white;
+  opacity: 0.15;
+  cursor: default;
+  border-radius: 0.5em;
+}
+
+.noaaCoastalFloodHazardComposite {
+  background-image: url('../ControlPanel/img/SLOSH.png');
+  background-size: 90%;
+  background-color: #4d4d4d;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0.08em solid white;
+  opacity: 0.7;
+  cursor: default;
+  border-radius: 0.5em;
+}
+
+.noaaCoastalFloodHazardCompositeOff {
+  background-image: url('../ControlPanel/img/SLOSH.png');
+  background-size: 90%;
+  background-color: #4d4d4d;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0.08em solid white;
+  opacity: 0.15;
+  cursor: default;
+  border-radius: 0.5em;
 }

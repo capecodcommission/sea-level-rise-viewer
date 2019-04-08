@@ -1,37 +1,53 @@
-# **CCC Sea Level Rise Viewer**
+# CCC SEA LEVEL RISE VIEWER
 
-> A visualization of bathtub sea level, showing flooding extent upon critical facilities and roads with related reference layers.
+> A visualization of sea level, showing flooding extent upon regional critical facilities and roads with related reference layers developed by the Cape Cod Commission of Barnstable County (MA). The application is based upon React Boilerplate and uses esri-leaflet, mobx and other dependencies.
 
+## Local Docker Builds
 
-## **Build Setup**
 ``` bash
-# read documentation from boilerplate below for pre-build dependencies
+# Navigate to the project directory
+cd sea-level-rise-viewer/
+
+# Comment 2 step build blocks at top & uncomment docker start block below in Dockerfile
+# & save changes
+
+# Build services, volumes, and networks with docker-compose
+docker-compose up --build
+
+# Delete local services, networks, and volumes with docker-compose
+docker-compose down -v
 ```
-``` bash
-# install dependencies using Yarn
-yarn
 
-# start the development server using the 'start' script
-yarn start
+## GitFlow
 
-# compile the distribution build with the 'build' script
-yarn build
+> Create local feature branch off `dev`
+> Rebase with `dev` once feature branch is complete
 
-# run the test suite with the 'test' script
-yarn test
+```bash
+
+# Once changes are complete, rebase with 'dev' and resolve any conflicts
+git rebase -i dev
+
+# Checkout, merge, and push rebased changes into dev
+git checkout dev
+git merge feature-branch
+git push origin dev
 ```
 
 ---
-## **Resources**
+
+## Resources
 
 ### ReactJS Documentation
+
 * [ReactJS](https://reactjs.org/docs/hello-world.html)
 
 ### Esri Leaflet Documentation
+
 * [Esri Leaflet](http://esri.github.io/esri-leaflet/api-reference/)
 
-
 ### Examples
+
 * [Demo app using React, Leaflet, and Esri](https://github.com/leogoesger/gis-leaflet)
 * [React Leaflet Example](https://codepen.io/PaulLeCam/pen/XVPmmj)
 * [Esri-React-Mobx-Webpack](https://github.com/geomarvel/esri-react-mobx-webpack)
@@ -41,8 +57,7 @@ yarn test
 * [Using React with Leaflet (and Esri Leaflet)](https://github.com/jgravois/developer-support/tree/82eea958b2fa909cdc3e1e13761f222a56795b2a/web-leaflet/react)
 * [Testmap-esri-leaflet-react-react-dom-leaflet](https://github.com/forgo/testmap)
 
-
-# React Boilerplate
+## React Boilerplate
 
 [![Build Status](https://travis-ci.org/digiaonline/react-boilerplate.svg?branch=master)](https://travis-ci.org/digiaonline/react-boilerplate)
 [![Test Coverage](https://lima.codeclimate.com/github/digiaonline/react-boilerplate/badges/coverage.svg)](https://lima.codeclimate.com/github/digiaonline/react-boilerplate/coverage)
@@ -57,22 +72,22 @@ As you probably know, there are numerous boilerplates available for [React](http
 
 ## What do I need to get started?
 
-- [Node](https://nodejs.org/en/download/) (version 6 or later)
-- [Yarn](https://yarnpkg.com/lang/en/docs/install/)
+* [Node](https://nodejs.org/en/download/) (version 6 or later)
+* [Yarn](https://yarnpkg.com/lang/en/docs/install/)
 
 ## What's in the box?
 
-- [Flowtype](https://flowtype.org/) Type checker
-- [React](https://facebook.github.io/react/) User interface components
-- [MobX](https://mobx.js.org/) Simple, scalable state management
-- [Lodash](https://lodash.com/) Utility library
-- [Babel](https://babeljs.io/) JavaScript transpiler
-- [ESLint](http://eslint.org/) JavaScript Linter
-- [Prettier](https://github.com/prettier/prettier) Code formatter
-- [PostCSS](http://postcss.org/) CSS transformer
-- [Stylelint](https://stylelint.io/) CSS Linter
-- [Webpack](https://webpack.js.org/) Module bundler
-- [Jest](https://facebook.github.io/jest/) Testing solution
+* [Flowtype](https://flowtype.org/) Type checker
+* [React](https://facebook.github.io/react/) User interface components
+* [MobX](https://mobx.js.org/) Simple, scalable state management
+* [Lodash](https://lodash.com/) Utility library
+* [Babel](https://babeljs.io/) JavaScript transpiler
+* [ESLint](http://eslint.org/) JavaScript Linter
+* [Prettier](https://github.com/prettier/prettier) Code formatter
+* [PostCSS](http://postcss.org/) CSS transformer
+* [Stylelint](https://stylelint.io/) CSS Linter
+* [Webpack](https://webpack.js.org/) Module bundler
+* [Jest](https://facebook.github.io/jest/) Testing solution
 
 ## How do I use this?
 

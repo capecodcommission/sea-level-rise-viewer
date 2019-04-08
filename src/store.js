@@ -37,15 +37,16 @@ class EsriMapStore {
       .join(',')
     var querySubString = subFilter
       .map(i => {
-        return i.subTypeFIE
+        return "'" + i.name + "'"
       })
       .join(',')
 
     if (this.map.hasLayer(this.RootStore.MapServicesStore.criticalFacilities)) {
+
       this.RootStore.MapServicesStore.criticalFacilities.setWhere(
         'MUNICIPALI IN (' +
           queryTownString +
-          ') AND SUBTYPEFIE IN (' +
+          ') AND SUBTYPE IN (' +
           querySubString +
           ')'
       )
@@ -74,7 +75,9 @@ class EsriMapStore {
     ) {
       this.RootStore.GeoJSONStore.criticalFacilitiesIntersection.clearLayers()
       this.map.removeLayer(
-        this.RootStore.GeoJSONStore.criticalFacilitiesIntersection
+        this.RootStore.GeoJSONStore.criticalFacilitiesIntersection &&
+        this.RootStore.GeoJSONStore.currentSLRLayer &&
+        this.RootStore.GeoJSONStore.currentRoadLayer
       )
     }
     if (this.RootStore.GeoJSONStore.critFacWhere.length > 1) {
@@ -204,24 +207,23 @@ class EsriMapStore {
       this.RootStore.MapServicesStore.criticalFacilities,
       this.RootStore.MapServicesStore.slosh,
       this.RootStore.MapServicesStore.femaFirm,
-      // this.RootStore.GeoJSONStore.currentSLRLayer,
-      // this.RootStore.GeoJSONStore.currentRoadLayer,
+      this.RootStore.GeoJSONStore.currentSLRLayer,
+      this.RootStore.GeoJSONStore.currentRoadLayer,
       this.RootStore.GeoJSONStore.criticalFacilitiesIntersection,
       this.RootStore.MapServicesStore.searchResults,
     ]
+    
     let map = this.map
 
     // CHECK TO SEE IF ALL THE LAYERS DO NOT EXIST - IF TRUE, ALERT THE USER TO ADD LAYERS
     if (
-      !this.map.hasLayer(this.RootStore.MapServicesStore.criticalFacilities) &&
-      !this.map.hasLayer(this.RootStore.MapServicesStore.slosh) &&
-      !this.map.hasLayer(this.RootStore.MapServicesStore.femaFirm) &&
-      // !this.map.hasLayer(this.RootStore.GeoJSONStore.currentSLRLayer) &&
-      // !this.map.hasLayer(this.RootStore.GeoJSONStore.currentRoadLayer) &&
-      !this.map.hasLayer(
-        this.RootStore.GeoJSONStore.criticalFacilitiesIntersection
-      ) &&
-      !this.map.hasLayer(this.RootStore.MapServicesStore.searchResults)
+      !map.hasLayer(this.RootStore.MapServicesStore.criticalFacilities) &&
+      !map.hasLayer(this.RootStore.MapServicesStore.slosh) &&
+      !map.hasLayer(this.RootStore.MapServicesStore.femaFirm) &&
+      !map.hasLayer(this.RootStore.GeoJSONStore.currentSLRLayer) &&
+      !map.hasLayer(this.RootStore.GeoJSONStore.currentRoadLayer) &&
+      !map.hasLayer(this.RootStore.GeoJSONStore.criticalFacilitiesIntersection) &&
+      !map.hasLayer(this.RootStore.MapServicesStore.searchResults)
     ) {
       alert("Doh! This button doesn't do anything until you add layers.")
     }
@@ -239,7 +241,7 @@ class EsriMapStore {
     this.RootStore.ControlPanelStore.criticalFacilitiesBackground = false
     this.RootStore.ControlPanelStore.femaFirmBackground = false
     this.RootStore.ControlPanelStore.sloshBackground = false
-    // this.RootStore.ControlPanelStore.sliderToggle = false
+    this.RootStore.ControlPanelStore.sliderToggle = false
 
     this.switchSLRLayer(0)
   }
@@ -265,6 +267,7 @@ class EsriMapStore {
 }
 
 class ControlPanelStore {
+  @observable panelButtonOpenness: init = true
   @observable sliderToggle: init = false
   @observable layerDesc: init = null
   @observable layerDescShow: init = false
@@ -275,54 +278,67 @@ class ControlPanelStore {
     {
       subTypeFIE: '701',
       checked: true,
+      name: 'Agriculture, Food, and Livestock',
     },
     {
       subTypeFIE: '710',
       checked: true,
+      name: 'Industry',
     },
     {
       subTypeFIE: '720',
       checked: true,
+      name: 'Commercial and Retail',
     },
     {
       subTypeFIE: '730',
       checked: true,
+      name: 'Education',
     },
     {
       subTypeFIE: '740',
       checked: true,
+      name: 'Emergency Response and Law Enforcement',
     },
     {
       subTypeFIE: '750',
       checked: true,
+      name: 'Energy',
     },
     {
       subTypeFIE: '790',
       checked: true,
+      name: 'Building General',
     },
     {
       subTypeFIE: '800',
       checked: true,
+      name: 'Health and Medical',
     },
     {
       subTypeFIE: '810',
       checked: true,
+      name: 'Transportation Facilities',
     },
     {
       subTypeFIE: '820',
       checked: true,
+      name: 'Public Attractions and Landmark Buildings',
     },
     {
       subTypeFIE: '830',
       checked: true,
+      name: 'Government and Military',
     },
     {
       subTypeFIE: '850',
       checked: true,
+      name: 'Water Supply and Treatment',
     },
     {
       subTypeFIE: '880',
       checked: true,
+      name: 'Information and Communication',
     },
   ]
   @observable
@@ -391,12 +407,17 @@ class ControlPanelStore {
   @observable criticalFacilitiesBackground: init = false
   @observable sloshBackground = false
   @observable femaFirmBackground: init = false
-  @observable currentBaseMapName: string = 'NationalGeographic'
+  @observable currentBaseMapName: string = 'DarkGray'
   @observable startColor = '#0ca4ff'
   @observable endColor = '#0077be'
   @observable
   marks: init = {
-    0: {},
+    0: {
+      label: 'MHW',
+      style: {
+        color: 'white',
+      },
+    },
     1: {
       label: '1',
       style: {
@@ -433,6 +454,11 @@ class ControlPanelStore {
         color: 'white',
       },
     },
+  }
+
+  @action
+  togglePanel = () => {
+    this.panelButtonOpenness = !this.panelButtonOpenness
   }
 
   // Set currently selected layers based on slider value
@@ -742,16 +768,6 @@ class ControlPanelStore {
 }
 
 class MapServicesStore {
-  townLines: init = esri.featureLayer({
-    url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/Data_People/Boundary/MapServer/6',
-    style: function(feature) {
-      return {
-        color: '#7e8b9e',
-        weight: 2,
-      }
-    },
-  })
   criticalFacilities: init = eLCluster
     .featureLayer({
       url:
@@ -762,7 +778,7 @@ class MapServicesStore {
         let myIcon = L.divIcon({
           className: layersCSS.nonIntersectingIcon,
           html: '<div style="className"></div>',
-          iconSize: new L.Point(20, 20),
+          iconSize: new L.Point(30, 30),
         })
         // INSERT THE 'divIcon' FROM ABOVE AS THE LEAFLET 'marker icon'
         return L.marker(latlng, {icon: myIcon})
@@ -789,67 +805,64 @@ class MapServicesStore {
         layer.feature.properties
       )
     })
-  socialVulnerability: init = esri.featureLayer({
-    url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SocialVulnerability/MapServer/0',
-  })
+  // TODO: KEEPING NOAA SERVICES FOR FUTURE CCC-NOAA COMPARISON
   zeroFtSeaLevel: init = esri.dynamicMapLayer({
     url:
+      // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_0ft/MapServer',
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_0_Corrected/MapServer',
     opacity: 0.5,
   })
   oneFtSeaLevel: init = esri.dynamicMapLayer({
     url:
+      // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_1ft/MapServer',
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_1_Corrected/MapServer',
     opacity: 0.5,
   })
   twoFtSeaLevel: init = esri.dynamicMapLayer({
     url:
+      // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_2ft/MapServer',
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_2_Corrected/MapServer',
     opacity: 0.5,
   })
   threeFtSeaLevel: init = esri.dynamicMapLayer({
     url:
+      // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_3ft/MapServer',
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_3_Corrected/MapServer',
     opacity: 0.5,
   })
   fourFtSeaLevel: init = esri.dynamicMapLayer({
     url:
+      // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_4ft/MapServer',
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_4ft_Corrected/MapServer',
     opacity: 0.5,
   })
   fiveFtSeaLevel: init = esri.dynamicMapLayer({
     url:
+      // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_5ft/MapServer',
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_5ft_Corrected/MapServer',
     opacity: 0.5,
   })
   sixFtSeaLevel: init = esri.dynamicMapLayer({
     url:
+      // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_6ft/MapServer',
       'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_6/MapServer',
     opacity: 0.5,
   })
   femaFirm: init = esri.dynamicMapLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/FEMA_FIRM_2013/MapServer',
+      'https://www.coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_FEMAFloodZones/MapServer',
+    // 'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/FEMA_FIRM_2013/MapServer',
     opacity: 0.5,
   })
   slosh: init = esri.dynamicMapLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/SLOSH_2013/MapServer',
+      'https://www.coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_StormSurge/MapServer',
+    // 'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/SLOSH_2013/MapServer',
     opacity: 0.5,
-  })
-  buildings: init = esri.featureLayer({
-    url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/Buildings/MapServer',
-    opacity: 0.3,
-  })
-  parcels: init = esri.featureLayer({
-    url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/TaxParcel_Yellow/MapServer',
   })
   roads: init = esri.dynamicMapLayer({
     url:
-      'http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer',
+      '',
   })
   roads1ftSeaLevel: init = esri.dynamicMapLayer({
     url:
@@ -907,7 +920,7 @@ class GeoJSONStore {
         let myIcon = L.divIcon({
           className: layersCSS.intersectingIcon,
           html: '<div style="className"></div>',
-          iconSize: new L.Point(20, 20),
+          iconSize: new L.Point(30, 30),
         })
         // INSERT THE 'divIcon' FROM ABOVE AS THE LEAFLET 'marker icon'
         return L.marker(latlng, {icon: myIcon})
