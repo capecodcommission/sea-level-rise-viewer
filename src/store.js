@@ -2,6 +2,7 @@
 import * as esri from 'esri-leaflet'
 import * as L from 'leaflet'
 import * as eLCluster from 'esri-leaflet-cluster'
+// eslint-disable-next-line
 import * as leafletMarkerCluster from 'leaflet.markercluster'
 import {observable, action, reaction} from 'mobx'
 import axios from 'axios'

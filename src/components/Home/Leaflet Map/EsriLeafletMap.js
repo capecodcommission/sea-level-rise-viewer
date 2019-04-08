@@ -6,6 +6,7 @@ import * as esri from 'esri-leaflet'
 import * as geocoder from 'esri-leaflet-geocoder'
 import css from './EsriLeafletMap.css'
 import {observer} from 'mobx-react'
+// eslint-disable-next-line
 import {easyPrint} from 'leaflet-easyprint'
 
 // Reactive component https://mobx.js.org/refguide/observer-component.html
