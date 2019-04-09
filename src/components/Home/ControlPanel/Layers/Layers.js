@@ -125,7 +125,7 @@ class Layers extends Component {
     )
 
     let critFacFilterPopover = (
-      <Popover id="filterPop" title="Filter by Type or Town">
+      <Popover style = {{transform: 'translate(0px, -30px)'}} id="filterPop" title="Filter by Type or Town">
         <Row>
           <Col md={6}>
             <strong>Types</strong>
@@ -381,7 +381,7 @@ class Layers extends Component {
 
     let critFacImage = (
       <div>
-        <Col mdOffset={2} md={1}>
+        <Col style = {{marginRight: '2.5px'}} mdOffset={2} md={1}>
           <OverlayTrigger
             trigger="click"
             rootClose
@@ -394,10 +394,14 @@ class Layers extends Component {
           </OverlayTrigger>
         </Col>
         <Col md={6}>
+          <p className = {css.layerTitle}>Critical Facilities</p>
           <OverlayTrigger
             trigger={['hover', 'focus']}
             placement="right"
-            overlay={critFacFilterPopover}
+            overlay={RootStore.ControlPanelStore.criticalFacilitiesBackground
+              ? critFacFilterPopover
+              : <Popover style = {{display: 'none'}} id = 'null'></Popover>
+            }
             delayHide={10000}
             rootClose
           >
@@ -411,7 +415,6 @@ class Layers extends Component {
                   : css.criticalFacilities
               }
               src={require('./img/critFac.svg')}
-              responsive
               circle
             />
           </OverlayTrigger>
@@ -434,6 +437,7 @@ class Layers extends Component {
           </OverlayTrigger>
         </Col>
         <Col style={{paddingLeft: '0px', paddingRight: '0px'}} xs={4}>
+          <p className = {css.layerTitle}>SLOSH</p>
           <Image
             onClick={RootStore.ControlPanelStore.handleSloshClick.bind(this)}
             className={
@@ -442,7 +446,6 @@ class Layers extends Component {
                 : css.slosh
             }
             src={require('./img/slosh.svg')}
-            responsive
             circle
           />
         </Col>
@@ -468,6 +471,7 @@ class Layers extends Component {
           </OverlayTrigger>
         </Col>
         <Col style={{paddingLeft: '0px', paddingRight: '0px'}} xs={4}>
+          <p className = {css.layerTitle}>FEMA</p>
           <Image
             onClick={RootStore.ControlPanelStore.handleFemaFirmClick.bind(this)}
             className={
@@ -476,7 +480,6 @@ class Layers extends Component {
                 : css.femaFirm
             }
             src={require('./img/fema.svg')}
-            responsive
             circle
           />
         </Col>
@@ -681,10 +684,10 @@ class Layers extends Component {
           <Col md={12}>{slider}</Col>
         </Row>
         <Row>
-          <Col md={12}>{critFacImage}</Col>
+          <Col style = {{marginTop: '5px'}} md={12}>{critFacImage}</Col>
         </Row>
         <Row>
-          <Col style={{paddingLeft: '0px', paddingRight: '0px'}} xs={12}>
+          <Col style={{paddingLeft: '0px', paddingRight: '0px', marginTop: '5px'}} xs={12}>
             {sloshImage}
             {femaImage}
           </Col>

@@ -23,11 +23,11 @@ class EsriLeafletMap extends Component {
   // Hook map object to map div contents
   initiateMap = () => {
     // Set basemap and feature layer constants to be fed into the leaflet map object
-    const esriStreets = esri.basemapLayer(
+    const currentBasemapObj = esri.basemapLayer(
       RootStore.ControlPanelStore.currentBaseMapName
     )
 
-    RootStore.EsriMapStore.setCurrentBaseMapObject(esriStreets)
+    RootStore.EsriMapStore.setCurrentBaseMapObject(currentBasemapObj)
 
     const townLines = RootStore.MapServicesStore.townLines
 

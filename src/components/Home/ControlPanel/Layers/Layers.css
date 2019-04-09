@@ -31,22 +31,30 @@
 .criticalFacilities {
   background: #416285;
   padding: 1em;
+  width: 75px;
+  height: 75px;
 }
 
 .slosh {
   background: #7bb6c6;
   padding: 1em;
+  width: 75px;
+  height: 75px;
 }
 
 .femaFirm {
   background: #416285;
   padding: 1em;
+  width: 75px;
+  height: 75px;
 }
 
 .clickedButton {
   background: #201e1e;
   padding: 1em;
   border: 2px solid white;
+  width: 75px;
+  height: 75px;
 }
 
 /* ADD HOVER EFFECTS TO PROVIDE USER FEEDBACK */
@@ -84,4 +92,9 @@
   background-image: url('./img/critFac.svg');
   background-color: #2ca5c3;
   border-radius: 15%;
+}
+
+.layerTitle {
+  color: white;
+
 }

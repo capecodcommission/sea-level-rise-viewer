@@ -849,7 +849,7 @@ class MapServicesStore {
   })
   roads: init = esri.dynamicMapLayer({
     url:
-      'http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer',
+      '',
   })
   roads1ftSeaLevel: init = esri.dynamicMapLayer({
     url:
