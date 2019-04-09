@@ -1,9 +1,8 @@
 /* THE 'ControlsWrapper' ID IS USED TO STYLE THE WRAPPER AROUND THE DROPDOWN */
-.LegendWrapper {
+.LegendWrapperClosed {
   position: absolute;
-  z-index: 2;
-  background: #4d4d4d;
-  margin-top: 10px;
+  z-index: 3;
+  background: hsl(0, 0%, 30%);
   padding: 1em;
   opacity: 0.8;
   font-family: 'Open Sans', sans-serif;
@@ -14,6 +13,66 @@
   bottom: 10px;
   color: white;
   word-wrap: break-word;
+  transition: margin .5s;
+  margin: 0 0 -100rem 0;
+  height: auto;
+  overflow: hidden;
+}
+
+.LegendWrapperOpen {
+  position: absolute;
+  z-index: 3;
+  background: #4d4d4d;
+  padding: 1em;
+  opacity: 0.8;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 0.5em;
+  text-align: center;
+  width: 12%;
+  height: auto;
+  right: 20px;
+  bottom: 10px;
+  color: white;
+  word-wrap: break-word;
+  transition: margin .5s;
+  margin: 0 0 0px 0;
+  overflow: hidden;
+}
+
+.legendBtn {
+  width: 35px;
+  height: 35px;
+  border-radius: .5em;
+  border-color: black;
+  border-width: 2px;
+}
+
+.legendBtnBackgroundOpen {
+  position: absolute;
+  z-index: 4;
+  border-radius: 0.5em;
+  width: 35px;
+  height: 35px;
+  right: 33rem;
+  bottom: 2rem;
+  opacity: 0.8;
+  text-align: center;
+  border-color: black;
+  border-width: 0.15em;
+}
+
+.legendBtnBackgroundClosed {
+  position: absolute;
+  z-index: 4;
+  border-radius: 0.5em;
+  width: 35px;
+  height: 35px;
+  right: 2rem;
+  bottom: 2rem;
+  opacity: 0.8;
+  text-align: center;
+  border-color: black;
+  border-width: 0.15em;
 }
 
 .point {
@@ -47,7 +106,6 @@
   font-size: 18px;
   height: 28px;
   width: 27px;
-  /* line-height: 47px; */
   border-width: 3px;
 }
 
@@ -55,4 +113,26 @@
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
+}
+
+.legendToggleBtn:hover {
+  width: 35px;
+  height: 35px;
+  border-radius: .5em;
+  border-color: orange;
+  border-width: 2px;
+}
+
+.legendToggleImageClosed {
+  width: 35px;
+  height: 35px;
+  transition: transform 1s;
+  transform: translate(-13px, -6px) rotate(90deg);
+}
+
+.legendToggleImageOpen {
+  width: 35px;
+  height: 35px;
+  transition: transform 1s;
+  transform: translate(-13px, -6px) rotate(270deg);
 }

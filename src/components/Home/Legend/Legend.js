@@ -1,13 +1,26 @@
 // IMPORT DEPENDENCIES
 import React, {Component} from 'react'
 import {observer} from 'mobx-react'
-import {Row, Col} from 'react-bootstrap'
+import {Grid, Row, Col, Button, Image} from 'react-bootstrap'
 import css from './Legend.css'
-import Rootstore from '../../../store'
-import {Image, Grid} from 'react-bootstrap'
+import RootStore from '../../../store'
 
 @observer
 class Legend extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      legendButtonOpenness: true,
+    }
+  }
+
+  toggleLegend = () => {
+    this.setState(prevState => ({
+      legendButtonOpenness: !prevState.legendButtonOpenness,
+    }))
+  }
+
   // Render all control panel sub-components in Bootstrap grid
   render = () => {
     let townLinesLegend = (
@@ -141,7 +154,43 @@ class Legend extends Component {
 
     let legendTable = (
       <Grid>
-        <Row className={css.LegendWrapper}>
+        <Row
+          className={css.legendBtnBackground}
+        >
+          <Button
+            className={
+              (this.state.legendButtonOpenness && RootStore.EsriMapStore.loadingComplete)
+                ? css.legendBtnBackgroundOpen
+                : css.legendBtnBackgroundClosed
+            }
+            style={{
+              background: '#bdbdbd',
+              float: 'right',
+              position: 'absolute',
+              display: 'inline-block',
+              zIndex: '4',
+              opacity: '0.8',
+            }}
+            onClick={this.toggleLegend.bind(this)}
+          >
+            <Image
+              className={
+                (this.state.legendButtonOpenness && RootStore.EsriMapStore.loadingComplete)
+                  ? css.legendToggleImageOpen
+                  : css.legendToggleImageClosed
+              }
+              src={require('../ControlPanel/img/leftArrow.png')}
+              circle
+            />
+          </Button>
+        </Row>
+        <Row
+          className={
+            (this.state.legendButtonOpenness && RootStore.EsriMapStore.loadingComplete)
+              ? css.LegendWrapperOpen
+              : css.LegendWrapperClosed
+          }
+        >
           <Col md={12}>
             <Row>
               <b>Legend</b>
@@ -156,20 +205,20 @@ class Legend extends Component {
             </Row>
             {townLinesLegend}
             {disConRoadsLegend}
-            {Rootstore.ControlPanelStore.criticalFacilitiesBackground
+            {RootStore.ControlPanelStore.criticalFacilitiesBackground
               ? critFacLegend
               : null}
-            {Rootstore.ControlPanelStore.currentSliderValue > 0
+            {RootStore.ControlPanelStore.currentSliderValue > 0
               ? intersectLegend
               : null}
-            {Rootstore.ControlPanelStore.sloshBackground ? sloshLegend : null}
-            {Rootstore.ControlPanelStore.femaFirmBackground ? femaLegend : null}
+            {RootStore.ControlPanelStore.sloshBackground ? sloshLegend : null}
+            {RootStore.ControlPanelStore.femaFirmBackground ? femaLegend : null}
           </Col>
         </Row>
       </Grid>
     )
 
-    return <div>{legendTable}</div>
+    return (legendTable)
   }
 }
 export default Legend
