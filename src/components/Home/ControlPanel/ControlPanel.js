@@ -4,7 +4,7 @@ import BaseMapSwitcher from './BaseMapSwitcher/BaseMapSwitcher'
 import Layers from './Layers/Layers'
 import Title from './Title/Title'
 import {observer} from 'mobx-react'
-import {Row, Col, Grid, Button} from 'react-bootstrap'
+import {Row, Col, Grid, Button, Image} from 'react-bootstrap'
 import css from './ControlPanel.css'
 import RootStore from '../../../store'
 
@@ -14,7 +14,7 @@ class ControlPanel extends Component {
   constructor() {
     super()
     this.state = {
-      panelButtonOpenness: false,
+      panelButtonOpenness: true,
     }
   }
 
@@ -36,15 +36,27 @@ class ControlPanel extends Component {
           }
         >
           <Button
-            className = "btn btn-primary" 
+            className = {css.panelToggleBtn}
             style = {{
+              background: '#bdbdbd',
               float:'right', 
               position: 'absolute', 
               display: 'inline-block', 
               zIndex: '10', 
               left: '275px',
+              top: '10px',
             }} 
-            onClick = {this.togglePanel.bind(this)}>-->
+            onClick = {this.togglePanel.bind(this)}
+          >
+            <Image 
+              className = {
+                (this.state.panelButtonOpenness && RootStore.EsriMapStore.loadingComplete) 
+                  ? css.panelToggleImageOpen 
+                  : css.panelToggleImageClosed
+              } 
+              src={require('./img/leftArrow.png')} 
+              circle 
+            />
           </Button>
           <Col>
             <Title />

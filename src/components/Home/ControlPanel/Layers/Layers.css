@@ -46,6 +46,7 @@
 .clickedButton {
   background: #201e1e;
   padding: 1em;
+  border: 2px solid white;
 }
 
 /* ADD HOVER EFFECTS TO PROVIDE USER FEEDBACK */
