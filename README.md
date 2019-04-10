@@ -3,13 +3,29 @@
 > A visualization of bathtub sea level, showing flooding extent upon critical facilities and roads with related reference layers.
 
 
-## **Build Setup**
-``` bash
-# Navigate to project directory
-cd path/to/project
+## Local Docker Builds 
+```bash
+# Navigate to the project directory
+cd cape-cod-coastal-planner/
 
-# Run Docker-compose
-sudo docker-compose up 
+# Build services, volumes, and networks with Docker-compose
+docker-compose up --build
+
+# Delete local services, networks, and volumes
+docker-compose down -v
+```
+
+## GitFlow
+> Create local feature branch off `dev`
+> Rebase with `dev` once feature branch is complete
+```bash
+# Once changes are complete, rebase with 'dev' and resolve any conflicts
+git rebase -i dev
+
+# Checkout, merge, and push rebased changes into dev
+git checkout dev
+git merge feature_branch
+git push dev
 ```
 
 ---
