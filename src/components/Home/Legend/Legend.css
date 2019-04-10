@@ -14,7 +14,7 @@
   color: white;
   word-wrap: break-word;
   transition: margin .5s;
-  margin: 0 0 -100rem 0;
+  margin: 0 0 -180px 0;
   height: auto;
   overflow: hidden;
 }
@@ -53,7 +53,7 @@
   border-radius: 0.5em;
   width: 35px;
   height: 35px;
-  right: 33rem;
+  right: 15rem;
   bottom: 2rem;
   opacity: 0.8;
   text-align: center;
@@ -67,7 +67,7 @@
   border-radius: 0.5em;
   width: 35px;
   height: 35px;
-  right: 2rem;
+  right: 15rem;
   bottom: 2rem;
   opacity: 0.8;
   text-align: center;

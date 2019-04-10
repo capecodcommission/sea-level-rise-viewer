@@ -177,7 +177,7 @@ class Legend extends Component {
     let legendTable = (
       <Grid>
         <Row
-          className={css.legendBtnBackground}
+          className={css.legendBtnBackgroundOpen}
         >
           <Button
             className={
@@ -187,7 +187,7 @@ class Legend extends Component {
             }
             style={{
               background: '#bdbdbd',
-              float: 'right',
+              float: 'top',
               position: 'absolute',
               display: 'inline-block',
               zIndex: '4',
