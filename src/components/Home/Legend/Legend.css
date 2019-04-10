@@ -8,7 +8,7 @@
   font-family: 'Open Sans', sans-serif;
   border-radius: 0.5em;
   text-align: center;
-  width: 12%;
+  width: 260px;
   right: 20px;
   bottom: 10px;
   color: white;
@@ -28,7 +28,7 @@
   font-family: 'Open Sans', sans-serif;
   border-radius: 0.5em;
   text-align: center;
-  width: 12%;
+  width: 260px;
   height: auto;
   right: 20px;
   bottom: 10px;
@@ -85,7 +85,7 @@
 .colorBar {
   height: 5px;
   width: 100%;
-  display: block;
+  display: inline-block;
 }
 
 .legendTitle {

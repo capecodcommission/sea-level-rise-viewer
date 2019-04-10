@@ -24,7 +24,7 @@ class Legend extends Component {
   // Render all control panel sub-components in Bootstrap grid
   render = () => {
     let townLinesLegend = (
-      <Row>
+      <Row style = {{paddingTop: '5px'}}>
         <Col md={6}>
           <div style={{backgroundColor: '#7e8b9e'}} className={css.colorBar} />
         </Col>
@@ -41,6 +41,17 @@ class Legend extends Component {
         </Col>
         <Col md={6}>
           <p>Disconnected Roads</p>
+        </Col>
+      </Row>
+    )
+
+    let lowLyingAreasLegend = (
+      <Row>
+        <Col md={6}>
+          <div style={{backgroundColor: '#63cc70'}} className={css.colorBar} />
+        </Col>
+        <Col md={6}>
+          <p>Low Lying Areas</p>
         </Col>
       </Row>
     )
@@ -215,7 +226,10 @@ class Legend extends Component {
               </Col>
             </Row>
             {townLinesLegend}
-            {disConRoadsLegend}
+            {lowLyingAreasLegend}
+            {RootStore.ControlPanelStore.currentSliderValue > 0 
+              ? disConRoadsLegend 
+              : null}
             {RootStore.ControlPanelStore.criticalFacilitiesBackground
               ? critFacLegend
               : null}
