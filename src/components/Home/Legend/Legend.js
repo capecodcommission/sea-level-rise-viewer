@@ -67,7 +67,7 @@ class Legend extends Component {
         <Row>
           <Col md={6}>
             <div
-              style={{backgroundColor: '#fabee9'}}
+              style={{backgroundColor: '#ff0000'}}
               className={css.colorBar}
             />
           </Col>
@@ -78,7 +78,7 @@ class Legend extends Component {
         <Row>
           <Col md={6}>
             <div
-              style={{backgroundColor: '#f500c7'}}
+              style={{backgroundColor: '#ff3411'}}
               className={css.colorBar}
             />
           </Col>
@@ -89,7 +89,7 @@ class Legend extends Component {
         <Row>
           <Col md={6}>
             <div
-              style={{backgroundColor: '#a10085'}}
+              style={{backgroundColor: '#ff6823'}}
               className={css.colorBar}
             />
           </Col>
@@ -100,12 +100,23 @@ class Legend extends Component {
         <Row>
           <Col md={6}>
             <div
-              style={{backgroundColor: '#be07ff'}}
+              style={{backgroundColor: '#ff9c35'}}
               className={css.colorBar}
             />
           </Col>
           <Col md={6}>
             <p>Category 4</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={6}>
+            <div
+              style={{backgroundColor: '#ffd047'}}
+              className={css.colorBar}
+            />
+          </Col>
+          <Col md={6}>
+            <p>Category 5</p>
           </Col>
         </Row>
       </div>

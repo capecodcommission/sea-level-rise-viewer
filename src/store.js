@@ -391,7 +391,7 @@ class ControlPanelStore {
   @observable criticalFacilitiesBackground: init = false
   @observable sloshBackground = false
   @observable femaFirmBackground: init = false
-  @observable currentBaseMapName: string = 'NationalGeographic'
+  @observable currentBaseMapName: string = 'DarkGray'
   @observable startColor = '#0ca4ff'
   @observable endColor = '#0077be'
   @observable
@@ -795,47 +795,47 @@ class MapServicesStore {
   })
   zeroFtSeaLevel: init = esri.dynamicMapLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_0_Corrected/MapServer',
+      'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_0ft/MapServer',
     opacity: 0.5,
   })
   oneFtSeaLevel: init = esri.dynamicMapLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_1_Corrected/MapServer',
+      'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_1ft/MapServer',
     opacity: 0.5,
   })
   twoFtSeaLevel: init = esri.dynamicMapLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_2_Corrected/MapServer',
+      'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_2ft/MapServer',
     opacity: 0.5,
   })
   threeFtSeaLevel: init = esri.dynamicMapLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_3_Corrected/MapServer',
+      'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_3ft/MapServer',
     opacity: 0.5,
   })
   fourFtSeaLevel: init = esri.dynamicMapLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_4ft_Corrected/MapServer',
+      'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_4ft/MapServer',
     opacity: 0.5,
   })
   fiveFtSeaLevel: init = esri.dynamicMapLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_5ft_Corrected/MapServer',
+      'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_5ft/MapServer',
     opacity: 0.5,
   })
   sixFtSeaLevel: init = esri.dynamicMapLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_6/MapServer',
+      'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_6ft/MapServer',
     opacity: 0.5,
   })
   femaFirm: init = esri.dynamicMapLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/FEMA_FIRM_2013/MapServer',
+      'https://www.coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_FEMAFloodZones/MapServer',
     opacity: 0.5,
   })
   slosh: init = esri.dynamicMapLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/SLOSH_2013/MapServer',
+      'https://www.coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_StormSurge/MapServer',
     opacity: 0.5,
   })
   buildings: init = esri.featureLayer({

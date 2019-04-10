@@ -35,14 +35,10 @@ class BaseMapSwitcher extends Component {
           className={css.basemapSelector}
           onChange={this.setBasemap}
           value={RootStore.EsriMapStore.currentBaseMap}
-          defaultValue={'NationalGeographic'}
+          defaultValue={'DarkGray'}
         >
-          <option value="Topographic">Topographic</option>
-          <option value="Streets">Streets</option>
           <option value="NationalGeographic">National Geographic</option>
-          <option value="Gray">Gray</option>
           <option value="DarkGray">Dark Gray</option>
-          <option value="Imagery">Imagery</option>
         </select>
       </div>
     )
