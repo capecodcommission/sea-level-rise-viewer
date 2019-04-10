@@ -5,20 +5,11 @@
 
 ## **Build Setup**
 ``` bash
-# read documentation from boilerplate below for pre-build dependencies
-```
-``` bash
-# install dependencies using Yarn
-yarn
+# Navigate to project directory
+cd path/to/project
 
-# start the development server using the 'start' script
-yarn start
-
-# compile the distribution build with the 'build' script
-yarn build
-
-# run the test suite with the 'test' script
-yarn test
+# Run Docker-compose
+sudo docker-compose up 
 ```
 
 ---
