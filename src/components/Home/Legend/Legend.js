@@ -1,7 +1,7 @@
 // IMPORT DEPENDENCIES
 import React, {Component} from 'react'
 import {observer} from 'mobx-react'
-import {Grid, Row, Col, Button, Image} from 'react-bootstrap'
+import {Grid, Row, Col, Image} from 'react-bootstrap'
 import css from './Legend.css'
 import RootStore from '../../../store'
 
