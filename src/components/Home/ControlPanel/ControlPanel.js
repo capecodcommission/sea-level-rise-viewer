@@ -11,26 +11,13 @@ import RootStore from '../../../store'
 @observer
 class ControlPanel extends Component {
 
-  constructor() {
-    super()
-    this.state = {
-      panelButtonOpenness: true,
-    }
-  }
-
-  togglePanel = () => {
-    this.setState(prevState => ({
-      panelButtonOpenness: !prevState.panelButtonOpenness,
-    }))
-  }
-
   // Render all control panel sub-components in Bootstrap grid
   render = () => {
     return (
       <Grid>
         <Row 
           className={
-            (this.state.panelButtonOpenness && RootStore.EsriMapStore.loadingComplete) 
+            (RootStore.ControlPanelStore.panelButtonOpenness && RootStore.EsriMapStore.loadingComplete) 
               ? css.ControlsWrapperOpen 
               : css.ControlsWrapperClosed
           }
@@ -46,11 +33,11 @@ class ControlPanel extends Component {
               left: '275px',
               top: '10px',
             }} 
-            onClick = {this.togglePanel.bind(this)}
+            onClick = {RootStore.ControlPanelStore.togglePanel.bind(this)}
           >
             <Image 
               className = {
-                (this.state.panelButtonOpenness && RootStore.EsriMapStore.loadingComplete) 
+                (RootStore.ControlPanelStore.panelButtonOpenness && RootStore.EsriMapStore.loadingComplete) 
                   ? css.panelToggleImageOpen 
                   : css.panelToggleImageClosed
               } 

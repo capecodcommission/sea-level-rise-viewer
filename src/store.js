@@ -265,6 +265,7 @@ class EsriMapStore {
 }
 
 class ControlPanelStore {
+  @observable panelButtonOpenness: init = true
   @observable sliderToggle: init = false
   @observable layerDesc: init = null
   @observable layerDescShow: init = false
@@ -433,6 +434,11 @@ class ControlPanelStore {
         color: 'white',
       },
     },
+  }
+
+  @action
+  togglePanel = () => {
+    this.panelButtonOpenness = !this.panelButtonOpenness
   }
 
   // Set currently selected layers based on slider value
