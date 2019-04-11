@@ -2,18 +2,18 @@
 .LegendWrapperClosed {
   position: absolute;
   z-index: 3;
-  background: hsl(0, 0%, 30%);
+  background: #bdbdbd;
   padding: 1em;
   opacity: 0.8;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   border-radius: 0.5em;
   text-align: center;
-  width: 260px;
+  width: 25%;
   right: 20px;
   bottom: 10px;
   color: white;
   word-wrap: break-word;
-  transition: margin .5s;
+  transition: margin 0.5s;
   margin: 0 0 -800px 0;
   height: auto;
   overflow: hidden;
@@ -22,117 +22,81 @@
 .LegendWrapperOpen {
   position: absolute;
   z-index: 3;
-  background: #4d4d4d;
+  background: #bdbdbd;
   padding: 1em;
   opacity: 0.8;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   border-radius: 0.5em;
   text-align: center;
-  width: 260px;
+  width: 22%;
   height: auto;
   right: 20px;
   bottom: 10px;
   color: white;
   word-wrap: break-word;
-  transition: margin .5s;
+  transition: margin 0.5s;
   margin: 0 0 0px 0;
   overflow: hidden;
 }
 
-.legendBtn {
-  width: 35px;
-  height: 35px;
-  border-radius: .5em;
-  border-color: black;
-  border-width: 2px;
-}
-
-.legendBtnBackgroundOpen {
-  position: absolute;
-  z-index: 4;
+.legendInfoWrapper {
+  position: relative;
+  z-index: 2;
+  background: #4d4d4d;
+  margin: 0.05em;
+  padding: 1em;
+  font-family: "Open Sans", sans-serif;
   border-radius: 0.5em;
-  width: 35px;
-  height: 35px;
-  right: 15rem;
-  bottom: 2rem;
-  opacity: 0.8;
   text-align: center;
-  border-color: black;
-  border-width: 0.15em;
-}
-
-.legendBtnBackgroundClosed {
-  position: absolute;
-  z-index: 4;
-  border-radius: 0.5em;
-  width: 35px;
-  height: 35px;
-  right: 15rem;
-  bottom: 2rem;
-  opacity: 0.8;
-  text-align: center;
-  border-color: black;
-  border-width: 0.15em;
-}
-
-.point {
-  height: 75px;
-  width: 75px;
-  display: block;
-  /* margin-right: auto; */
-}
-
-.colorBar {
-  height: 5px;
-  width: 100%;
-  display: inline-block;
 }
 
 .legendTitle {
-  color: white;
+  vertical-align: center;
+  cursor: default;
+  font-size: 1em;
+  color: #3182bd;
+  margin: 0 15em 0 15em;
+  font-family: 'Open Sans', sans-serif;
+  background: black;
+  border-radius: 1em;
+  padding: 0.05em;
+  white-space: pre-line;      /* Webkit */
+  white-space: -moz-pre-wrap; /* Firefox */
+  white-space: -pre-wrap;     /* Opera <7 */
+  white-space: -o-pre-wrap;   /* Opera 7 */
+  word-wrap: break-word;      /* IE */
 }
 
-.cluster {
+.legendSubHeaders {
+  vertical-align: center;
+  padding: 0.25em;
+  cursor: default;
+  font-size: 0.8em;
+  margin: 0 8em 0 8em;
+  color: #3182bd;
+  font-family: 'Open Sans', sans-serif;
+  background: black;
+  opacity: 0.8;
+  border-radius: 1em;
+  white-space: pre-line;      /* Webkit */
+  white-space: -moz-pre-wrap; /* Firefox */
+  white-space: -pre-wrap;     /* Opera <7 */
+  white-space: -o-pre-wrap;   /* Opera 7 */
+  word-wrap: break-word;      /* IE */
+}
+
+.affectedCritFac {
+  background-color: #de2d26;
+  opacity: 0.8;
+}
+
+.critFac {
   background: #2ca5c3;
-  border-radius: 50%;
-  text-align: center;
-  color: white;
-  font-weight: 700;
-  border: 1px solid white;
-  font-family: monospace;
+  opacity: 0.8;
 }
 
-.digits {
-  font-size: 18px;
-  height: 28px;
-  width: 27px;
-  border-width: 3px;
-}
-
-.fitWidth {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-}
-
-.legendToggleBtn:hover {
-  width: 35px;
-  height: 35px;
-  border-radius: .5em;
-  border-color: orange;
-  border-width: 2px;
-}
-
-.legendToggleImageClosed {
-  width: 35px;
-  height: 35px;
-  transition: transform 1s;
-  transform: translate(-13px, -6px) rotate(90deg);
-}
-
-.legendToggleImageOpen {
-  width: 35px;
-  height: 35px;
-  transition: transform 1s;
-  transform: translate(-13px, -6px) rotate(270deg);
+.colorBar {
+  height: 0.5em;
+  width: 3em;
+  vertical-align: center;
 }

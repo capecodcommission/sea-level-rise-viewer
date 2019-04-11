@@ -7,54 +7,58 @@ import RootStore from '../../../store'
 
 @observer
 class Legend extends Component {
-
-  // Render all control panel sub-components in Bootstrap grid
+  // Render all control panel sub-components in 'react-bootstrap' Grid
   render = () => {
     let townLinesLegend = (
-      <Row style = {{paddingTop: '5px'}}>
-        <Col md={6}>
-          <div style={{backgroundColor: '#7e8b9e'}} className={css.colorBar} />
+      <Row style={{paddingTop: '1em', paddingBottom: '1em'}}>
+        <Col xs={3} md={3} lg={3}>
+          <div
+            style={{backgroundColor: '#7e8b9e'}}
+            className={css.colorBar}
+          />
         </Col>
-        <Col md={6}>
-          <p>Town Lines</p>
+        <Col xs={9} md={9} lg={9}>
+          <strong>TOWN LINES</strong>
         </Col>
       </Row>
     )
 
     let disConRoadsLegend = (
-      <Row>
-        <Col md={6}>
+      <Row style={{paddingTop: '1em'}}>
+        <Col xs={3} md={3} lg={3}>
           <div style={{backgroundColor: 'red'}} className={css.colorBar} />
         </Col>
-        <Col md={6}>
-          <p>Disconnected Roads</p>
+        <Col xs={9} md={9} lg={9}>
+          <strong>DISCONNECTED ROADS</strong>
         </Col>
       </Row>
     )
 
     let lowLyingAreasLegend = (
-      <Row>
-        <Col md={6}>
-          <div style={{backgroundColor: '#63cc70'}} className={css.colorBar} />
+      <Row style={{paddingTop: '1em', paddingBottom: '1em'}}>
+        <Col xs={3} md={3} lg={3}>
+          <div
+            style={{backgroundColor: '#63cc70'}}
+            className={css.colorBar}
+          />
         </Col>
-        <Col md={6}>
-          <p>Low Lying Areas</p>
+        <Col xs={9} md={9} lg={9}>
+          <strong>LOW LYING AREAS</strong>
         </Col>
       </Row>
     )
 
     let critFacLegend = (
       <div>
-        <Row>
-          <Col md={6}>
+        <Row style={{paddingTop: '1em'}}>
+          <Col xs={3} md={3} lg={3}>
             <Image
-              className={css.point}
               src={require('../ControlPanel/Layers/img/critFac.svg')}
-              circle
+              className={css.critFac}
             />
           </Col>
-          <Col md={6}>
-            <p>Critical Facilities</p>
+          <Col xs={9} md={9} lg={9}>
+            <strong>CRITICAL FACILITIES</strong>
           </Col>
         </Row>
       </div>
@@ -62,59 +66,62 @@ class Legend extends Component {
 
     let sloshLegend = (
       <div>
-        <Row>
-          <Col md={6}>
+        <Row className={css.legendSubHeaders}>
+          <strong>SLOSH</strong>
+        </Row>
+        <Row style={{paddingTop: '0.25em'}}>
+          <Col xs={3} md={3} lg={3}>
             <div
               style={{backgroundColor: '#ff0000'}}
               className={css.colorBar}
             />
           </Col>
-          <Col md={6}>
-            <p>Category 1</p>
+          <Col xs={9} md={9} lg={9}>
+            <strong>CATEGORY 1</strong>
           </Col>
         </Row>
-        <Row>
-          <Col md={6}>
+        <Row style={{paddingTop: '0.25em'}}>
+          <Col xs={3} md={3} lg={3}>
             <div
               style={{backgroundColor: '#ff3411'}}
               className={css.colorBar}
             />
           </Col>
-          <Col md={6}>
-            <p>Category 2</p>
+          <Col xs={9} md={9} lg={9}>
+            <strong>CATEGORY 2</strong>
           </Col>
         </Row>
-        <Row>
-          <Col md={6}>
+        <Row style={{paddingTop: '0.25em'}}>
+          <Col xs={3} md={3} lg={3}>
             <div
               style={{backgroundColor: '#ff6823'}}
               className={css.colorBar}
             />
           </Col>
-          <Col md={6}>
-            <p>Category 3</p>
+          <Col xs={9} md={9} lg={9}>
+            <strong>CATEGORY 3</strong>
           </Col>
         </Row>
-        <Row>
-          <Col md={6}>
+        <Row style={{paddingTop: '0.25em'}}>
+          <Col xs={3} md={3} lg={3}>
             <div
               style={{backgroundColor: '#ff9c35'}}
               className={css.colorBar}
             />
           </Col>
-          <Col md={6}>
-            <p>Category 4</p>
+          <Col xs={9} md={9} lg={9}>
+            <strong>CATEGORY 4</strong>
           </Col>
         </Row>
-        <Row>
-          <Col md={6}>
+        <Row style={{paddingTop: '0.25em'}}>
+          <Col xs={3} md={3} lg={3}>
             <div
               style={{backgroundColor: '#ffd047'}}
               className={css.colorBar}
             />
           </Col>
-          <Col md={6}>
-            <p>Category 5</p>
+          <Col xs={9} md={9} lg={9}>
+            <strong>CATEGORY 5</strong>
           </Col>
         </Row>
       </div>
@@ -122,41 +129,44 @@ class Legend extends Component {
 
     let femaLegend = (
       <div>
+        <Row className={css.legendSubHeaders}>
+          <strong>FEMA</strong>
+        </Row>
         <Row>
-          <Col md={6}>
+          <Col xs={3} md={3} lg={3}  style={{paddingTop: '0.25em'}}>
             <div
               style={{backgroundColor: '#f1a800'}}
               className={css.colorBar}
             />
           </Col>
-          <Col md={6}>
-            <p>Special Flood Hazard Areas</p>
+          <Col xs={9} md={9} lg={9} style={{paddingTop: '0.25em'}} >
+            <strong>SPECIAL FLOOD HAZARD AREAS</strong>
           </Col>
         </Row>
         <Row>
-          <Col md={6}>
+          <Col xs={3} md={3} lg={3} style={{paddingTop: '0.25em'}} >
             <div
               style={{backgroundColor: '#d20000'}}
               className={css.colorBar}
             />
           </Col>
-          <Col md={6}>
-            <p>Coastal High Hazard Areas</p>
+          <Col xs={9} md={9} lg={9} style={{paddingTop: '0.25em'}} >
+            <strong>COASTAL HIGH HAZARD AREAS</strong>
           </Col>
         </Row>
       </div>
     )
 
     let intersectLegend = (
-      <Row>
-        <Col md={6}>
+      <Row style={{paddingTop: '1em'}}>
+        <Col xs={3} md={3} lg={3}>
           <Image
-            className={css.point}
-            src={require('../ControlPanel/Layers/img/slr.svg')}
+            src={require('../ControlPanel/Layers/img/critFac.svg')}
+            className={css.affectedCritFac}
           />
         </Col>
-        <Col md={6}>
-          <p>Affected Critical Facilities</p>
+        <Col xs={9} md={9} lg={9}>
+          <strong>AFFECTED CRITICAL FACILITIES</strong>
         </Col>
       </Row>
     )
@@ -165,42 +175,41 @@ class Legend extends Component {
       <Grid>
         <Row
           className={
-            (RootStore.ControlPanelStore.panelButtonOpenness && RootStore.EsriMapStore.loadingComplete)
+            RootStore.ControlPanelStore.panelButtonOpenness &&
+            RootStore.EsriMapStore.loadingComplete
               ? css.LegendWrapperOpen
               : css.LegendWrapperClosed
           }
         >
-          <Col md={12}>
-            <Row>
-              <b>Legend</b>
+          <Row className={css.legendInfoWrapper}>
+            <Row className={css.legendTitle}>
+              <strong>LEGEND</strong>
             </Row>
             <Row>
-              <Col md={6}>
-                <b>Symbol</b>
+              <Col xs={6} md={6} lg={6}>
+                {townLinesLegend}
+                {RootStore.ControlPanelStore.sloshBackground ? sloshLegend : null}
               </Col>
-              <Col md={6}>
-                <b>Description</b>
+              <Col xs={6} md={6} lg={6}>
+                {RootStore.ControlPanelStore.currentSliderValue > 0
+                  ? disConRoadsLegend
+                  : null}
+                {RootStore.ControlPanelStore.currentSliderValue > 0
+                  ? intersectLegend
+                  : null}
+                {lowLyingAreasLegend}
+                {RootStore.ControlPanelStore.femaFirmBackground ? femaLegend : null}
+                {RootStore.ControlPanelStore.criticalFacilitiesBackground
+                  ? critFacLegend
+                  : null}
               </Col>
             </Row>
-            {townLinesLegend}
-            {lowLyingAreasLegend}
-            {RootStore.ControlPanelStore.currentSliderValue > 0 
-              ? disConRoadsLegend 
-              : null}
-            {RootStore.ControlPanelStore.criticalFacilitiesBackground
-              ? critFacLegend
-              : null}
-            {RootStore.ControlPanelStore.currentSliderValue > 0
-              ? intersectLegend
-              : null}
-            {RootStore.ControlPanelStore.sloshBackground ? sloshLegend : null}
-            {RootStore.ControlPanelStore.femaFirmBackground ? femaLegend : null}
-          </Col>
+          </Row>
         </Row>
       </Grid>
     )
 
-    return (legendTable)
+    return legendTable
   }
 }
 export default Legend
