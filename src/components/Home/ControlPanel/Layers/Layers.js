@@ -381,7 +381,7 @@ class Layers extends Component {
 
     let critFacImage = (
       <div>
-        <Col style = {{marginRight: '2.5px'}} mdOffset={2} md={1}>
+        <Col style = {{marginRight: '2.5px'}} mdOffset={1} md={1}>
           <OverlayTrigger
             trigger="click"
             rootClose
@@ -424,7 +424,7 @@ class Layers extends Component {
 
     let sloshImage = (
       <div>
-        <Col style={{paddingLeft: '0px', paddingRight: '0px'}} xs={1}>
+        <Col md = {6}>
           <OverlayTrigger
             trigger="click"
             rootClose
@@ -435,8 +435,6 @@ class Layers extends Component {
               <Glyphicon glyph="glyphicon glyphicon-info-sign" />
             </Button>
           </OverlayTrigger>
-        </Col>
-        <Col style={{paddingLeft: '0px', paddingRight: '0px'}} xs={4}>
           <p className = {css.layerTitle}>SLOSH</p>
           <Image
             onClick={RootStore.ControlPanelStore.handleSloshClick.bind(this)}
@@ -454,11 +452,7 @@ class Layers extends Component {
 
     let femaImage = (
       <div>
-        <Col
-          xsOffset={2}
-          style={{paddingLeft: '0px', paddingRight: '0px'}}
-          xs={1}
-        >
+        <Col md={6}>
           <OverlayTrigger
             trigger="click"
             rootClose
@@ -469,8 +463,6 @@ class Layers extends Component {
               <Glyphicon glyph="glyphicon glyphicon-info-sign" />
             </Button>
           </OverlayTrigger>
-        </Col>
-        <Col style={{paddingLeft: '0px', paddingRight: '0px'}} xs={4}>
           <p className = {css.layerTitle}>FEMA</p>
           <Image
             onClick={RootStore.ControlPanelStore.handleFemaFirmClick.bind(this)}
@@ -572,7 +564,7 @@ class Layers extends Component {
         overlay={clearLayerDesc}
       >
         <Button
-          style={{paddingBottom: '0', marginBottom: '0'}}
+          style={{paddingBottom: '0', marginBottom: '0', transform: 'translate(-25px)'}}
           bsSize="xsmall"
           onClick={RootStore.EsriMapStore.removeToggleableLayers}
         >
@@ -589,7 +581,7 @@ class Layers extends Component {
 
     let liquidFillGauge = (
       <div>
-        <Col md={1} mdOffset={2}>
+        <Col md={1} mdOffset={1}>
           <OverlayTrigger
             trigger="click"
             rootClose
@@ -601,12 +593,12 @@ class Layers extends Component {
             </Button>
           </OverlayTrigger>
         </Col>
-        <Col md={6}>
-          <OverlayTrigger
-            trigger={['hover', 'focus']}
-            placement="right"
-            overlay={layerDesc}
-          >
+        <OverlayTrigger
+          trigger={['hover']}
+          placement="right"
+          overlay={layerDesc}
+        >
+          <Col style = {{paddingLeft: '0px', transform: 'translate(8px)'}} md={6}>
             <LiquidFillGauge
               style={{margin: '0 auto 0'}}
               width={radius * 2}
@@ -664,16 +656,18 @@ class Layers extends Component {
                 fontFamily: 'Open Sans',
               }}
             />
-          </OverlayTrigger>
-        </Col>
+          </Col>
+        </OverlayTrigger>
       </div>
     )
 
     return (
       <div className={css.LayersWrapper}>
         <Row style={{marginBottom: '20px'}}>
-          <Col md={12}>
+          <Col md = {8} mdOffset={2}>
             <strong className={css.mapLayerTitle}>MAP LAYERS</strong>
+          </Col>
+          <Col md = {1}>
             {layerToggles.every(i => !i) ? null : removeLayersButton}
           </Col>
         </Row>

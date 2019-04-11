@@ -6,6 +6,8 @@
   padding: 1em;
   font-family: 'Open Sans', sans-serif;
   border-radius: 0.5em;
+  padding-right: 25px;
+  padding-left: 25px;
 }
 
 .LayerMenuTitle {
@@ -20,11 +22,11 @@
   background: black;
   border-radius: 0.3em;
   padding: 0.5em;
-  white-space: pre-line;      /* Webkit */
-  white-space: -moz-pre-wrap; /* Firefox */
-  white-space: -pre-wrap;     /* Opera <7 */
-  white-space: -o-pre-wrap;   /* Opera 7 */
-  word-wrap: break-word;      /* IE */
+  /* white-space: pre-line;      
+  white-space: -moz-pre-wrap; 
+  white-space: -pre-wrap;     
+  white-space: -o-pre-wrap;   
+  word-wrap: break-word;       */
 }
 
 /* ADD LAYER IMAGE STYLING */
@@ -95,6 +97,9 @@
 }
 
 .layerTitle {
-  color: white;
-
+  color: #3182bd;
+  font-weight: bold;
+  border-radius: 0.3em;
+  background-color: rgba(0, 0, 0, .4);
+  margin-top: 8px;
 }
