@@ -397,7 +397,12 @@ class ControlPanelStore {
   @observable endColor = '#0077be'
   @observable
   marks: init = {
-    0: {},
+    0: {
+      label: 'MHW',
+      style: {
+        color: 'white',
+      },
+    },
     1: {
       label: '1',
       style: {

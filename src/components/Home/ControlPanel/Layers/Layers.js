@@ -108,7 +108,7 @@ class Layers extends Component {
         intersection and potential coastal flooding. More information and the
         data for sea level models is available{' '}
         <a
-          href="http://gis-cccommission.opendata.arcgis.com/datasets?q=sea%20level"
+          href="http://gis-cccommission.opendata.arcgis.com/search?collection=Dataset&q=sea%20level"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -127,7 +127,7 @@ class Layers extends Component {
     let critFacFilterPopover = (
       <Popover style = {{transform: 'translate(0px, -30px)'}} id="filterPop" title="Filter by Type or Town">
         <Row>
-          <Col md={6}>
+          <Col xs={6} md={6} lg={6}>
             <strong>Types</strong>
             <FormGroup>
               <Checkbox
@@ -247,7 +247,7 @@ class Layers extends Component {
               </Button>
             </ButtonGroup>
           </Col>
-          <Col md={6}>
+          <Col xs={6} md={6} lg={6}>
             <strong className="text-center">Towns</strong>
             <FormGroup>
               <Checkbox
@@ -381,7 +381,7 @@ class Layers extends Component {
 
     let critFacImage = (
       <div>
-        <Col style = {{marginRight: '2.5px'}} mdOffset={1} md={1}>
+        <Col xs={12} md={12} lg={12}>
           <OverlayTrigger
             trigger="click"
             rootClose
@@ -392,9 +392,7 @@ class Layers extends Component {
               <Glyphicon glyph="glyphicon glyphicon-info-sign" />
             </Button>
           </OverlayTrigger>
-        </Col>
-        <Col md={6}>
-          <p className = {css.layerTitle}>Critical Facilities</p>
+          <strong className = {css.layerTitle}>Critical Facilities</strong>
           <OverlayTrigger
             trigger={['hover', 'focus']}
             placement="right"
@@ -424,7 +422,7 @@ class Layers extends Component {
 
     let sloshImage = (
       <div>
-        <Col md = {6}>
+        <Col xs={6} md={6} lg={6}>
           <OverlayTrigger
             trigger="click"
             rootClose
@@ -435,7 +433,7 @@ class Layers extends Component {
               <Glyphicon glyph="glyphicon glyphicon-info-sign" />
             </Button>
           </OverlayTrigger>
-          <p className = {css.layerTitle}>SLOSH</p>
+          <strong className = {css.layerTitle}>SLOSH</strong>
           <Image
             onClick={RootStore.ControlPanelStore.handleSloshClick.bind(this)}
             className={
@@ -452,7 +450,7 @@ class Layers extends Component {
 
     let femaImage = (
       <div>
-        <Col md={6}>
+        <Col xs={6} md={6} lg={6}>
           <OverlayTrigger
             trigger="click"
             rootClose
@@ -463,7 +461,7 @@ class Layers extends Component {
               <Glyphicon glyph="glyphicon glyphicon-info-sign" />
             </Button>
           </OverlayTrigger>
-          <p className = {css.layerTitle}>FEMA</p>
+          <strong className = {css.layerTitle}>FEMA</strong>
           <Image
             onClick={RootStore.ControlPanelStore.handleFemaFirmClick.bind(this)}
             className={
@@ -487,15 +485,15 @@ class Layers extends Component {
         style={{
           margin: '1em auto 0',
           marginTop: '2%',
-          marginBottom: '10%',
+          marginBottom: '15%',
         }}
         onChange={this.setVal}
         value={RootStore.ControlPanelStore.currentSliderValue}
         className={css.slider}
         dots
         marks={RootStore.ControlPanelStore.marks}
-        min={0}
         max={6}
+        
         onAfterChange={this.setSliderValue}
         railStyle={{backgroundColor: 'grey', height: 2}}
         trackStyle={{
@@ -581,7 +579,7 @@ class Layers extends Component {
 
     let liquidFillGauge = (
       <div>
-        <Col md={1} mdOffset={1}>
+        <Col xs={1} md={1} lg={1} mdOffset={1}>
           <OverlayTrigger
             trigger="click"
             rootClose
@@ -598,11 +596,11 @@ class Layers extends Component {
           placement="right"
           overlay={layerDesc}
         >
-          <Col style = {{paddingLeft: '0px', transform: 'translate(8px)'}} md={6}>
+          <Col style = {{paddingLeft: '0em'}} xs={6} md={6} lg={6}>
             <LiquidFillGauge
               style={{margin: '0 auto 0'}}
-              width={radius * 2}
-              height={radius * 2}
+              width={radius * 3}
+              height={radius * 3}
               value={RootStore.ControlPanelStore.currentLiquidValue}
               textSize={1}
               textOffsetX={0}
@@ -619,6 +617,8 @@ class Layers extends Component {
                 const slrStyle = {
                   fontSize: slrPixels,
                   fontFamily: 'sans-serif',
+                  textTransform: 'uppercase',
+                  fontWeight: 'bold',
                 }
 
                 return (
@@ -672,10 +672,10 @@ class Layers extends Component {
           </Col>
         </Row>
         <Row>
-          <Col md={12}>{liquidFillGauge}</Col>
+          <Col xs={12} md={12} lg={12}>{liquidFillGauge}</Col>
         </Row>
         <Row>
-          <Col md={12}>{slider}</Col>
+          <Col xs={12} md={12} lg={12}>{slider}</Col>
         </Row>
         <Row>
           <Col style = {{marginTop: '5px'}} md={12}>{critFacImage}</Col>
