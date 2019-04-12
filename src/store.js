@@ -795,10 +795,10 @@ class MapServicesStore {
         layer.feature.properties
       )
     })
-  socialVulnerability: init = esri.featureLayer({
-    url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SocialVulnerability/MapServer/0',
-  })
+  // socialVulnerability: init = esri.featureLayer({
+  //   url:
+  //     'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SocialVulnerability/MapServer/0',
+  // })
   zeroFtSeaLevel: init = esri.dynamicMapLayer({
     url:
       'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_0ft/MapServer',
@@ -844,15 +844,16 @@ class MapServicesStore {
       'https://www.coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_StormSurge/MapServer',
     opacity: 0.5,
   })
-  buildings: init = esri.featureLayer({
-    url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/Buildings/MapServer',
-    opacity: 0.3,
-  })
-  parcels: init = esri.featureLayer({
-    url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/TaxParcel_Yellow/MapServer',
-  })
+  // TODO: EITHER REMOVE OR USE/REPLACE ONCE DECISION IS MADE BY CCC
+  // buildings: init = esri.featureLayer({
+  //   url:
+  //     'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/Buildings/MapServer',
+  //   opacity: 0.3,
+  // })
+  // parcels: init = esri.featureLayer({
+  //   url:
+  //     'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/TaxParcel_Yellow/MapServer',
+  // })
   roads: init = esri.dynamicMapLayer({
     url:
       '',

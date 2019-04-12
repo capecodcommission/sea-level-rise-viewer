@@ -52,14 +52,14 @@
 
 .legendTitle {
   vertical-align: center;
+  position: static;
   cursor: default;
   font-size: 1em;
   color: #3182bd;
-  margin: 0 15em 0 15em;
   font-family: 'Open Sans', sans-serif;
   background: black;
-  border-radius: 1em;
-  padding: 0.05em;
+  border-radius: 0.3em;
+  padding: 0.5em;
   white-space: pre-line;      /* Webkit */
   white-space: -moz-pre-wrap; /* Firefox */
   white-space: -pre-wrap;     /* Opera <7 */
@@ -67,17 +67,17 @@
   word-wrap: break-word;      /* IE */
 }
 
-.legendSubHeaders {
+.legendSubTitles {
   vertical-align: center;
-  padding: 0.25em;
+  position: static;
   cursor: default;
   font-size: 0.8em;
-  margin: 0 8em 0 8em;
   color: #3182bd;
   font-family: 'Open Sans', sans-serif;
   background: black;
+  border-radius: 0.3em;
+  padding: 0.25em;
   opacity: 0.8;
-  border-radius: 1em;
   white-space: pre-line;      /* Webkit */
   white-space: -moz-pre-wrap; /* Firefox */
   white-space: -pre-wrap;     /* Opera <7 */

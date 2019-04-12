@@ -66,8 +66,8 @@ class Legend extends Component {
 
     let sloshLegend = (
       <div>
-        <Row className={css.legendSubHeaders}>
-          <strong>SLOSH</strong>
+        <Row>
+          <strong className={css.legendSubTitles}>SLOSH</strong>
         </Row>
         <Row style={{paddingTop: '0.25em'}}>
           <Col xs={3} md={3} lg={3}>
@@ -129,8 +129,8 @@ class Legend extends Component {
 
     let femaLegend = (
       <div>
-        <Row className={css.legendSubHeaders}>
-          <strong>FEMA</strong>
+        <Row>
+          <strong className={css.legendSubTitles}>FEMA</strong>
         </Row>
         <Row>
           <Col xs={3} md={3} lg={3}  style={{paddingTop: '0.25em'}}>
@@ -182,8 +182,8 @@ class Legend extends Component {
           }
         >
           <Row className={css.legendInfoWrapper}>
-            <Row className={css.legendTitle}>
-              <strong>LEGEND</strong>
+            <Row>
+              <strong className={css.legendTitle}>LEGEND</strong>
             </Row>
             <Row>
               <Col xs={6} md={6} lg={6}>

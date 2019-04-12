@@ -11,6 +11,8 @@
 }
 
 .basemapSelectorTitle {
+  vertical-align: center;
+  position: static;
   cursor: default;
   font-size: 1em;
   color: #3182bd;
