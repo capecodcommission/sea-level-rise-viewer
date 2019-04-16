@@ -155,7 +155,7 @@ class Legend extends Component {
     let intersectLegend = (
       <div className={css.imgTextFix}>
         <Image
-          src={require('../ControlPanel/img/Icon-Critical-Facilities.png')}
+          src={require('../ControlPanel/img/Icon-Critical-Facilities-Affected.png')}
           className={css.affectedCritFac}
           circle
         />

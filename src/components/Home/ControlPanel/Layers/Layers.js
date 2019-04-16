@@ -53,68 +53,72 @@ class Layers extends Component {
   render = () => {
     let criticalFacilitiesDescription = (
       <Popover id="critical-facilities" title="Critical Facilities">
-        These are the <strong>critical facilities</strong> as identified by
-        Barnstable county and municipal representatives. The data and more
+        <p>These are the <strong>critical facilities</strong> as identified by
+        Barnstable county and municipal representatives.</p> <p>The data and more
         information is available{' '}
-        <a
-          href="http://gis-cccommission.opendata.arcgis.com/datasets/critical-facilities"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          here
-        </a>
+          <a
+            href="http://gis-cccommission.opendata.arcgis.com/datasets/critical-facilities"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            here
+          </a>
         .
+        </p>
       </Popover>
     )
 
     let sloshDescription = (
       <Popover id="slosh" title="SLOSH">
-        This is the <strong>SLOSH</strong> (Sea, Lake and Overland Surge from
-        Hurricane) model visualization for Barnstable County. The data and more
+        <p>This is the <strong>SLOSH</strong> (Sea, Lake and Overland Surge from
+        Hurricane) model visualization for Barnstable County.</p> <p>The data and more
         information is available{' '}
-        <a
-          href="http://gis-cccommission.opendata.arcgis.com/datasets/sea-lake-and-overland-surge-from-hurricanes-slosh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          here
-        </a>
+          <a
+            href="https://www.coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_StormSurge/MapServer"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            here
+          </a>
         .
+        </p>
       </Popover>
     )
 
     let femaFirmDescription = (
       <Popover id="fema" title="FEMA FIRM">
-        This is the <strong>FEMA FIRM</strong> Digital Flood Insurance Rate Maps
-        (DFIRM) for Barnstable County. More information and the data is
+        <p>This is the <strong>FEMA FIRM</strong> Digital Flood Insurance Rate Maps
+        (DFIRM) for Barnstable County. </p> <p>More information and the data is
         available{' '}
-        <a
-          href="http://gis-cccommission.opendata.arcgis.com/datasets/fema-floodplains"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          here
-        </a>
+          <a
+            href="https://www.coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_FEMAFloodZones/MapServer"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            here
+          </a>
         .
+        </p>
       </Popover>
     )
 
     let slrDescription = (
       <Popover id="slr" title="Sea Level Rise">
-        The datalayer displays sea level intervals relative to mean high water
+        <p>The datalayer displays sea level intervals relative to mean high water
         representing the Cape Cod Commission's <strong>Sea Level Rise</strong>{' '}
-        modeling for Barnstable County. The critical facilities intersecting
+        modeling for Barnstable County.</p> <p>The critical facilities intersecting
         with the sea level at each interval are styled differently to represent
-        intersection and potential coastal flooding. More information and the
+        intersection and potential coastal flooding. </p> <p>More information and the
         data for sea level models is available{' '}
-        <a
-          href="http://gis-cccommission.opendata.arcgis.com/search?collection=Dataset&q=sea%20level"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          here
-        </a>
+          <a
+            href="http://gis-cccommission.opendata.arcgis.com/search?collection=Dataset&q=sea%20level"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            here
+          </a>
         .
+        </p>
       </Popover>
     )
 
@@ -412,7 +416,7 @@ class Layers extends Component {
                   ? css.clickedButton
                   : css.criticalFacilities
               }
-              src={require('./img/critFac.svg')}
+              src={require('../img/Icon-Critical-Facilities.png')}
               circle
             />
           </OverlayTrigger>
@@ -441,7 +445,7 @@ class Layers extends Component {
                 ? css.clickedButton
                 : css.slosh
             }
-            src={require('./img/slosh.svg')}
+            src={require('../img/Icon_SLOSH.png')}
             circle
           />
         </Col>
@@ -469,7 +473,7 @@ class Layers extends Component {
                 ? css.clickedButton
                 : css.femaFirm
             }
-            src={require('./img/fema.svg')}
+            src={require('../img/Icon_FEMA-2.png')}
             circle
           />
         </Col>
@@ -554,6 +558,12 @@ class Layers extends Component {
       },
     ]
 
+    let layerToggles = [
+      RootStore.ControlPanelStore.criticalFacilitiesBackground,
+      RootStore.ControlPanelStore.femaFirmBackground,
+      RootStore.ControlPanelStore.sloshBackground,
+    ]
+
     let removeLayersButton = (
       <OverlayTrigger
         trigger={['hover', 'focus']}
@@ -562,7 +572,7 @@ class Layers extends Component {
         overlay={clearLayerDesc}
       >
         <Button
-          style={{paddingBottom: '0', marginBottom: '0', transform: 'translate(-25px)'}}
+          style={{paddingBottom: '0', marginBottom: '0', transform: 'translate(-25px, -5px)', visibility: layerToggles.every(i => !i) ? 'hidden' : 'visible'}}
           bsSize="xsmall"
           onClick={RootStore.EsriMapStore.removeToggleableLayers}
         >
@@ -570,12 +580,6 @@ class Layers extends Component {
         </Button>
       </OverlayTrigger>
     )
-
-    let layerToggles = [
-      RootStore.ControlPanelStore.criticalFacilitiesBackground,
-      RootStore.ControlPanelStore.femaFirmBackground,
-      RootStore.ControlPanelStore.sloshBackground,
-    ]
 
     let liquidFillGauge = (
       <div>
@@ -598,7 +602,7 @@ class Layers extends Component {
         >
           <Col style = {{paddingLeft: '0em'}} xs={6} md={6} lg={6}>
             <LiquidFillGauge
-              style={{margin: '0 auto 0'}}
+              style={{margin: '0 auto 0', backgroundImage: 'url(' + require('../img/Icon_SLR.png') + ')', backgroundSize: 'cover'}}
               width={radius * 3}
               height={radius * 3}
               value={RootStore.ControlPanelStore.currentLiquidValue}
@@ -646,6 +650,7 @@ class Layers extends Component {
               }}
               waveStyle={{
                 fill: fillColor,
+                opacity: '1',
               }}
               textStyle={{
                 fill: color('#fff').toString(),
@@ -668,7 +673,7 @@ class Layers extends Component {
             <strong className={css.mapLayerTitle}>MAP LAYERS</strong>
           </Col>
           <Col md = {1}>
-            {layerToggles.every(i => !i) ? null : removeLayersButton}
+            {removeLayersButton}
           </Col>
         </Row>
         <Row>
