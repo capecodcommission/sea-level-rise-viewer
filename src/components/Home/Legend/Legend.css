@@ -89,15 +89,38 @@
 .affectedCritFac {
   background-color: #de2d26;
   opacity: 0.8;
+  width: 25%;
+  height: 25%;
+  align-items: flex-start;
+  margin-right: 10%;
+  vertical-align: center;
+  margin-top: 2em;
 }
 
 .critFac {
   background: #2ca5c3;
   opacity: 0.8;
+  width: 25%;
+  height: 25%;
+  align-items: flex-start;
+  margin-right: 10%;
+  vertical-align: center;
+  margin-top: 2em;
 }
 
 .colorBar {
   height: 0.5em;
   width: 3em;
   vertical-align: center;
+}
+
+.imgTextFix {
+  display: inline-block;
+  text-align: right;
+  vertical-align: top;
+  white-space: pre-line;      /* Webkit */
+  white-space: -moz-pre-wrap; /* Firefox */
+  white-space: -pre-wrap;     /* Opera <7 */
+  white-space: -o-pre-wrap;   /* Opera 7 */
+  word-wrap: break-word;      /* IE */
 }
