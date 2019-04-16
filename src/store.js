@@ -800,53 +800,64 @@ class MapServicesStore {
         layer.feature.properties
       )
     })
+  // TODO: REMOVE OR USE
   // socialVulnerability: init = esri.featureLayer({
   //   url:
   //     'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SocialVulnerability/MapServer/0',
   // })
+  // TODO: USE WHICHEVER IS DECIDED
   zeroFtSeaLevel: init = esri.dynamicMapLayer({
     url:
-      'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_0ft/MapServer',
+      // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_0ft/MapServer',
+      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_0_Corrected/MapServer',
     opacity: 0.5,
   })
   oneFtSeaLevel: init = esri.dynamicMapLayer({
     url:
-      'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_1ft/MapServer',
+      // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_1ft/MapServer',
+      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_1_Corrected/MapServer',
     opacity: 0.5,
   })
   twoFtSeaLevel: init = esri.dynamicMapLayer({
     url:
-      'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_2ft/MapServer',
+      // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_2ft/MapServer',
+      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_2_Corrected/MapServer',
     opacity: 0.5,
   })
   threeFtSeaLevel: init = esri.dynamicMapLayer({
     url:
-      'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_3ft/MapServer',
+      // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_3ft/MapServer',
+      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_3_Corrected/MapServer',
     opacity: 0.5,
   })
   fourFtSeaLevel: init = esri.dynamicMapLayer({
     url:
-      'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_4ft/MapServer',
+      // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_4ft/MapServer',
+      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_4ft_Corrected/MapServer',
     opacity: 0.5,
   })
   fiveFtSeaLevel: init = esri.dynamicMapLayer({
     url:
-      'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_5ft/MapServer',
+      // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_5ft/MapServer',
+      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_5ft_Corrected/MapServer',
     opacity: 0.5,
   })
   sixFtSeaLevel: init = esri.dynamicMapLayer({
     url:
-      'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_6ft/MapServer',
+      // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_6ft/MapServer',
+      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_6/MapServer',
     opacity: 0.5,
   })
   femaFirm: init = esri.dynamicMapLayer({
     url:
       'https://www.coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_FEMAFloodZones/MapServer',
+    // 'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/FEMA_FIRM_2013/MapServer',
     opacity: 0.5,
   })
   slosh: init = esri.dynamicMapLayer({
     url:
       'https://www.coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_StormSurge/MapServer',
+    // 'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/SLOSH_2013/MapServer',
     opacity: 0.5,
   })
   // TODO: EITHER REMOVE OR USE/REPLACE ONCE DECISION IS MADE BY CCC

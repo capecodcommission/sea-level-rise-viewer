@@ -7,16 +7,7 @@ import {observer} from 'mobx-react'
 class Title extends Component {
   render = () => {
     return (
-      <div className={css.titleWrapper}>
-        <span className={css.title}>
-          <p>
-            <strong>Cape Cod</strong>
-          </p>
-          <p>
-            <strong>Sea Level Rise</strong>
-          </p>
-        </span>
-      </div>
+      <div className={css.titleWrapper}></div>
     )
   }
 }
