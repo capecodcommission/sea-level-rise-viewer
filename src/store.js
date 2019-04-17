@@ -37,15 +37,16 @@ class EsriMapStore {
       .join(',')
     var querySubString = subFilter
       .map(i => {
-        return i.subTypeFIE
+        return "'" + i.name + "'"
       })
       .join(',')
 
     if (this.map.hasLayer(this.RootStore.MapServicesStore.criticalFacilities)) {
+
       this.RootStore.MapServicesStore.criticalFacilities.setWhere(
         'MUNICIPALI IN (' +
           queryTownString +
-          ') AND SUBTYPEFIE IN (' +
+          ') AND SUBTYPE IN (' +
           querySubString +
           ')'
       )
@@ -276,54 +277,67 @@ class ControlPanelStore {
     {
       subTypeFIE: '701',
       checked: true,
+      name: 'Agriculture, Food, and Livestock',
     },
     {
       subTypeFIE: '710',
       checked: true,
+      name: 'Industry',
     },
     {
       subTypeFIE: '720',
       checked: true,
+      name: 'Commercial and Retail',
     },
     {
       subTypeFIE: '730',
       checked: true,
+      name: 'Education',
     },
     {
       subTypeFIE: '740',
       checked: true,
+      name: 'Emergency Response and Law Enforcement',
     },
     {
       subTypeFIE: '750',
       checked: true,
+      name: 'Energy',
     },
     {
       subTypeFIE: '790',
       checked: true,
+      name: 'Building General',
     },
     {
       subTypeFIE: '800',
       checked: true,
+      name: 'Health and Medical',
     },
     {
       subTypeFIE: '810',
       checked: true,
+      name: 'Transportation Facilities',
     },
     {
       subTypeFIE: '820',
       checked: true,
+      name: 'Public Attractions and Landmark Buildings',
     },
     {
       subTypeFIE: '830',
       checked: true,
+      name: 'Government and Military',
     },
     {
       subTypeFIE: '850',
       checked: true,
+      name: 'Water Supply and Treatment',
     },
     {
       subTypeFIE: '880',
       checked: true,
+      name: 'Information and Communication',
     },
   ]
   @observable
