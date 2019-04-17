@@ -2,116 +2,117 @@
 
 # apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 
-apiVersion: apps/v1
-items:
-- apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    name: slrvdeploy
-    namespace: slrv
-  spec:
-    selector:
-      component: sea-lever-rise-viewer
-    replicas: 2 # tells deployment to run 2 pods matching the template
-    template:
-      metadata:
-        labels:
-          app: sea-level-rise-viewer
-    spec:
-      containers:
-      - name: sea-level-rise-viewer
-        image: ccccontainers.azurecr.io/slr-front:latest
-        imagePullPolicy: Always
-        ports:
-        - name: "3000"
-          containerPort: 3000
-
-- apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
-  kind: Service
-  metadata:
-    name: slrvsvc
-    namespace: slrv
-  spec:
-    selector:
-      component: sea-level-rise-viewer
-    ports:
-    - name: "3000"
-      port: 3000
-      targetPort: 80
-      protocol: TCP
-
-- apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
-  kind: Deployment
-  metadata:
-    name: slrvuatdeploy
-    namespace: slrv
-  spec:
-    selector:
-      component: sea-lever-rise-viewer-uat
-  replicas: 2 # tells deployment to run 2 pods matching the template
-  template:
-    metadata:
-      labels:
-        app: sea-lever-rise-viewer
-    spec:
-      containers:
-      - name: sea-lever-rise-viewer
-        image: ccccontainers.azurecr.io/slr-front:uat
-        imagePullPolicy: Always
-        ports:
-        - name: "3002"
-          containerPort: 3002
-
-- apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
-  kind: Service
-  metadata:
-    name: slrvuatsvc
-    namespace: slrv
-  spec:
-    selector:
-      component: sea-lever-rise-viewer-uat
-    ports:
-    - name: "3002"
-      port: 3002
-      targetPort: 80
-      protocol: TCP
-
-- apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
-  kind: Deployment
-  metadata:
-    name: slrvdevdeploy
-    namespace: slrv
-  spec:
-    selector:
-      -component: sea-lever-rise-viewer-dev
-  replicas: 2 # tells deployment to run 2 pods matching the template
-  template:
-    metadata:
-      labels:
-        app: sea-lever-rise-viewer
-    spec:
-      containers:
-      - name: sea-lever-rise-viewer
-        image: ccccontainers.azurecr.io/slr-front:dev
-        imagePullPolicy: Always
-        ports:
-        - name: "3030"
-          containerPort: 3030
-
-- apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
-  kind: Service
-  metadata:
-    name: slrvdevsvc
-    namespace: slrv
-  spec:
-    selector:
-      component: sea-lever-rise-viewer-dev
-    ports:
-    - name: "3030"
-      port: 3030
-      targetPort: 80
-      protocol: TCP
-
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: slrvdeploy
+#   namespace: slrv
+# spec:
+#   selector:
+#     matchLabels:
+#       app: seal-level-rise-viewer
+#   replicas: 2 # tells deployment to run 2 pods matching the template
+#   template:
+#     metadata:
+#       labels:
+#         app: seal-level-rise-viewer
+#     spec:
+#       containers:
+#       - name: sea-level-rise-viewer
+#         image: ccccontainers.azurecr.io/slr-front:latest
+#         imagePullPolicy: Always
+#         ports:
+#         - name: "deploy-3000"
+#           containerPort: 3000
+# ---
+# apiVersion: v1 # for versions before 1.9.0 use apps/v1beta2
+# kind: Service
+# metadata:
+#     name: slrvsvc
+#     namespace: slrv
+# spec:
+#   selector:
+#       app: sealeverriseviewer
+#   ports:
+#     - name: "3000"
+#       port: 3000
+#       targetPort: 80
+#       protocol: TCP
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: slrvuatdeploy
+#   namespace: slrv
+# spec:
+#   selector:
+#     matchLabels:
+#       app: seal-level-rise-viewer-uat
+#   replicas: 2 # tells deployment to run 2 pods matching the template
+#   template:
+#     metadata:
+#       labels:
+#         app: seal-level-rise-viewer-uat
+#     spec:
+#       containers:
+#       - name: sea-level-rise-viewer-uat
+#         image: ccccontainers.azurecr.io/slr-front:uat
+#         imagePullPolicy: Always
+#         ports:
+#         - name: "deploy-3002"
+#           containerPort: 3002
+# ---
+# apiVersion: v1 # for versions before 1.9.0 use apps/v1beta2
+# kind: Service
+# metadata:
+#     name: slrvuatsvc
+#     namespace: slrv
+# spec:
+#   selector:
+#       app: sealeverrisevieweruat
+#   ports:
+#     - name: "3002"
+#       port: 3002
+#       targetPort: 80
+#       protocol: TCP
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: slrvdevdeploy
+#   namespace: slrv
+# spec:
+#   selector:
+#     matchLabels:
+#       app: seal-level-rise-viewer-dev
+#   replicas: 2 # tells deployment to run 2 pods matching the template
+#   template:
+#     metadata:
+#       labels:
+#         app: seal-level-rise-viewer-dev
+#     spec:
+#       containers:
+#       - name: sea-level-rise-viewer-dev
+#         image: ccccontainers.azurecr.io/slr-front:dev
+#         imagePullPolicy: Always
+#         ports:
+#         - name: "deploy-3030"
+#           containerPort: 3030
+# ---
+# apiVersion: v1 # for versions before 1.9.0 use apps/v1beta2
+# kind: Service
+# metadata:
+#     name: slrvdevsvc
+#     namespace: slrv
+# spec:
+#   selector:
+#       app: sealeverriseviewerdev
+#   ports:
+#     - name: "3030"
+#       port: 3030
+#       targetPort: 80
+#       protocol: TCP
+# ---
 # - apiVersion: extensions/apps/v1beta1
 #   kind: Ingress
 #   metadata:
@@ -154,5 +155,5 @@ items:
 #           backend:
 #             serviceName: slrv-dev-svc
 #             servicePort: 3030
-kind: List
-metadata: {}
+# kind: List
+# metadata: {}
