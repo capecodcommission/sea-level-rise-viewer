@@ -773,7 +773,7 @@ class MapServicesStore {
         let myIcon = L.divIcon({
           className: layersCSS.nonIntersectingIcon,
           html: '<div style="className"></div>',
-          iconSize: new L.Point(20, 20),
+          iconSize: new L.Point(30, 30),
         })
         // INSERT THE 'divIcon' FROM ABOVE AS THE LEAFLET 'marker icon'
         return L.marker(latlng, {icon: myIcon})
@@ -930,7 +930,7 @@ class GeoJSONStore {
         let myIcon = L.divIcon({
           className: layersCSS.intersectingIcon,
           html: '<div style="className"></div>',
-          iconSize: new L.Point(20, 20),
+          iconSize: new L.Point(30, 30),
         })
         // INSERT THE 'divIcon' FROM ABOVE AS THE LEAFLET 'marker icon'
         return L.marker(latlng, {icon: myIcon})
