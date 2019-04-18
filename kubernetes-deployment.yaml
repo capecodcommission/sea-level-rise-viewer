@@ -1,4 +1,4 @@
-#sea-level-rise-viewer/kubernetes-deployment.yaml 
+# sea-level-rise-viewer/kubernetes-deployment.yaml 
 
 # apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 
@@ -59,6 +59,9 @@
 #         image: ccccontainers.azurecr.io/slr-front:uat
 #         imagePullPolicy: Always
 #         ports:
+#         - name: "deploy-uat-3000"
+#           containerPort: 3000
+#         TODO:
 #         - name: "deploy-3002"
 #           containerPort: 3002
 # ---
@@ -71,6 +74,9 @@
 #   selector:
 #       app: sealeverrisevieweruat
 #   ports:
+#     - name: "uat-3000"
+#       port: 3000
+#     TODO:
 #     - name: "3002"
 #       port: 3002
 #       targetPort: 80
@@ -96,6 +102,9 @@
 #         image: ccccontainers.azurecr.io/slr-front:dev
 #         imagePullPolicy: Always
 #         ports:
+#         - name: "deploy-dev-3000"
+          # containerPort: 3000
+#         TODO:
 #         - name: "deploy-3030"
 #           containerPort: 3030
 # ---
@@ -108,6 +117,9 @@
 #   selector:
 #       app: sealeverriseviewerdev
 #   ports:
+#     - name: "dev-3000"
+#       port: 3000
+#     TODO:
 #     - name: "3030"
 #       port: 3030
 #       targetPort: 80
