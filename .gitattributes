@@ -1,0 +1,6 @@
+# * text=auto
+# *.sh text eol=lf
+# .gitattributes  merge=ours
+# Dockerfile merge=ours
+# /scripts/start.js merge=ours
+# package.json merge=ours
