@@ -1,6 +1,11 @@
-version: 2.0
+version: 2.1
 jobs:
-  BuildPushMaster:
+  BuildPush:
+    parameters:
+      imageName:
+        description: Reusable way of tagging images for our branch build pipeline
+        type: string
+
     docker:
       - image: circleci/node
     steps:
@@ -9,46 +14,76 @@ jobs:
       - run:
           name: Build and Push to ACR
           command: |
-            docker build . -t ${registryName}.azurecr.io/${frontImageLatest}
+            docker build . -t ${registryName}.azurecr.io/<<parameters.imageName>>
             docker login ${registryName}.azurecr.io -u ${registryName} -p ${registryPassword}
-            docker push ${registryName}.azurecr.io/${frontImageLatest}
-  BuildPushUAT:
-    docker:
-      - image: circleci/node
-    steps:
-      - setup_remote_docker
-      - checkout
-      - run:
-          name: Build and Push to ACR
-          command: |
-            docker build . -t ${registryName}.azurecr.io/${frontImageUat}
-            docker login ${registryName}.azurecr.io -u ${registryName} -p ${registryPassword}
-            docker push ${registryName}.azurecr.io/${frontImageUat}
-  BuildPushDev:
-    docker:
-      - image: circleci/node
-    steps:
-      - setup_remote_docker
-      - checkout
-      - run:
-          name: Build and Push to ACR
-          command: |
-            docker build . -t ${registryName}.azurecr.io/${frontImageDev}
-            docker login ${registryName}.azurecr.io -u ${registryName} -p ${registryPassword}
-            docker push ${registryName}.azurecr.io/${frontImageDev}
+            docker push ${registryName}.azurecr.io/<<parameters.imageName>>
+  # BuildPushMaster:
+  #   docker:
+  #     - image: circleci/node
+  #   steps:
+  #     - setup_remote_docker
+  #     - checkout
+  #     - run:
+  #         name: Build and Push to ACR
+  #         command: |
+  #           docker build . -t ${registryName}.azurecr.io/${frontImageLatest}
+  #           docker login ${registryName}.azurecr.io -u ${registryName} -p ${registryPassword}
+  #           docker push ${registryName}.azurecr.io/${frontImageLatest}
+  # BuildPushUAT:
+  #   docker:
+  #     - image: circleci/node
+  #   steps:
+  #     - setup_remote_docker
+  #     - checkout
+  #     - run:
+  #         name: Build and Push to ACR
+  #         command: |
+  #           docker build . -t ${registryName}.azurecr.io/${frontImageUat}
+  #           docker login ${registryName}.azurecr.io -u ${registryName} -p ${registryPassword}
+  #           docker push ${registryName}.azurecr.io/${frontImageUat}
+  # BuildPushDev:
+  #   docker:
+  #     - image: circleci/node
+  #   steps:
+  #     - setup_remote_docker
+  #     - checkout
+  #     - run:
+  #         name: Build and Push to ACR
+  #         command: |
+  #           docker build . -t ${registryName}.azurecr.io/${frontImageDev}
+  #           docker login ${registryName}.azurecr.io -u ${registryName} -p ${registryPassword}
+  #           docker push ${registryName}.azurecr.io/${frontImageDev}
 workflows:
   version: 2
   SLR_Workflow:
     jobs:
-      - BuildPushMaster:
+      - BuildPush:
+          imageName: latest
+          name: BuildPushMaster
           filters:
             branches:
               only: master
-      - BuildPushUAT:
+      - BuildPush:
+          imageName: uat
+          name: BuildPushUAT
           filters:
             branches:
               only: uat
-      - BuildPushDev:
+      - BuildPush:
+          imageName: dev
+          name: BuildPushDev
           filters:
             branches:
-              only: dev
+              only: dev 
+      # - BuildPushMaster:
+      #     filters:
+      #       branches:
+      #         only: master
+      # - BuildPushUAT:
+      #     filters:
+      #       branches:
+      #         only: uat
+      # - BuildPushDev:
+      #     filters:
+      #       branches:
+      #         only: dev
