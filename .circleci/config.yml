@@ -1,4 +1,5 @@
 version: 2.1
+
 jobs:
   BuildPush:
     parameters:
@@ -17,42 +18,7 @@ jobs:
             docker build . -t ${registryName}.azurecr.io/<<parameters.imageName>>
             docker login ${registryName}.azurecr.io -u ${registryName} -p ${registryPassword}
             docker push ${registryName}.azurecr.io/<<parameters.imageName>>
-  # BuildPushMaster:
-  #   docker:
-  #     - image: circleci/node
-  #   steps:
-  #     - setup_remote_docker
-  #     - checkout
-  #     - run:
-  #         name: Build and Push to ACR
-  #         command: |
-  #           docker build . -t ${registryName}.azurecr.io/${frontImageLatest}
-  #           docker login ${registryName}.azurecr.io -u ${registryName} -p ${registryPassword}
-  #           docker push ${registryName}.azurecr.io/${frontImageLatest}
-  # BuildPushUAT:
-  #   docker:
-  #     - image: circleci/node
-  #   steps:
-  #     - setup_remote_docker
-  #     - checkout
-  #     - run:
-  #         name: Build and Push to ACR
-  #         command: |
-  #           docker build . -t ${registryName}.azurecr.io/${frontImageUat}
-  #           docker login ${registryName}.azurecr.io -u ${registryName} -p ${registryPassword}
-  #           docker push ${registryName}.azurecr.io/${frontImageUat}
-  # BuildPushDev:
-  #   docker:
-  #     - image: circleci/node
-  #   steps:
-  #     - setup_remote_docker
-  #     - checkout
-  #     - run:
-  #         name: Build and Push to ACR
-  #         command: |
-  #           docker build . -t ${registryName}.azurecr.io/${frontImageDev}
-  #           docker login ${registryName}.azurecr.io -u ${registryName} -p ${registryPassword}
-  #           docker push ${registryName}.azurecr.io/${frontImageDev}
+
 workflows:
   version: 2
   SLR_Workflow:
@@ -74,16 +40,4 @@ workflows:
           name: BuildPushDev
           filters:
             branches:
-              only: dev 
-      # - BuildPushMaster:
-      #     filters:
-      #       branches:
-      #         only: master
-      # - BuildPushUAT:
-      #     filters:
-      #       branches:
-      #         only: uat
-      # - BuildPushDev:
-      #     filters:
-      #       branches:
-      #         only: dev
+              only: dev
