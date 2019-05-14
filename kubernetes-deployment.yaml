@@ -1,29 +1,41 @@
-# sea-level-rise-viewer/kubernetes-deployment.yaml 
+## sea-level-rise-viewer/kubernetes-deployment.yaml 
 
-# apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
-
+## apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+# ---
 # apiVersion: apps/v1
 # kind: Deployment
 # metadata:
 #   name: slrvdeploy
 #   namespace: slrv
+#   creationTimestamp: null
+#   labels:
+#     keel.sh/policy: force
+#     keel.sh/match-tag: "true"
+#     app: slrvfrontlatest
 # spec:
 #   selector:
 #     matchLabels:
-#       app: seal-level-rise-viewer
+#       app: slrvfrontlatest
 #   replicas: 2 # tells deployment to run 2 pods matching the template
+#   revisionHistoryLimit: 1
+#   strategy: {}
 #   template:
 #     metadata:
+#       creationTimestamp: null
 #       labels:
-#         app: seal-level-rise-viewer
+#         app: slrvfrontlatest
 #     spec:
 #       containers:
-#       - name: sea-level-rise-viewer
+#       - name: sea-level-rise-viewer-latest
 #         image: ccccontainers.azurecr.io/slr-front:latest
 #         imagePullPolicy: Always
 #         ports:
-#         - name: "deploy-3000"
-#           containerPort: 3000
+#         - name: "deploy-80"
+#           containerPort: 80
+#           protocol: TCP
+#         resources: {}
+#       restartPolicy: Always
+# status: {}
 # ---
 # apiVersion: v1 # for versions before 1.9.0 use apps/v1beta2
 # kind: Service
@@ -31,10 +43,11 @@
 #     name: slrvsvc
 #     namespace: slrv
 # spec:
+#   type: LoadBalancer
 #   selector:
-#       app: sealeverriseviewer
+#       app: slrvfrontlatest
 #   ports:
-#     - name: "3000"
+#     - name: "latest-3000"
 #       port: 3000
 #       targetPort: 80
 #       protocol: TCP
@@ -44,26 +57,38 @@
 # metadata:
 #   name: slrvuatdeploy
 #   namespace: slrv
+#   creationTimestamp: null
+#   labels:
+#     keel.sh/policy: force
+#     keel.sh/match-tag: "true"
+#     app: slrvfrontuat
 # spec:
 #   selector:
 #     matchLabels:
-#       app: seal-level-rise-viewer-uat
+#       app: slrvfrontuat
 #   replicas: 2 # tells deployment to run 2 pods matching the template
+#   revisionHistoryLimit: 1
+#   strategy: {}
 #   template:
 #     metadata:
+#       creationTimestamp: null
 #       labels:
-#         app: seal-level-rise-viewer-uat
+#         app: slrvfrontuat
 #     spec:
 #       containers:
 #       - name: sea-level-rise-viewer-uat
 #         image: ccccontainers.azurecr.io/slr-front:uat
 #         imagePullPolicy: Always
 #         ports:
-#         - name: "deploy-uat-3000"
-#           containerPort: 3000
-#         TODO:
-#         - name: "deploy-3002"
-#           containerPort: 3002
+#         - name: "deploy-uat-80"
+#           containerPort: 80
+#           protocol: TCP
+#         resources: {}
+#       restartPolicy: Always
+#         # TODO:
+#         # - name: "deploy-3002"
+#         #   containerPort: 3002
+# status: {}
 # ---
 # apiVersion: v1 # for versions before 1.9.0 use apps/v1beta2
 # kind: Service
@@ -71,42 +96,55 @@
 #     name: slrvuatsvc
 #     namespace: slrv
 # spec:
+#   type: LoadBalancer
 #   selector:
-#       app: sealeverrisevieweruat
+#       app: slrvfrontuat
 #   ports:
 #     - name: "uat-3000"
 #       port: 3000
-#     TODO:
-#     - name: "3002"
-#       port: 3002
 #       targetPort: 80
 #       protocol: TCP
+#     # TODO:
+#     # - name: "3002"
+#     #   port: 3002
+#     #   targetPort: 80
 # ---
 # apiVersion: apps/v1
 # kind: Deployment
 # metadata:
 #   name: slrvdevdeploy
 #   namespace: slrv
+#   creationTimestamp: null
+#   labels:
+#     keel.sh/policy: force
+#     keel.sh/match-tag: "true"
+#     app: slrvfrontdev
 # spec:
 #   selector:
 #     matchLabels:
-#       app: seal-level-rise-viewer-dev
+#       app: slrvfrontdev
 #   replicas: 2 # tells deployment to run 2 pods matching the template
+#   revisionHistoryLimit: 1
+#   strategy: {}
 #   template:
 #     metadata:
 #       labels:
-#         app: seal-level-rise-viewer-dev
+#         app: slrvfrontdev
 #     spec:
 #       containers:
 #       - name: sea-level-rise-viewer-dev
 #         image: ccccontainers.azurecr.io/slr-front:dev
 #         imagePullPolicy: Always
 #         ports:
-#         - name: "deploy-dev-3000"
-          # containerPort: 3000
-#         TODO:
-#         - name: "deploy-3030"
-#           containerPort: 3030
+#         - name: "deploy-dev-80"
+#           containerPort: 80
+#           protocol: TCP
+#         resources: {}
+#       restartPolicy: Always
+#         # TODO:
+#         # - name: "deploy-3030"
+#         #   containerPort: 3030
+# status: {}
 # ---
 # apiVersion: v1 # for versions before 1.9.0 use apps/v1beta2
 # kind: Service
@@ -114,241 +152,243 @@
 #     name: slrvdevsvc
 #     namespace: slrv
 # spec:
+#   type: LoadBalancer
 #   selector:
-#       app: sealeverriseviewerdev
+#       app: slrvfrontdev
 #   ports:
 #     - name: "dev-3000"
 #       port: 3000
-#     TODO:
-#     - name: "3030"
-#       port: 3030
 #       targetPort: 80
 #       protocol: TCP
-# ---
-# apiVersion: v1
-# data:
-#   tls.crt: base64 encoded cert
-#   tls.key: base64 encoded key
-# kind: Secret
-# metadata:
-#   name: apps-secret-tls
-#   namespace: cert-manager
-# type: kubernetes.io/tls
+#     # TODO:
+#     # - name: "3030"
+#     #   port: 3030
+#     #   targetPort: 80
+# # ---
+# # apiVersion: v1
+# # data:
+# #   tls.crt: base64 encoded cert
+# #   tls.key: base64 encoded key
+# # kind: Secret
+# # metadata:
+# #   name: apps-secret-tls
+# #   namespace: cert-manager
+# # type: kubernetes.io/tls
 
-# apiVersion: certmanager.k8s.io/v1alpha1
-# kind: Certificate
-# metadata:
-#   name: cccpfrontuat-tls-secret
-# spec:
-#   secretName: cccpfrontuat-tls-secret
-#   dnsNames:
-#   - uat.capecodcoast.org
-#   acme:
-#     config:
-#     - http01:
-#         ingressClass: nginx
-#       domains:
-#       - uat.capecodcoast.org
-#   issuerRef:
-#     name: letsencrypt-prod
-#     kind: ClusterIssuer
+# # apiVersion: certmanager.k8s.io/v1alpha1
+# # kind: Certificate
+# # metadata:
+# #   name: cccpfrontuat-tls-secret
+# # spec:
+# #   secretName: cccpfrontuat-tls-secret
+# #   dnsNames:
+# #   - uat.capecodcoast.org
+# #   acme:
+# #     config:
+# #     - http01:
+# #         ingressClass: nginx
+# #       domains:
+# #       - uat.capecodcoast.org
+# #   issuerRef:
+# #     name: letsencrypt-prod
+# #     kind: ClusterIssuer
 
-# ---
-# apiVersion: certmanager.k8s.io/v1alpha1
-# kind: Certificate
-# metadata:
-#   name: apps-tls-secret
-# spec:
-#   secretName: apps-tls-secret
-#   dnsNames:
-#   - '*.apps.capecodcommission.org'
-#   acme:
-#     config:
-#     - http01:
-#         ingressClass: nginx
-#       domains:
-#       - '*.apps.capecodcommission.org'
-#   issuerRef:
-#     name: letsencrypt-prod
-#     kind: ClusterIssuer
+# # ---
+# # apiVersion: certmanager.k8s.io/v1alpha1
+# # kind: Certificate
+# # metadata:
+# #   name: apps-tls-secret
+# # spec:
+# #   secretName: apps-tls-secret
+# #   dnsNames:
+# #   - '*.apps.capecodcommission.org'
+# #   acme:
+# #     config:
+# #     - http01:
+# #         ingressClass: nginx
+# #       domains:
+# #       - '*.apps.capecodcommission.org'
+# #   issuerRef:
+# #     name: letsencrypt-prod
+# #     kind: ClusterIssuer
 
-# ---
-# apiVersion: extensions/v1beta1
-# kind: Ingress
-# metadata:
-#   name: ccc-ingress
-#   namespace: ingress
-#   annotations:
-#     kubernetes.io/ingress.class: nginx
-#     certmanager.k8s.io/cluster-issuer: letsencrypt-prod
-#     nginx.ingress.kubernetes.io/ssl-redirect: 'true'
-#     kubernetes.io/tls-acme: 'true'
-#     nginx.ingress.kubernetes.io/tls-acme: 'true'
-#     nginx.ingress.kubernetes.io/rewrite-target: /
-# spec:
-#   tls:
-#   - secretName: apps-tls-secret
-#     hosts:
-#       - '*.apps.capecodcommission.org'
-  # DO NOT USE
-  # - hosts:
-  #   - '*.apps.capecodcommission.org'
-  #   secretname: apps-secret-tls
-  # - hosts:
-  #   - dev.apps.capecodcommission.org
-  #   secretName: dev-apps-secret-tls
-  # - hosts:
-  #   - uat.apps.capecodcommission.org
-  #   secretName: uat-apps-secret-tls
-  # DO NOT USE
-  # rules:---
-# apiVersion: certmanager.k8s.io/v1alpha1
-# kind: Certificate
-# metadata:
-#   name: apps-tls-secret
-#   namespace: ingress
-# spec:
-#   secretName: apps-tls-secret
-#   dnsNames:
-#   - '*.apps.capecodcommission.org'
-#   acme:
-#     config:
-#     - http01:
-#         ingressClass: nginx
-#       domains:
-#       - '*.apps.capecodcommission.org'
-#   issuerRef:
-#     name: letsencrypt-prod
-#     kind: ClusterIssuer
-  # - host: apps.capecodcommission.org
-  #   http:
-  #     paths:
-  #     - path: /
-  #       backend:
-  #         serviceName: slrv-deploy-ingress
-  #         servicePort: 3000
-  # - host: dev.apps.capecodcommission.org
-  #   http:
-  #     paths:
-  #     - path: /
-  #       backend:
-  #         serviceName: slrv-dev-deploy-ingress
-  #         servicePort: 3000
-  # - host: uat.apps.capecodcommission.org
-  #   http:
-  #     paths:
-  #     - path: /
-  #       backend:
-  #         serviceName: slrv-uat-deploy-ingress
-  #         servicePort: 3000
+# # ---
+# # apiVersion: extensions/v1beta1
+# # kind: Ingress
+# # metadata:
+# #   name: ccc-ingress
+# #   namespace: ingress
+# #   annotations:
+# #     kubernetes.io/ingress.class: nginx
+# #     certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+# #     nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+# #     kubernetes.io/tls-acme: 'true'
+# #     nginx.ingress.kubernetes.io/tls-acme: 'true'
+# #     nginx.ingress.kubernetes.io/rewrite-target: /
+# # spec:
+# #   tls:
+# #   - secretName: apps-tls-secret
+# #     hosts:
+# #       - '*.apps.capecodcommission.org'
+# #   DO NOT USE
+# #   - hosts:
+# #     - '*.apps.capecodcommission.org'
+# #     secretname: apps-secret-tls
+# #   - hosts:
+# #     - dev.apps.capecodcommission.org
+# #     secretName: dev-apps-secret-tls
+# #   - hosts:
+# #     - uat.apps.capecodcommission.org
+# #     secretName: uat-apps-secret-tls
+# #   DO NOT USE
+# #   rules:---
+# # apiVersion: certmanager.k8s.io/v1alpha1
+# # kind: Certificate
+# # metadata:
+# #   name: apps-tls-secret
+# #   namespace: ingress
+# # spec:
+# #   secretName: apps-tls-secret
+# #   dnsNames:
+# #   - '*.apps.capecodcommission.org'
+# #   acme:
+# #     config:
+# #     - http01:
+# #         ingressClass: nginx
+# #       domains:
+# #       - '*.apps.capecodcommission.org'
+# #   issuerRef:
+# #     name: letsencrypt-prod
+# #     kind: ClusterIssuer
+# #   - host: apps.capecodcommission.org
+# #     http:
+# #       paths:
+# #       - path: /
+# #         backend:
+# #           serviceName: slrv-deploy-ingress
+# #           servicePort: 3000
+# #   - host: dev.apps.capecodcommission.org
+# #     http:
+# #       paths:
+# #       - path: /
+# #         backend:
+# #           serviceName: slrv-dev-deploy-ingress
+# #           servicePort: 3000
+# #   - host: uat.apps.capecodcommission.org
+# #     http:
+# #       paths:
+# #       - path: /
+# #         backend:
+# #           serviceName: slrv-uat-deploy-ingress
+# #           servicePort: 3000
 
-# ---
-# kind: Service
-# apiVersion: v1
-# metadata:
-#   name: slrvsvc-service-ingress
-#   namespace: ingress
-# spec:
-#   type: ExternalName
-#   externalName: slrvsvc.slrv.svc.cluster.local
-#   ports:
-#   - port: 3000
-# ---
-# kind: Service
-# apiVersion: v1
-# metadata:
-#   name: slrvuatsvc-service-ingress
-#   namespace: ingress
-# spec:
-#   type: ExternalName
-#   externalName: slrvuatsvc.slrv.svc.cluster.local
-#   ports:
-#   - port: 3000
-# ---
-# kind: Service
-# apiVersion: v1
-# metadata:
-#   name: slrvdevsvc-service-ingress
-#   namespace: ingress
-# spec:
-#   type: ExternalName
-#   externalName: slrvdevsvc.slrv.svc.cluster.local
-#   ports:
-#   - port: 3000
+# # ---
+# # kind: Service
+# # apiVersion: v1
+# # metadata:
+# #   name: slrvsvc-service-ingress
+# #   namespace: ingress
+# # spec:
+# #   type: ExternalName
+# #   externalName: slrvsvc.slrv.svc.cluster.local
+# #   ports:
+# #   - port: 3000
+# # ---
+# # kind: Service
+# # apiVersion: v1
+# # metadata:
+# #   name: slrvuatsvc-service-ingress
+# #   namespace: ingress
+# # spec:
+# #   type: ExternalName
+# #   externalName: slrvuatsvc.slrv.svc.cluster.local
+# #   ports:
+# #   - port: 3000
+# # ---
+# # kind: Service
+# # apiVersion: v1
+# # metadata:
+# #   name: slrvdevsvc-service-ingress
+# #   namespace: ingress
+# # spec:
+# #   type: ExternalName
+# #   externalName: slrvdevsvc.slrv.svc.cluster.local
+# #   ports:
+# #   - port: 3000
 
-# ---
-# apiVersion: certmanager.k8s.io/v1alpha1
-# kind: ClusterIssuer
-# metadata:
-#   name: letsencrypt-prod
-#   namespace: ingress
-# spec:
-#   acme:
-#     server: https://acme-v02.api.letsencrypt.org/directory
-#     email: info@capecodcommission.org
-#     privateKeySecretRef:
-#       name: letsencrypt-prod
-#     http01: {}
+# # ---
+# # apiVersion: certmanager.k8s.io/v1alpha1
+# # kind: ClusterIssuer
+# # metadata:
+# #   name: letsencrypt-prod
+# #   namespace: ingress
+# # spec:
+# #   acme:
+# #     server: https://acme-v02.api.letsencrypt.org/directory
+# #     email: info@capecodcommission.org
+# #     privateKeySecretRef:
+# #       name: letsencrypt-prod
+# #     http01: {}
 
-# ---
-# - apiVersion: extensions/apps/v1beta1
-#   kind: Ingress
-#   metadata:
-#     name: ccc-ingress
-#     namespace: ingress
-#     annotations:
-#       kubernetes.io/ingress.class: nginx
-#       certmanager.k8s.io/cluster-issuer: letsencrypt-prod
-#       nginx.ingress.kubernetes.io/rewrite-target: /
-#   spec:
-#     tls:
-#     - hosts:
-#       - www.apps.capecodcommission.org/slrv
-#       secretName: slrv-tls-secret
-#     - hosts:
-#       - apps.capecodcommission.org/slrv/uat
-#       secretName: slrvuat-tls-secret
-#     - hosts:
-#       - apps.capecodcommission.org/slrv/dev
-#       secretName: slrvdev-tls-secret
-#     rules:
-#     - host: www.apps.capecodcommission.org/slrv
-#       http:
-#         paths:
-#         - path: /
-#           backend:
-#             serviceName: slrv-svc
-#             servicePort: 3000
-#     - host: apps.capecodcommission.org/slrv/uat
-#       http:
-#         paths:---
-# apiVersion: certmanager.k8s.io/v1alpha1
-# kind: Certificate
-# metadata:
-#   name: apps-tls-secret
-# spec:
-#   secretName: apps-tls-secret
-#   dnsNames:
-#   - '*.apps.capecodcommission.org'
-#   acme:
-#     config:
-#     - http01:
-#         ingressClass: nginx
-#       domains:
-#       - '*.apps.capecodcommission.org'
-#   issuerRef:
-#     name: letsencrypt-prod
-#     kind: ClusterIssuer
-#         - path: /
-#           backend:
-#             serviceName: slrv-uat-svc
-#             servicePort: 3002
-#     - host: apps.capecodcommission.org/slrv/dev
-#       http:
-#         paths:
-#         - path: /
-#           backend:
-#             serviceName: slrv-dev-svc
-#             servicePort: 3030
-# kind: List
-# metadata: {}
+# # ---
+# # - apiVersion: extensions/apps/v1beta1
+# #   kind: Ingress
+# #   metadata:
+# #     name: ccc-ingress
+# #     namespace: ingress
+# #     annotations:
+# #       kubernetes.io/ingress.class: nginx
+# #       certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+# #       nginx.ingress.kubernetes.io/rewrite-target: /
+# #   spec:
+# #     tls:
+# #     - hosts:
+# #       - www.apps.capecodcommission.org/slrv
+# #       secretName: slrv-tls-secret
+# #     - hosts:
+# #       - apps.capecodcommission.org/slrv/uat
+# #       secretName: slrvuat-tls-secret
+# #     - hosts:
+# #       - apps.capecodcommission.org/slrv/dev
+# #       secretName: slrvdev-tls-secret
+# #     rules:
+# #     - host: www.apps.capecodcommission.org/slrv
+# #       http:
+# #         paths:
+# #         - path: /
+# #           backend:
+# #             serviceName: slrv-svc
+# #             servicePort: 3000
+# #     - host: apps.capecodcommission.org/slrv/uat
+# #       http:
+# #         paths:---
+# # apiVersion: certmanager.k8s.io/v1alpha1
+# # kind: Certificate
+# # metadata:
+# #   name: apps-tls-secret
+# # spec:
+# #   secretName: apps-tls-secret
+# #   dnsNames:
+# #   - '*.apps.capecodcommission.org'
+# #   acme:
+# #     config:
+# #     - http01:
+# #         ingressClass: nginx
+# #       domains:
+# #       - '*.apps.capecodcommission.org'
+# #   issuerRef:
+# #     name: letsencrypt-prod
+# #     kind: ClusterIssuer
+# #         - path: /
+# #           backend:
+# #             serviceName: slrv-uat-svc
+# #             servicePort: 3002
+# #     - host: apps.capecodcommission.org/slrv/dev
+# #       http:
+# #         paths:
+# #         - path: /
+# #           backend:
+# #             serviceName: slrv-dev-svc
+# #             servicePort: 3030
+# # kind: List
+# # metadata: {}

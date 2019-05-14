@@ -1,17 +1,20 @@
 # **CCC Sea Level Rise Viewer**
 
-> A visualization of bathtub sea level, showing flooding extent upon critical facilities and roads with related reference layers.
+> A visualization of sea level, showing flooding extent upon regional critical facilities and roads with related reference layers. The application is based upon React Boilerplate and uses esri-leaflet, mobx and other dependencies.
 
 
 ## Local Docker Builds 
 ```bash
 # Navigate to the project directory
-cd cape-cod-coastal-planner/
+cd sea-level-rise-viewer/
 
-# Build services, volumes, and networks with Docker-compose
+# Comment 2 step build blocks at top & uncomment docker start block below in Dockerfile
+# & save changes
+
+# Build services, volumes, and networks with docker-compose
 docker-compose up --build
 
-# Delete local services, networks, and volumes
+# Delete local services, networks, and volumes with docker-compose
 docker-compose down -v
 ```
 
@@ -25,7 +28,7 @@ git rebase -i dev
 # Checkout, merge, and push rebased changes into dev
 git checkout dev
 git merge feature_branch
-git push dev
+git push origin dev
 ```
 
 ---
