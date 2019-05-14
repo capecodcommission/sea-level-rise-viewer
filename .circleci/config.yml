@@ -5,7 +5,7 @@ jobs:
     parameters:
       imageName:
         description: "The name of the SLRV image"
-        type: env_var_name
+        type: string
         default: slr-image:tag
     docker:
       - image: circleci/node
