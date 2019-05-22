@@ -7,7 +7,7 @@ import * as geocoder from 'esri-leaflet-geocoder'
 import css from './EsriLeafletMap.css'
 import {observer} from 'mobx-react'
 // eslint-disable-next-line
-import {easyPrint} from 'leaflet-easyprint'
+// import {easyPrint} from 'leaflet-easyprint'
 
 // Reactive component https://mobx.js.org/refguide/observer-component.html
 @observer
@@ -29,8 +29,6 @@ class EsriLeafletMap extends Component {
 
     RootStore.EsriMapStore.setCurrentBaseMapObject(currentBasemapObj)
 
-    const townLines = RootStore.MapServicesStore.townLines
-
     // Set constant using zoom level array from store
     const zoom_Level = RootStore.EsriMapStore.currentZoomLevel
     const streets = RootStore.EsriMapStore.currentBaseMapObject
@@ -40,7 +38,7 @@ class EsriLeafletMap extends Component {
       L.map('map', {
         center: RootStore.EsriMapStore.startView,
         zoom: zoom_Level,
-        layers: [streets, townLines],
+        layers: [streets],
         zoomControl: false,
         attributionControl: false,
       })
@@ -56,12 +54,12 @@ class EsriLeafletMap extends Component {
 
     // Add custom Leaflet control to handle centered map printing in portrait and landscape formats
     // RootStore.EsriMapStore.printer.addTo(map)
-    L.easyPrint({
-      title: 'Print',
-      position: 'topright',
-      sizeModes: ['A4Portrait', 'A4Landscape'],
-      customWindowTitle: 'CCC ~ Sea Level Rise Viewer',
-    }).addTo(map)
+    // L.easyPrint({
+    //   title: 'Print',
+    //   position: 'topright',
+    //   sizeModes: ['A4Portrait', 'A4Landscape'],
+    //   customWindowTitle: 'CCC ~ Sea Level Rise Viewer',
+    // }).addTo(map)
 
     var searchControl = geocoder
       .geosearch()
@@ -104,6 +102,8 @@ class EsriLeafletMap extends Component {
         homeButton.style.height = '30px'
         homeButton.style.marginTop = '10px'
         homeButton.style.paddingTop = '10px'
+        homeButton.style.cursor = 'pointer'
+        homeButton.title = 'Go to home extent'
         homeButton.onclick = function() {
           RootStore.EsriMapStore.map.setView(
             RootStore.EsriMapStore.startView,

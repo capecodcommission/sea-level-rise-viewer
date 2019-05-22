@@ -75,7 +75,9 @@ class EsriMapStore {
     ) {
       this.RootStore.GeoJSONStore.criticalFacilitiesIntersection.clearLayers()
       this.map.removeLayer(
-        this.RootStore.GeoJSONStore.criticalFacilitiesIntersection
+        this.RootStore.GeoJSONStore.criticalFacilitiesIntersection &&
+        this.RootStore.GeoJSONStore.currentSLRLayer &&
+        this.RootStore.GeoJSONStore.currentRoadLayer
       )
     }
     if (this.RootStore.GeoJSONStore.critFacWhere.length > 1) {
@@ -205,24 +207,23 @@ class EsriMapStore {
       this.RootStore.MapServicesStore.criticalFacilities,
       this.RootStore.MapServicesStore.slosh,
       this.RootStore.MapServicesStore.femaFirm,
-      // this.RootStore.GeoJSONStore.currentSLRLayer,
-      // this.RootStore.GeoJSONStore.currentRoadLayer,
+      this.RootStore.GeoJSONStore.currentSLRLayer,
+      this.RootStore.GeoJSONStore.currentRoadLayer,
       this.RootStore.GeoJSONStore.criticalFacilitiesIntersection,
       this.RootStore.MapServicesStore.searchResults,
     ]
+    
     let map = this.map
 
     // CHECK TO SEE IF ALL THE LAYERS DO NOT EXIST - IF TRUE, ALERT THE USER TO ADD LAYERS
     if (
-      !this.map.hasLayer(this.RootStore.MapServicesStore.criticalFacilities) &&
-      !this.map.hasLayer(this.RootStore.MapServicesStore.slosh) &&
-      !this.map.hasLayer(this.RootStore.MapServicesStore.femaFirm) &&
-      // !this.map.hasLayer(this.RootStore.GeoJSONStore.currentSLRLayer) &&
-      // !this.map.hasLayer(this.RootStore.GeoJSONStore.currentRoadLayer) &&
-      !this.map.hasLayer(
-        this.RootStore.GeoJSONStore.criticalFacilitiesIntersection
-      ) &&
-      !this.map.hasLayer(this.RootStore.MapServicesStore.searchResults)
+      !map.hasLayer(this.RootStore.MapServicesStore.criticalFacilities) &&
+      !map.hasLayer(this.RootStore.MapServicesStore.slosh) &&
+      !map.hasLayer(this.RootStore.MapServicesStore.femaFirm) &&
+      !map.hasLayer(this.RootStore.GeoJSONStore.currentSLRLayer) &&
+      !map.hasLayer(this.RootStore.GeoJSONStore.currentRoadLayer) &&
+      !map.hasLayer(this.RootStore.GeoJSONStore.criticalFacilitiesIntersection) &&
+      !map.hasLayer(this.RootStore.MapServicesStore.searchResults)
     ) {
       alert("Doh! This button doesn't do anything until you add layers.")
     }
@@ -240,7 +241,7 @@ class EsriMapStore {
     this.RootStore.ControlPanelStore.criticalFacilitiesBackground = false
     this.RootStore.ControlPanelStore.femaFirmBackground = false
     this.RootStore.ControlPanelStore.sloshBackground = false
-    // this.RootStore.ControlPanelStore.sliderToggle = false
+    this.RootStore.ControlPanelStore.sliderToggle = false
 
     this.switchSLRLayer(0)
   }
@@ -767,16 +768,6 @@ class ControlPanelStore {
 }
 
 class MapServicesStore {
-  townLines: init = esri.featureLayer({
-    url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/Data_People/Boundary/MapServer/6',
-    style: function(feature) {
-      return {
-        color: '#7e8b9e',
-        weight: 2,
-      }
-    },
-  })
   criticalFacilities: init = eLCluster
     .featureLayer({
       url:
@@ -814,12 +805,7 @@ class MapServicesStore {
         layer.feature.properties
       )
     })
-  // TODO: REMOVE OR USE
-  // socialVulnerability: init = esri.featureLayer({
-  //   url:
-  //     'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SocialVulnerability/MapServer/0',
-  // })
-  // TODO: USE WHICHEVER IS DECIDED
+  // TODO: KEEPING NOAA SERVICES FOR FUTURE CCC-NOAA COMPARISON
   zeroFtSeaLevel: init = esri.dynamicMapLayer({
     url:
       // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_0ft/MapServer',
@@ -874,16 +860,6 @@ class MapServicesStore {
     // 'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/SLOSH_2013/MapServer',
     opacity: 0.5,
   })
-  // TODO: EITHER REMOVE OR USE/REPLACE ONCE DECISION IS MADE BY CCC
-  // buildings: init = esri.featureLayer({
-  //   url:
-  //     'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/Buildings/MapServer',
-  //   opacity: 0.3,
-  // })
-  // parcels: init = esri.featureLayer({
-  //   url:
-  //     'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/TaxParcel_Yellow/MapServer',
-  // })
   roads: init = esri.dynamicMapLayer({
     url:
       '',

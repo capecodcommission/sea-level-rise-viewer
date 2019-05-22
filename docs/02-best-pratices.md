@@ -47,7 +47,6 @@ You should also let MobX manage component state.
 
 ```javascript
 import React, {Component} from 'react'
-import {observable} from 'mobx'
 import {observer} from 'mobx-react'
 
 class Hello extends Component {

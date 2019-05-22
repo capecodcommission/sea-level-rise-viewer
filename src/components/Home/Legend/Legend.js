@@ -9,19 +9,6 @@ import RootStore from '../../../store'
 class Legend extends Component {
   // Render all control panel sub-components in 'react-bootstrap' Grid
   render = () => {
-    let townLinesLegend = (
-      <Row style={{paddingTop: '1em', paddingBottom: '1em'}}>
-        <Col xs={3} sm={3} md={3} lg={3}>
-          <div
-            style={{backgroundColor: '#7e8b9e'}}
-            className={css.colorBar}
-          />
-        </Col>
-        <Col xs={9} sm={9} md={9} lg={9}>
-          <strong>TOWN LINES</strong>
-        </Col>
-      </Row>
-    )
 
     let disConRoadsLegend = (
       <Row style={{paddingTop: '1em'}}>
@@ -51,7 +38,7 @@ class Legend extends Component {
     let critFacLegend = (
       <div className={css.imgTextFix}>
         <Image
-          src={require('../ControlPanel/img/Icon-Critical-Facilities.png')}
+          src={require('../ControlPanel/img/critical-facilities.png')}
           className={css.critFac}
           circle
         />
@@ -125,7 +112,7 @@ class Legend extends Component {
     let femaLegend = (
       <div>
         <Row>
-          <strong className={css.legendSubTitles}>FEMA</strong>
+          <strong className={css.legendSubTitles}>FIRM</strong>
         </Row>
         <Row>
           <Col xs={3} sm={3} md={3} lg={3}  style={{paddingTop: '0.25em'}}>
@@ -155,7 +142,7 @@ class Legend extends Component {
     let intersectLegend = (
       <div className={css.imgTextFix}>
         <Image
-          src={require('../ControlPanel/img/Icon_Critical-Facilities-Affected.png')}
+          src={require('../ControlPanel/img/critical-facilities-affected.png')}
           className={css.affectedCritFac}
           circle
         />
@@ -179,7 +166,6 @@ class Legend extends Component {
             </Row>
             <Row>
               <Col xs={6} sm={6} md={6} lg={6}>
-                {townLinesLegend}
                 {RootStore.ControlPanelStore.sloshBackground ? sloshLegend : null}
               </Col>
               <Col xs={6} sm={6} md={6} lg={6}>

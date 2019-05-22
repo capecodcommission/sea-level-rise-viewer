@@ -44,7 +44,7 @@
   height: 75px;
 }
 
-.femaFirm {
+.firm {
   background: #416285;
   width: 75px;
   height: 75px;
@@ -58,7 +58,7 @@
 
 .clickedButton {
   background: #2ca5c3;
-  border: 2px solid white;
+  border: 3px solid white;
   width: 75px;
   height: 75px;
 }
@@ -66,10 +66,10 @@
 /* ADD HOVER EFFECTS TO PROVIDE USER FEEDBACK */
 .criticalFacilities:hover,
 .slosh:hover,
-.femaFirm:hover,
+.firm:hover,
 .clickedButton:hover {
   cursor: pointer;
-  background-color: #f7fcb9;
+  background-color: white;
 }
 
 .slider {
@@ -89,7 +89,7 @@
 }
 
 .intersectingIcon {
-  background-image: url('./img/Icon_Critical-Facilities-Affected.svg');
+  background-image: url('./img/critical-facilities-affected.svg');
   background-color: #de2d26;
   background-size: cover;
   border-radius: 50%;
@@ -98,7 +98,7 @@
 }
 
 .nonIntersectingIcon {
-  background-image: url('./img/Icon-Critical-Facilities.svg');
+  background-image: url('./img/critical-facilities.svg');
   background-color: #2ca5c3;
   background-size: cover;
   border-radius: 50%;
@@ -128,6 +128,6 @@
 
 .fillGauge {
   margin: 0 auto 0;
-  background-image: url('../img/Icon_SLR.png');
+  background-image: url('../img/SLR.png');
   background-size: cover;
 }

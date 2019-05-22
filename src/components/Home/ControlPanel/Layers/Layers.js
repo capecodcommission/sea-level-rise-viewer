@@ -86,8 +86,8 @@ class Layers extends Component {
     )
 
     let femaFirmDescription = (
-      <Popover id="fema" title="FEMA FIRM">
-        <p>This is the <strong>FEMA FIRM</strong> Digital Flood Insurance Rate Maps
+      <Popover id="firm" title="FIRM">
+        <p>This is the <strong>FIRM</strong> Digital Flood Insurance Rate Maps
         (DFIRM) for Barnstable County. </p> <p>More information and the data is
         available{' '}
           <a
@@ -387,7 +387,7 @@ class Layers extends Component {
       <div>
         <Col xs={12} md={12} lg={12}>
           <OverlayTrigger
-            trigger="click"
+            trigger={['hover', 'focus']}
             rootClose
             placement="top"
             overlay={criticalFacilitiesDescription}
@@ -416,7 +416,7 @@ class Layers extends Component {
                   ? css.clickedButton
                   : css.criticalFacilities
               }
-              src={require('../img/Icon-Critical-Facilities.png')}
+              src={require('../img/critical-facilities.png')}
               circle
             />
           </OverlayTrigger>
@@ -428,7 +428,7 @@ class Layers extends Component {
       <div>
         <Col xs={6} md={6} lg={6}>
           <OverlayTrigger
-            trigger="click"
+            trigger={['hover', 'focus']}
             rootClose
             placement="top"
             overlay={sloshDescription}
@@ -445,7 +445,7 @@ class Layers extends Component {
                 ? css.clickedButton
                 : css.slosh
             }
-            src={require('../img/Icon_SLOSH.png')}
+            src={require('../img/SLOSH.png')}
             circle
           />
         </Col>
@@ -456,7 +456,7 @@ class Layers extends Component {
       <div>
         <Col xs={6} md={6} lg={6}>
           <OverlayTrigger
-            trigger="click"
+            trigger={['hover', 'focus']}
             rootClose
             placement="top"
             overlay={femaFirmDescription}
@@ -465,15 +465,15 @@ class Layers extends Component {
               <Glyphicon glyph="glyphicon glyphicon-info-sign" />
             </Button>
           </OverlayTrigger>
-          <strong className = {css.layerTitle}>FEMA</strong>
+          <strong className = {css.layerTitle}>FIRM</strong>
           <Image
             onClick={RootStore.ControlPanelStore.handleFemaFirmClick.bind(this)}
             className={
               RootStore.ControlPanelStore.femaFirmBackground
                 ? css.clickedButton
-                : css.femaFirm
+                : css.firm
             }
-            src={require('../img/Icon_FEMA-2.png')}
+            src={require('../img/FIRM.png')}
             circle
           />
         </Col>
@@ -562,6 +562,8 @@ class Layers extends Component {
       RootStore.ControlPanelStore.criticalFacilitiesBackground,
       RootStore.ControlPanelStore.femaFirmBackground,
       RootStore.ControlPanelStore.sloshBackground,
+      RootStore.ControlPanelStore.currentLiquidValue,
+      RootStore.ControlPanelStore.currentSliderValue,
     ]
 
     let removeLayersButton = (
@@ -572,7 +574,7 @@ class Layers extends Component {
         overlay={clearLayerDesc}
       >
         <Button
-          style={{paddingBottom: '0', marginBottom: '0', transform: 'translate(-25px, -5px)', visibility: layerToggles.every(i => !i) ? 'hidden' : 'visible'}}
+          style={{paddingBottom: '0em', marginTop: '0.4em', marginBottom: '0em', transform: 'translate(-25px, -5px)', visibility: layerToggles.every(i => !i) ? 'hidden' : 'visible'}}
           bsSize="xsmall"
           onClick={RootStore.EsriMapStore.removeToggleableLayers}
         >
@@ -584,16 +586,20 @@ class Layers extends Component {
     let liquidFillGauge = (
       <div>
         <Col xs={1} md={1} lg={1} mdOffset={1}>
-          <OverlayTrigger
-            trigger="click"
-            rootClose
-            placement="top"
-            overlay={slrDescription}
-          >
-            <Button bsSize="xsmall">
-              <Glyphicon glyph="glyphicon glyphicon-info-sign" />
-            </Button>
-          </OverlayTrigger>
+          <Row>
+            <OverlayTrigger
+              trigger="click"
+              rootClose
+              placement="top"
+              overlay={slrDescription}
+            >
+              <Button
+                bsSize="xsmall"
+              >
+                <Glyphicon glyph="glyphicon glyphicon-info-sign" />
+              </Button>
+            </OverlayTrigger>
+          </Row>
         </Col>
         <OverlayTrigger
           trigger={['hover']}
@@ -602,7 +608,7 @@ class Layers extends Component {
         >
           <Col style = {{paddingLeft: '0em'}} xs={6} md={6} lg={6}>
             <LiquidFillGauge
-              style={{margin: '0 auto 0', backgroundImage: 'url(' + require('../img/Icon_SLR.png') + ')', backgroundSize: 'cover'}}
+              style={{margin: '0 auto 0', backgroundImage: 'url(' + require('../img/SLR.png') + ')', backgroundSize: 'cover'}}
               width={radius * 3}
               height={radius * 3}
               value={RootStore.ControlPanelStore.currentLiquidValue}

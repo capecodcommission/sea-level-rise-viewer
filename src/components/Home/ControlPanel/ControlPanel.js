@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import BaseMapSwitcher from './BaseMapSwitcher/BaseMapSwitcher'
 import Layers from './Layers/Layers'
 import Title from './Title/Title'
+import Logo from './Logo/Logo'
 import {observer} from 'mobx-react'
 import {Row, Col, Grid, Button, Image} from 'react-bootstrap'
 import css from './ControlPanel.css'
@@ -41,12 +42,13 @@ class ControlPanel extends Component {
                   ? css.panelToggleImageOpen 
                   : css.panelToggleImageClosed
               } 
-              src={require('./img/leftArrow.png')} 
+              src={require('./img/left-arrow.png')} 
               circle 
             />
           </Button>
           <Col>
             <Title />
+            <Logo />
             <BaseMapSwitcher />
             <Layers />
           </Col>
