@@ -33,6 +33,7 @@ class ControlPanel extends Component {
               zIndex: '10', 
               left: '275px',
               top: '10px',
+              outline: 0,
             }} 
             onClick = {RootStore.ControlPanelStore.togglePanel.bind(this)}
           >

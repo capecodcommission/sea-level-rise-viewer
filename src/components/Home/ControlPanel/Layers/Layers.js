@@ -68,30 +68,12 @@ class Layers extends Component {
       </Popover>
     )
 
-    let sloshDescription = (
-      <Popover id="slosh" title="SLOSH">
-        <p>This is the <strong>SLOSH</strong> (Sea, Lake and Overland Surge from
-        Hurricane) model visualization for Barnstable County.</p> <p>The data and more
+    let noaaCoastalFloodHazardCompositeDescription = (
+      <Popover id="coastalFloodHazardComposite" title="NOAA Coastal Flood Hazard Composite">
+        <p>The <strong>NOAA Coastal Flood Hazard Composite</strong> datalayer shows the spatial extents of multiple flood hazard data sets combined.</p> <p>The data and more
         information is available{' '}
           <a
-            href="https://www.coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_StormSurge/MapServer"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            here
-          </a>
-        .
-        </p>
-      </Popover>
-    )
-
-    let femaFirmDescription = (
-      <Popover id="firm" title="FIRM">
-        <p>This is the <strong>FIRM</strong> Digital Flood Insurance Rate Maps
-        (DFIRM) for Barnstable County. </p> <p>More information and the data is
-        available{' '}
-          <a
-            href="https://www.coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_FEMAFloodZones/MapServer"
+            href="https://coast.noaa.gov/data/digitalcoast/pdf/flood-exposure-data.pdf"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -387,7 +369,7 @@ class Layers extends Component {
       <div>
         <Col xs={12} md={12} lg={12}>
           <OverlayTrigger
-            trigger={['hover', 'focus']}
+            trigger="click"
             rootClose
             placement="top"
             overlay={criticalFacilitiesDescription}
@@ -396,7 +378,7 @@ class Layers extends Component {
               <Glyphicon glyph="glyphicon glyphicon-info-sign" />
             </Button>
           </OverlayTrigger>
-          <strong className = {css.layerTitle}>Critical Facilities</strong>
+          <Col><strong className = {css.layerTitle}>Critical Facilities</strong></Col>
           <OverlayTrigger
             trigger={['hover', 'focus']}
             placement="right"
@@ -424,56 +406,30 @@ class Layers extends Component {
       </div>
     )
 
-    let sloshImage = (
+    let noaaCoastalFloodHazardCompositeImage = (
       <div>
-        <Col xs={6} md={6} lg={6}>
+        <Col xs={12} md={12} lg={12}>
           <OverlayTrigger
-            trigger={['hover', 'focus']}
+            trigger="click"
             rootClose
             placement="top"
-            overlay={sloshDescription}
+            overlay={noaaCoastalFloodHazardCompositeDescription}
           >
             <Button bsSize="xsmall">
               <Glyphicon glyph="glyphicon glyphicon-info-sign" />
             </Button>
           </OverlayTrigger>
-          <strong className = {css.layerTitle}>SLOSH</strong>
+          <Col><strong className = {css.layerTitle}>NOAA Coastal Flood Hazard Composite</strong></Col>
           <Image
-            onClick={RootStore.ControlPanelStore.handleSloshClick.bind(this)}
+            onClick={RootStore.ControlPanelStore.handleSloshClick.bind(
+              this
+            )}
             className={
               RootStore.ControlPanelStore.sloshBackground
                 ? css.clickedButton
-                : css.slosh
+                : css.coastalFloodHazardComposite
             }
             src={require('../img/SLOSH.png')}
-            circle
-          />
-        </Col>
-      </div>
-    )
-
-    let femaImage = (
-      <div>
-        <Col xs={6} md={6} lg={6}>
-          <OverlayTrigger
-            trigger={['hover', 'focus']}
-            rootClose
-            placement="top"
-            overlay={femaFirmDescription}
-          >
-            <Button bsSize="xsmall">
-              <Glyphicon glyph="glyphicon glyphicon-info-sign" />
-            </Button>
-          </OverlayTrigger>
-          <strong className = {css.layerTitle}>FIRM</strong>
-          <Image
-            onClick={RootStore.ControlPanelStore.handleFemaFirmClick.bind(this)}
-            className={
-              RootStore.ControlPanelStore.femaFirmBackground
-                ? css.clickedButton
-                : css.firm
-            }
-            src={require('../img/FIRM.png')}
             circle
           />
         </Col>
@@ -560,7 +516,6 @@ class Layers extends Component {
 
     let layerToggles = [
       RootStore.ControlPanelStore.criticalFacilitiesBackground,
-      RootStore.ControlPanelStore.femaFirmBackground,
       RootStore.ControlPanelStore.sloshBackground,
       RootStore.ControlPanelStore.currentLiquidValue,
       RootStore.ControlPanelStore.currentSliderValue,
@@ -689,13 +644,10 @@ class Layers extends Component {
           <Col xs={12} md={12} lg={12}>{slider}</Col>
         </Row>
         <Row>
-          <Col style = {{marginTop: '5px'}} md={12}>{critFacImage}</Col>
+          <Col style = {{marginTop: '5px'}}>{critFacImage}</Col>
         </Row>
         <Row>
-          <Col style={{paddingLeft: '0px', paddingRight: '0px', marginTop: '5px'}} xs={12}>
-            {sloshImage}
-            {femaImage}
-          </Col>
+          <Col style = {{marginTop: '5px'}}>{noaaCoastalFloodHazardCompositeImage}</Col>
         </Row>
       </div>
     )
