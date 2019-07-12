@@ -927,32 +927,49 @@ class MapServicesStore {
     opacity: 0.5,
   })
   roads: init = esri.dynamicMapLayer({
-    url:
-      '',
+    url: '',
   })
-  roads1ftSeaLevel: init = esri.dynamicMapLayer({
+  roads1ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_1ft/MapServer',
+    'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_1ft/MapServer/0',
+    style: function (feature) {
+      return {color: '#756bb1', weight: 3}
+    },
   })
-  roads2ftSeaLevel: init = esri.dynamicMapLayer({
+  roads2ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_2ft/MapServer',
+      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_2ft/MapServer/0',
+    style: function (feature) {
+      return {color: '#756bb1', weight: 3}
+    },
   })
-  roads3ftSeaLevel: init = esri.dynamicMapLayer({
+  roads3ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_3ft/MapServer',
+      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_3ft/MapServer/0',
+    style: function (feature) {
+      return {color: '#756bb1', weight: 3}
+    },
   })
-  roads4ftSeaLevel: init = esri.dynamicMapLayer({
+  roads4ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_4ft/MapServer',
+      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_4ft/MapServer/0',
+    style: function (feature) {
+      return {color: '#756bb1', weight: 3}
+    },
   })
-  roads5ftSeaLevel: init = esri.dynamicMapLayer({
+  roads5ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_5ft/MapServer',
+      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_5ft/MapServer/0',
+    style: function (feature) {
+      return {color: '#756bb1', weight: 3}
+    },
   })
-  roads6ftSeaLevel: init = esri.dynamicMapLayer({
+  roads6ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_6ft/MapServer',
+      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_6ft/MapServer/0',
+    style: function (feature) {
+      return {color: '#756bb1', weight: 3}
+    },  
   })
   @observable searchResults: init = L.layerGroup()
 
@@ -1008,6 +1025,11 @@ class GeoJSONStore {
       .then(response => {
         this.SLR_0ft_geojson = L.geoJSON(response.data)
       })
+      .catch(error => {
+        // handle error
+        console.log(error)
+        alert('Something went wrong. Try reloading your page.')
+      })
   }
 
   load_1ft_geojson = () => {
@@ -1017,6 +1039,11 @@ class GeoJSONStore {
       )
       .then(response => {
         this.SLR_1ft_geojson = L.geoJSON(response.data)
+      })
+      .catch(error => {
+        // handle error
+        console.log(error)
+        alert('Something went wrong. Try reloading your page.')
       })
   }
 
@@ -1028,6 +1055,11 @@ class GeoJSONStore {
       .then(response => {
         this.SLR_2ft_geojson = L.geoJSON(response.data)
       })
+      .catch(error => {
+        // handle error
+        console.log(error)
+        alert('Something went wrong. Try reloading your page.')
+      })
   }
 
   load_3ft_geojson = () => {
@@ -1037,6 +1069,11 @@ class GeoJSONStore {
       )
       .then(response => {
         this.SLR_3ft_geojson = L.geoJSON(response.data)
+      })
+      .catch(error => {
+        // handle error
+        console.log(error)
+        alert('Something went wrong. Try reloading your page.')
       })
   }
 
@@ -1048,6 +1085,11 @@ class GeoJSONStore {
       .then(response => {
         this.SLR_4ft_geojson = L.geoJSON(response.data)
       })
+      .catch(error => {
+        // handle error
+        console.log(error)
+        alert('Something went wrong. Try reloading your page.')
+      })
   }
 
   load_5ft_geojson = () => {
@@ -1058,6 +1100,11 @@ class GeoJSONStore {
       .then(response => {
         this.SLR_5ft_geojson = L.geoJSON(response.data)
       })
+      .catch(error => {
+        // handle error
+        console.log(error)
+        alert('Something went wrong. Try reloading your page.')
+      })
   }
 
   load_6ft_geojson = () => {
@@ -1067,6 +1114,11 @@ class GeoJSONStore {
       )
       .then(response => {
         this.SLR_6ft_geojson = L.geoJSON(response.data)
+      })
+      .catch(error => {
+        // handle error
+        console.log(error)
+        alert('Something went wrong. Try reloading your page.')
       })
   }
 
