@@ -58,6 +58,7 @@ class EsriMapStore {
     this.RootStore.GeoJSONStore.currentSLRLayer.addTo(this.map)
     this.RootStore.GeoJSONStore.currentRoadLayer.addTo(this.map)
     this.RootStore.GeoJSONStore.criticalFacilitiesIntersection.addTo(this.map)
+    this.RootStore.GeoJSONStore.currentLowLyingLayer.addTo(this.map)
   }
 
   // Remove or reset map-attached layers, nullify intersection-OBJECTID array if filled
@@ -85,6 +86,9 @@ class EsriMapStore {
     }
     if (this.map.hasLayer(this.RootStore.MapServicesStore.criticalFacilities)) {
       this.RootStore.MapServicesStore.criticalFacilities.setWhere('')
+    }
+    if (this.map.hasLayer(this.RootStore.GeoJSONStore.currentLowLyingLayer)) {
+      this.map.removeLayer(this.RootStore.GeoJSONStore.currentLowLyingLayer)
     }
   }
 
@@ -470,42 +474,49 @@ class ControlPanelStore {
         geoJSONStore.currentSLRLayer = mapServicesStore.zeroFtSeaLevel
         geoJSONStore.currentRoadLayer = mapServicesStore.roads
         geoJSONStore.currentSLR_geojson = geoJSONStore.SLR_0ft_geojson
+        geoJSONStore.currentLowLyingLayer = mapServicesStore.zeroFtLowLyingArea
         break
 
       case 1:
         geoJSONStore.currentSLRLayer = mapServicesStore.oneFtSeaLevel
         geoJSONStore.currentRoadLayer = mapServicesStore.roads1ftSeaLevel
         geoJSONStore.currentSLR_geojson = geoJSONStore.SLR_1ft_geojson
+        geoJSONStore.currentLowLyingLayer = mapServicesStore.oneFtLowLyingArea
         break
 
       case 2:
         geoJSONStore.currentSLRLayer = mapServicesStore.twoFtSeaLevel
         geoJSONStore.currentRoadLayer = mapServicesStore.roads2ftSeaLevel
         geoJSONStore.currentSLR_geojson = geoJSONStore.SLR_2ft_geojson
+        geoJSONStore.currentLowLyingLayer = mapServicesStore.twoFtLowLyingArea
         break
 
       case 3:
         geoJSONStore.currentSLRLayer = mapServicesStore.threeFtSeaLevel
         geoJSONStore.currentRoadLayer = mapServicesStore.roads3ftSeaLevel
         geoJSONStore.currentSLR_geojson = geoJSONStore.SLR_3ft_geojson
+        geoJSONStore.currentLowLyingLayer = mapServicesStore.threeFtLowLyingArea
         break
 
       case 4:
         geoJSONStore.currentSLRLayer = mapServicesStore.fourFtSeaLevel
         geoJSONStore.currentRoadLayer = mapServicesStore.roads4ftSeaLevel
         geoJSONStore.currentSLR_geojson = geoJSONStore.SLR_4ft_geojson
+        geoJSONStore.currentLowLyingLayer = mapServicesStore.fourFtLowLyingArea
         break
 
       case 5:
         geoJSONStore.currentSLRLayer = mapServicesStore.fiveFtSeaLevel
         geoJSONStore.currentRoadLayer = mapServicesStore.roads5ftSeaLevel
         geoJSONStore.currentSLR_geojson = geoJSONStore.SLR_5ft_geojson
+        geoJSONStore.currentLowLyingLayer = mapServicesStore.fiveFtLowLyingArea
         break
 
       case 6:
         geoJSONStore.currentSLRLayer = mapServicesStore.sixFtSeaLevel
         geoJSONStore.currentRoadLayer = mapServicesStore.roads6ftSeaLevel
         geoJSONStore.currentSLR_geojson = geoJSONStore.SLR_6ft_geojson
+        geoJSONStore.currentLowLyingLayer = mapServicesStore.sixFtLowLyingArea
         break
 
       default:
@@ -771,7 +782,7 @@ class MapServicesStore {
   criticalFacilities: init = eLCluster
     .featureLayer({
       url:
-        'http://gis-services.capecodcommission.org/arcgis/rest/services/Data_People/Infrastructure/MapServer/12',
+        'https://gis-services.capecodcommission.org/arcgis/rest/services/Data_People/Infrastructure/MapServer/12',
       pointToLayer: function(feature, latlng) {
         // CONSTRUCT A LEAFLET 'divIcon' TO INSERT INTO THE LEAFLET MARKER BELOW -
         // ALLOWING US TO STYLE THE BACKGROUND OF THE IMAGE PROGRAMMATICALLY
@@ -806,87 +817,159 @@ class MapServicesStore {
       )
     })
   // TODO: KEEPING NOAA SERVICES FOR FUTURE CCC-NOAA COMPARISON
-  zeroFtSeaLevel: init = esri.dynamicMapLayer({
-    url:
-      // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_0ft/MapServer',
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_0_Corrected/MapServer',
+  zeroFtSeaLevel: init = new esri.DynamicMapLayer({
+    // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_0ft/MapServer',
+    url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_0_Corrected/MapServer',
     opacity: 0.5,
   })
+  zeroFtLowLyingArea: init = new esri.FeatureLayer({
+    // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_0ft/MapServer',
+    url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_0_Corrected/MapServer/0',
+    where: "TYPE = 'Depression'",
+    style: function(feature) {
+
+      return {color: '#7fcdbb', weight: 1, fillOpacity: 0.9}
+    },
+  })
   oneFtSeaLevel: init = esri.dynamicMapLayer({
-    url:
-      // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_1ft/MapServer',
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_1_Corrected/MapServer',
+    // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_1ft/MapServer',
+    url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_1_Corrected/MapServer',
     opacity: 0.5,
+  })
+  oneFtLowLyingArea: init = new esri.FeatureLayer({
+    // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_1ft/MapServer',
+    url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_1_Corrected/MapServer/0',
+    where: "TYPE = 'Depression'",
+    style: function(feature) {
+      return {color: '#7fcdbb', weight: 1, fillOpacity: .9}
+    },
   })
   twoFtSeaLevel: init = esri.dynamicMapLayer({
     url:
       // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_2ft/MapServer',
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_2_Corrected/MapServer',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_2_Corrected/MapServer',
     opacity: 0.5,
+  })
+  twoFtLowLyingArea: init = new esri.FeatureLayer({
+    // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_2ft/MapServer',
+    url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_2_Corrected/MapServer/0',
+    where: "TYPE = 'Depression'",
+    style: function(feature) {
+      return {color: '#7fcdbb', weight: 1, fillOpacity: .9}
+    },
   })
   threeFtSeaLevel: init = esri.dynamicMapLayer({
     url:
       // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_3ft/MapServer',
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_3_Corrected/MapServer',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_3_Corrected/MapServer',
     opacity: 0.5,
+  })
+  threeFtLowLyingArea: init = new esri.FeatureLayer({
+    // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_3ft/MapServer',
+    url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_3_Corrected/MapServer/0',
+    where: "TYPE = 'Depression'",
+    style: function(feature) {
+      return {color: '#7fcdbb', weight: 1, fillOpacity: .9}
+    },
   })
   fourFtSeaLevel: init = esri.dynamicMapLayer({
     url:
       // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_4ft/MapServer',
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_4ft_Corrected/MapServer',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_4ft_Corrected/MapServer',
     opacity: 0.5,
+  })
+  fourFtLowLyingArea: init = new esri.FeatureLayer({
+    // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_4ft/MapServer',
+    url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_4ft_Corrected/MapServer/0',
+    where: "TYPE = 'Depression'",
+    style: function(feature) {
+      return {color: '#7fcdbb', weight: 1, fillOpacity: .9}
+    },
   })
   fiveFtSeaLevel: init = esri.dynamicMapLayer({
     url:
       // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_5ft/MapServer',
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_5ft_Corrected/MapServer',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_5ft_Corrected/MapServer',
     opacity: 0.5,
+  })
+  fiveFtLowLyingArea: init = new esri.FeatureLayer({
+    // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_5ft/MapServer',
+    url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_5ft_Corrected/MapServer/0',
+    where: "TYPE = 'Depression'",
+    style: function(feature) {
+      return {color: '#7fcdbb', weight: 1, fillOpacity: .9}
+    },
   })
   sixFtSeaLevel: init = esri.dynamicMapLayer({
     url:
       // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_6ft/MapServer',
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_6/MapServer',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_6/MapServer',
     opacity: 0.5,
+  })
+  sixFtLowLyingArea: init = new esri.FeatureLayer({
+    // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_6ft/MapServer',
+    url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_6/MapServer/0',
+    where: "TYPE = 'Depression'",
+    style: function(feature) {
+      return {color: '#7fcdbb', weight: 1, fillOpacity: .9}
+    },
   })
   femaFirm: init = esri.dynamicMapLayer({
     url:
       'https://www.coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_FEMAFloodZones/MapServer',
-    // 'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/FEMA_FIRM_2013/MapServer',
+    // 'https://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/FEMA_FIRM_2013/MapServer',
     opacity: 0.5,
   })
   slosh: init = esri.dynamicMapLayer({
     url:
       'https://www.coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_StormSurge/MapServer',
-    // 'http://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/SLOSH_2013/MapServer',
+    // 'https://gis-services.capecodcommission.org/arcgis/rest/services/Web_Basedata/SLOSH_2013/MapServer',
     opacity: 0.5,
   })
   roads: init = esri.dynamicMapLayer({
-    url:
-      '',
+    url: '',
   })
-  roads1ftSeaLevel: init = esri.dynamicMapLayer({
+  roads1ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_1ft/MapServer',
+    'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_1ft/MapServer/0',
+    style: function (feature) {
+      return {color: '#756bb1', weight: 3}
+    },
   })
-  roads2ftSeaLevel: init = esri.dynamicMapLayer({
+  roads2ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_2ft/MapServer',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_2ft/MapServer/0',
+    style: function (feature) {
+      return {color: '#756bb1', weight: 3}
+    },
   })
-  roads3ftSeaLevel: init = esri.dynamicMapLayer({
+  roads3ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_3ft/MapServer',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_3ft/MapServer/0',
+    style: function (feature) {
+      return {color: '#756bb1', weight: 3}
+    },
   })
-  roads4ftSeaLevel: init = esri.dynamicMapLayer({
+  roads4ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_4ft/MapServer',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_4ft/MapServer/0',
+    style: function (feature) {
+      return {color: '#756bb1', weight: 3}
+    },
   })
-  roads5ftSeaLevel: init = esri.dynamicMapLayer({
+  roads5ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_5ft/MapServer',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_5ft/MapServer/0',
+    style: function (feature) {
+      return {color: '#756bb1', weight: 3}
+    },
   })
-  roads6ftSeaLevel: init = esri.dynamicMapLayer({
+  roads6ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'http://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_6ft/MapServer',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_6ft/MapServer/0',
+    style: function (feature) {
+      return {color: '#756bb1', weight: 3}
+    },  
   })
   @observable searchResults: init = L.layerGroup()
 
@@ -907,6 +990,7 @@ class GeoJSONStore {
   @observable critFacWhere: init = []
   currentSLRLayer: null = {}
   currentRoadLayer: null = {}
+  currentLowLyingLayer: null = {}
   @observable
   criticalFacilitiesIntersection: init = L.geoJSON(
     {
@@ -941,6 +1025,11 @@ class GeoJSONStore {
       .then(response => {
         this.SLR_0ft_geojson = L.geoJSON(response.data)
       })
+      .catch(error => {
+        // handle error
+        console.log(error)
+        alert('Something went wrong. Try reloading your page.')
+      })
   }
 
   load_1ft_geojson = () => {
@@ -950,6 +1039,11 @@ class GeoJSONStore {
       )
       .then(response => {
         this.SLR_1ft_geojson = L.geoJSON(response.data)
+      })
+      .catch(error => {
+        // handle error
+        console.log(error)
+        alert('Something went wrong. Try reloading your page.')
       })
   }
 
@@ -961,6 +1055,11 @@ class GeoJSONStore {
       .then(response => {
         this.SLR_2ft_geojson = L.geoJSON(response.data)
       })
+      .catch(error => {
+        // handle error
+        console.log(error)
+        alert('Something went wrong. Try reloading your page.')
+      })
   }
 
   load_3ft_geojson = () => {
@@ -970,6 +1069,11 @@ class GeoJSONStore {
       )
       .then(response => {
         this.SLR_3ft_geojson = L.geoJSON(response.data)
+      })
+      .catch(error => {
+        // handle error
+        console.log(error)
+        alert('Something went wrong. Try reloading your page.')
       })
   }
 
@@ -981,6 +1085,11 @@ class GeoJSONStore {
       .then(response => {
         this.SLR_4ft_geojson = L.geoJSON(response.data)
       })
+      .catch(error => {
+        // handle error
+        console.log(error)
+        alert('Something went wrong. Try reloading your page.')
+      })
   }
 
   load_5ft_geojson = () => {
@@ -991,6 +1100,11 @@ class GeoJSONStore {
       .then(response => {
         this.SLR_5ft_geojson = L.geoJSON(response.data)
       })
+      .catch(error => {
+        // handle error
+        console.log(error)
+        alert('Something went wrong. Try reloading your page.')
+      })
   }
 
   load_6ft_geojson = () => {
@@ -1000,6 +1114,11 @@ class GeoJSONStore {
       )
       .then(response => {
         this.SLR_6ft_geojson = L.geoJSON(response.data)
+      })
+      .catch(error => {
+        // handle error
+        console.log(error)
+        alert('Something went wrong. Try reloading your page.')
       })
   }
 
