@@ -133,7 +133,7 @@
 }
 
 .disconnectedRoads {
-  background-image: url('https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/location-48.png');
+  background-image: url('./img/disconnected-roads.png');
   background-size: 90%;
   background-color: #4d4d4d;
   background-repeat: no-repeat;
@@ -145,7 +145,7 @@
 }
 
 .disconnectedRoadsOff {
-  background-image: url('https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/location-48.png');
+  background-image: url('./img/disconnected-roads.png');
   background-size: 90%;
   background-color: #4d4d4d;
   background-repeat: no-repeat;
@@ -157,7 +157,7 @@
 }
 
 .noaaCoastalFloodHazardComposite {
-  background-image: url('../ControlPanel/img/SLOSH.png');
+  background-image: url('../ControlPanel/img/noaa-flood-hazard-composite.png');
   background-size: 90%;
   background-color: #4d4d4d;
   background-repeat: no-repeat;
@@ -169,7 +169,7 @@
 }
 
 .noaaCoastalFloodHazardCompositeOff {
-  background-image: url('../ControlPanel/img/SLOSH.png');
+  background-image: url('../ControlPanel/img/noaa-flood-hazard-composite.png');
   background-size: 90%;
   background-color: #4d4d4d;
   background-repeat: no-repeat;

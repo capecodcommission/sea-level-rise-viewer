@@ -429,7 +429,7 @@ class Layers extends Component {
                 ? css.clickedButton
                 : css.coastalFloodHazardComposite
             }
-            src={require('../img/SLOSH.png')}
+            src={require('../img/noaa-flood-hazard-composite.png')}
             circle
           />
         </Col>
