@@ -66,6 +66,8 @@ module.exports = function(proxy, allowedHost) {
     // https://github.com/facebookincubator/create-react-app/issues/293
     watchOptions: {
       ignored: /node_modules/,
+      aggregateTimeout: 500, // delay before reloading
+      poll: 1000 // enable polling since fsevents are not supported in docker
     },
     // Enable HTTPS if the HTTPS environment variable is set to 'true'
     https: protocol === 'https',
