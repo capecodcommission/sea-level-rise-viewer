@@ -57,7 +57,7 @@ class Layers extends Component {
         Barnstable county and municipal representatives.</p> <p>The data and more
         information is available{' '}
           <a
-            href="http://gis-cccommission.opendata.arcgis.com/datasets/critical-facilities"
+            href="https://gis-cccommission.opendata.arcgis.com/datasets/critical-facilities"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -93,7 +93,7 @@ class Layers extends Component {
         intersection and potential coastal flooding. </p> <p>More information and the
         data for sea level models is available{' '}
           <a
-            href="http://gis-cccommission.opendata.arcgis.com/search?collection=Dataset&q=sea%20level"
+            href="https://gis-cccommission.opendata.arcgis.com/search?collection=Dataset&q=sea%20level"
             target="_blank"
             rel="noopener noreferrer"
           >
