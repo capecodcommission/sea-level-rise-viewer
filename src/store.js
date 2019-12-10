@@ -411,7 +411,7 @@ class ControlPanelStore {
   @observable criticalFacilitiesBackground: init = false
   @observable sloshBackground = false
   @observable femaFirmBackground: init = false
-  @observable currentBaseMapName: string = 'DarkGray'
+  @observable currentBaseMapName: string = 'Imagery'
   @observable startColor = '#0ca4ff'
   @observable endColor = '#0077be'
   @observable
