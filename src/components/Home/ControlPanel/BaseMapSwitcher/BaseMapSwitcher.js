@@ -39,6 +39,7 @@ class BaseMapSwitcher extends Component {
         >
           <option value="NationalGeographic">National Geographic</option>
           <option value="DarkGray">Dark Gray</option>
+          <option value="Imagery">Satellite</option>
         </select>
       </div>
     )
