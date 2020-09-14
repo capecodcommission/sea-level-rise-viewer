@@ -1,7 +1,9 @@
 FROM node:current-alpine as build_deps
 WORKDIR /usr/src/app
 COPY . ./
-RUN apk add --no-cache git && yarn install && yarn build
+RUN apk add --no-cache git
+RUN yarn install
+RUN yarn build
 
 FROM nginx:stable-alpine
 COPY --from=build_deps /usr/src/app/build /usr/share/nginx/html
