@@ -1,7 +1,7 @@
 FROM node:current-alpine as build_deps
 WORKDIR /usr/src/app
 COPY . ./
-# RUN apk add --no-cache git
+RUN apk add git
 RUN yarn install --force
 RUN yarn build
 
