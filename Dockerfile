@@ -2,7 +2,7 @@ FROM node:current-alpine as build_deps
 WORKDIR /usr/src/app
 COPY . ./
 RUN apk add --no-cache git
-RUN yarn global
+RUN yarn install --force
 RUN yarn build
 
 FROM nginx:stable-alpine
