@@ -1,8 +1,10 @@
 FROM node:current-alpine as build_deps
 WORKDIR /usr/src/app
+RUN yarn cache clean --force
 COPY . ./
 RUN apk add --no-cache git
-RUN yarn install
+RUN yarn install --force
+RUN yarn cache clean --force
 RUN yarn build
 
 FROM nginx:stable-alpine
