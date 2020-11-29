@@ -3,7 +3,7 @@ WORKDIR /usr/src/app
 # COPY . ./
 COPY package*.json ./ 
 # RUN apk add git && yarn install --force && yarn build
-RUN yarn install
+RUN npm install
 COPY . .
 
 FROM nginx:stable-alpine
