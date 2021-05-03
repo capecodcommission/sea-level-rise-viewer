@@ -3,7 +3,7 @@ WORKDIR /usr/src/app
 COPY . ./
 # COPY package*.json ./ 
 # RUN apk add git && yarn install --force && yarn build
-RUN apk add --no-cache git && yarn install && yarn build
+RUN apk add --upgrade --no-cache git && yarn install && yarn build
 # RUN npm install
 # COPY . .
 
