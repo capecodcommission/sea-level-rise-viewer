@@ -1,11 +1,7 @@
 FROM node:current-alpine as build_deps
 WORKDIR /usr/src/app
 COPY . ./
-# COPY package*.json ./ 
-# RUN apk add git && yarn install --force && yarn build
 RUN apk add --no-cache git && yarn install && yarn build
-# RUN npm install
-# COPY . .
 
 FROM nginx:stable-alpine
 COPY --from=build_deps /usr/src/app/build /usr/share/nginx/html
