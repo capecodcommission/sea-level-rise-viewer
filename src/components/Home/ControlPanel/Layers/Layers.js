@@ -86,7 +86,7 @@ class Layers extends Component {
 
     let slrDescription = (
       <Popover id="slr" title="Sea Level Rise">
-        <p>The datalayer displays sea level intervals relative to mean high water
+        <p>The datalayer displays sea level intervals relative to mean high high water (MHHW)
         representing the Cape Cod Commission's <strong>Sea Level Rise</strong>{' '}
         modeling for Barnstable County.</p> <p>The critical facilities intersecting
         with the sea level at each interval are styled differently to represent
