@@ -825,11 +825,11 @@ class MapServicesStore {
     // url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_0_Corrected/MapServer',
     url:
       'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/0',
-    opacity: 0.5,
-    // where: "TYPE = 'Connected to Coast'",
-    // style: function(feature) {
-    //   return {color: '#0070FF', weight: 1, fillOpacity: 0.5}
-    // },
+    // opacity: 0.5,
+    where: "TYPE = 'Connected to Coast'",
+    style: function(feature) {
+      return {color: '#0070FF', weight: 1, fillOpacity: 0.5}
+    },
   })
   zeroFtLowLyingArea: init = new esri.FeatureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_0ft/MapServer',
