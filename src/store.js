@@ -822,10 +822,9 @@ class MapServicesStore {
   // TODO: KEEPING NOAA SERVICES FOR FUTURE CCC-NOAA COMPARISON
   zeroFtSeaLevel: init = new esri.FeatureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_0ft/MapServer',
-    // url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_0_Corrected/MapServer',
     url:
-      'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/0',
-    // opacity: 0.5,
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_0_Corrected/MapServer',
+    opacity: 0.5,
     where: "TYPE = 'Connected to Coast'",
     style: function(feature) {
       return {color: '#0070FF', weight: 1, fillOpacity: 0.5}
@@ -833,9 +832,8 @@ class MapServicesStore {
   })
   zeroFtLowLyingArea: init = new esri.FeatureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_0ft/MapServer',
-    // url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_0_Corrected/MapServer/0',
     url:
-      'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/0',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_0_Corrected/MapServer/0',
     where: "TYPE = 'Depression'",
     style: function(feature) {
       return {color: '#7fcdbb', weight: 1, fillOpacity: 0.9}
@@ -843,10 +841,9 @@ class MapServicesStore {
   })
   oneFtSeaLevel: init = new esri.FeatureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_1ft/MapServer',
-    // url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_1_Corrected/MapServer',
     url:
-      'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/2',
-    // opacity: 0.5,
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_1_Corrected/MapServer',
+    opacity: 0.5,
     where: "TYPE = 'Connected to Coast'",
     style: function(feature) {
       return {color: '#0070FF', weight: 1, fillOpacity: 0.5}
@@ -854,9 +851,8 @@ class MapServicesStore {
   })
   oneFtLowLyingArea: init = new esri.FeatureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_1ft/MapServer',
-    // url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_1_Corrected/MapServer/0',
     url:
-      'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/2',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_1_Corrected/MapServer/0',
     where: "TYPE = 'Depression'",
     style: function(feature) {
       return {color: '#7fcdbb', weight: 1, fillOpacity: 0.9}
@@ -865,9 +861,8 @@ class MapServicesStore {
   twoFtSeaLevel: init = new esri.FeatureLayer({
     url:
       // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_2ft/MapServer',
-      // 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_2_Corrected/MapServer',
-      'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/5',
-    // opacity: 0.5,
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_2_Corrected/MapServer',
+    opacity: 0.5,
     where: "TYPE = 'Connected to Coast'",
     style: function(feature) {
       return {color: '#0070FF', weight: 1, fillOpacity: 0.5}
@@ -875,9 +870,8 @@ class MapServicesStore {
   })
   twoFtLowLyingArea: init = new esri.FeatureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_2ft/MapServer',
-    // url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_2_Corrected/MapServer/0',
     url:
-      'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/5',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_2_Corrected/MapServer/0',
     where: "TYPE = 'Depression'",
     style: function(feature) {
       return {color: '#7fcdbb', weight: 1, fillOpacity: 0.9}
@@ -886,9 +880,8 @@ class MapServicesStore {
   threeFtSeaLevel: init = new esri.FeatureLayer({
     url:
       // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_3ft/MapServer',
-      // 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_3_Corrected/MapServer',
-      'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/8',
-    // opacity: 0.5,
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_3_Corrected/MapServer',
+    opacity: 0.5,
     where: "TYPE = 'Connected to Coast'",
     style: function(feature) {
       return {color: '#0070FF', weight: 1, fillOpacity: 0.5}
@@ -896,9 +889,8 @@ class MapServicesStore {
   })
   threeFtLowLyingArea: init = new esri.FeatureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_3ft/MapServer',
-    // url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_3_Corrected/MapServer/0',
     url:
-      'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/8',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_3_Corrected/MapServer/0',
     where: "TYPE = 'Depression'",
     style: function(feature) {
       return {color: '#7fcdbb', weight: 1, fillOpacity: 0.9}
@@ -907,9 +899,8 @@ class MapServicesStore {
   fourFtSeaLevel: init = new esri.FeatureLayer({
     url:
       // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_4ft/MapServer',
-      // 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_4ft_Corrected/MapServer',
-      'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/11',
-    // opacity: 0.5,
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_4ft_Corrected/MapServer',
+    opacity: 0.5,
     where: "TYPE = 'Connected to Coast'",
     style: function(feature) {
       return {color: '#0070FF', weight: 1, fillOpacity: 0.5}
@@ -917,9 +908,8 @@ class MapServicesStore {
   })
   fourFtLowLyingArea: init = new esri.FeatureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_4ft/MapServer',
-    // url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_4ft_Corrected/MapServer/0',
     url:
-      'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/11',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_4ft_Corrected/MapServer/0',
     where: "TYPE = 'Depression'",
     style: function(feature) {
       return {color: '#7fcdbb', weight: 1, fillOpacity: 0.9}
@@ -928,9 +918,8 @@ class MapServicesStore {
   fiveFtSeaLevel: init = new esri.FeatureLayer({
     url:
       // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_5ft/MapServer',
-      // 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_5ft_Corrected/MapServer',
-      'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/14',
-    // opacity: 0.5,
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_5ft_Corrected/MapServer',
+    opacity: 0.5,
     where: "TYPE = 'Connected to Coast'",
     style: function(feature) {
       return {color: '#0070FF', weight: 1, fillOpacity: 0.5}
@@ -938,9 +927,8 @@ class MapServicesStore {
   })
   fiveFtLowLyingArea: init = new esri.FeatureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_5ft/MapServer',
-    // url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_5ft_Corrected/MapServer/0',
     url:
-      'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/14',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_5ft_Corrected/MapServer/0',
     where: "TYPE = 'Depression'",
     style: function(feature) {
       return {color: '#7fcdbb', weight: 1, fillOpacity: 0.9}
@@ -949,9 +937,8 @@ class MapServicesStore {
   sixFtSeaLevel: init = new esri.FeatureLayer({
     url:
       // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_6ft/MapServer',
-      // 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_6/MapServer',
-      'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/17',
-    // opacity: 0.5,
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_6/MapServer',
+    opacity: 0.5,
     where: "TYPE = 'Connected to Coast'",
     style: function(feature) {
       return {color: '#0070FF', weight: 1, fillOpacity: 0.5}
@@ -959,9 +946,8 @@ class MapServicesStore {
   })
   sixFtLowLyingArea: init = new esri.FeatureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_6ft/MapServer',
-    // url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_6/MapServer/0',
     url:
-      'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/17',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_6/MapServer/0',
     where: "TYPE = 'Depression'",
     style: function(feature) {
       return {color: '#7fcdbb', weight: 1, fillOpacity: 0.9}
@@ -1082,8 +1068,9 @@ class GeoJSONStore {
     axios
       .get(
         // 'https://opendata.arcgis.com/datasets/f05ed0d4a6444cb39c8642c8f4b7a199_0.geojson'
-        'https://opendata.arcgis.com/api/v3/datasets/f05ed0d4a6444cb39c8642c8f4b7a199_0/downloads/data?format=geojson&spatialRefId=4326'
+        // 'https://opendata.arcgis.com/api/v3/datasets/f05ed0d4a6444cb39c8642c8f4b7a199_0/downloads/data?format=geojson&spatialRefId=4326'
         // 'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/0/query?where=1%3D1&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&distance=&units=esriSRUnit_Foot&relationParam=&outFields=&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&havingClause=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&returnExtentOnly=false&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=geojson'
+        'https://gis-web-assets.capecodcommission.org/ZerofootJSON.geojson'
       )
       .then(response => {
         this.SLR_0ft_geojson = L.geoJSON(response.data)
@@ -1091,9 +1078,7 @@ class GeoJSONStore {
       .catch(error => {
         // handle error
         console.log(error)
-        alert(
-          'Something went wrong with load_0ft_geojson. Try reloading your page.'
-        )
+        alert('Something went wrong. Error: x111250. Try reloading your page.')
       })
   }
 
@@ -1109,7 +1094,7 @@ class GeoJSONStore {
       .catch(error => {
         // handle error
         console.log(error)
-        alert('Something went wrong. Try reloading your page.')
+        alert('Something went wrong. Error: x111251. Try reloading your page.')
       })
   }
 
@@ -1125,15 +1110,16 @@ class GeoJSONStore {
       .catch(error => {
         // handle error
         console.log(error)
-        alert('Something went wrong. Try reloading your page.')
+        alert('Something went wrong. Error x111252. Try reloading your page.')
       })
   }
 
   load_3ft_geojson = () => {
     axios
       .get(
-        'https://opendata.arcgis.com/datasets/183f493d62f84b26a09badd0288d6b53_8.geojson'
+        // 'https://opendata.arcgis.com/datasets/183f493d62f84b26a09badd0288d6b53_8.geojson'
         // 'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/8/query?where=1%3D1&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&distance=&units=esriSRUnit_Foot&relationParam=&outFields=&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&havingClause=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&returnExtentOnly=false&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=geojson'
+        'https://gis-web-assets.capecodcommission.org/ThreefootJSON.geojson'
       )
       .then(response => {
         this.SLR_3ft_geojson = L.geoJSON(response.data)
@@ -1141,7 +1127,7 @@ class GeoJSONStore {
       .catch(error => {
         // handle error
         console.log(error)
-        alert('Something went wrong. Try reloading your page.')
+        alert('Something went wrong. Error: x111253. Try reloading your page.')
       })
   }
 
@@ -1157,15 +1143,16 @@ class GeoJSONStore {
       .catch(error => {
         // handle error
         console.log(error)
-        alert('Something went wrong. Try reloading your page.')
+        alert('Something went wrong. Error: x111254. Try reloading your page.')
       })
   }
 
   load_5ft_geojson = () => {
     axios
       .get(
-        'https://opendata.arcgis.com/datasets/fe799f18fbda4eb0b65d07d60bb28e3e_14.geojson'
+        // 'https://opendata.arcgis.com/datasets/fe799f18fbda4eb0b65d07d60bb28e3e_14.geojson'
         // 'https://gis-test.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_Layers/MapServer/14/query?where=1%3D1&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&distance=&units=esriSRUnit_Foot&relationParam=&outFields=&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&havingClause=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&returnExtentOnly=false&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=geojson'
+        'https://gis-web-assets.capecodcommission.org/FivefootJSON.geojson'
       )
       .then(response => {
         this.SLR_5ft_geojson = L.geoJSON(response.data)
@@ -1173,7 +1160,7 @@ class GeoJSONStore {
       .catch(error => {
         // handle error
         console.log(error)
-        alert('Something went wrong. Try reloading your page.')
+        alert('Something went wrong. Error: x111255. Try reloading your page.')
       })
   }
 
@@ -1189,7 +1176,7 @@ class GeoJSONStore {
       .catch(error => {
         // handle error
         console.log(error)
-        alert('Something went wrong. Try reloading your page.')
+        alert('Something went wrong. Error: x111256. Try reloading your page.')
       })
   }
 
