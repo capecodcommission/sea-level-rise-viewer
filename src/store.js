@@ -1071,7 +1071,7 @@ class GeoJSONStore {
       .get(
         // 'https://opendata.arcgis.com/datasets/f05ed0d4a6444cb39c8642c8f4b7a199_0.geojson'
         // 'https://opendata.arcgis.com/api/v3/datasets/f05ed0d4a6444cb39c8642c8f4b7a199_0/downloads/data?format=geojson&spatialRefId=4326'
-        'static/geojson/ZerofootJSON.geojson'
+        'static/geo/ZerofootJSON.geojson'
       )
       .then(response => {
         this.SLR_0ft_geojson = L.geoJSON(response.data)
@@ -1117,7 +1117,7 @@ class GeoJSONStore {
     axios
       .get(
         // 'https://opendata.arcgis.com/datasets/183f493d62f84b26a09badd0288d6b53_8.geojson'
-        'static/geojson/ThreefootJSON.geojson'
+        'static/geo/ThreefootJSON.geojson'
       )
       .then(response => {
         this.SLR_3ft_geojson = L.geoJSON(response.data)
@@ -1148,7 +1148,7 @@ class GeoJSONStore {
     axios
       .get(
         // 'https://opendata.arcgis.com/datasets/fe799f18fbda4eb0b65d07d60bb28e3e_14.geojson'
-        'static/geojson/FivefootJSON.geojson'
+        'static/geo/FivefootJSON.geojson'
       )
       .then(response => {
         this.SLR_5ft_geojson = L.geoJSON(response.data)
