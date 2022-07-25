@@ -785,7 +785,7 @@ class MapServicesStore {
   criticalFacilities: init = eLCluster
     .featureLayer({
       url:
-        'https://gis-services.capecodcommission.org/arcgis/rest/services/Data_People/Infrastructure/MapServer/12',
+        'https://services1.arcgis.com/Cx6nu3bxRHgwsm05/arcgis/rest/services/Critical_Facilities/FeatureServer/0',
       pointToLayer: function(feature, latlng) {
         // CONSTRUCT A LEAFLET 'divIcon' TO INSERT INTO THE LEAFLET MARKER BELOW -
         // ALLOWING US TO STYLE THE BACKGROUND OF THE IMAGE PROGRAMMATICALLY
@@ -820,7 +820,7 @@ class MapServicesStore {
       )
     })
   // TODO: KEEPING NOAA SERVICES FOR FUTURE CCC-NOAA COMPARISON
-  zeroFtSeaLevel: init = new esri.FeatureLayer({
+  zeroFtSeaLevel: init = new esri.featureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_0ft/MapServer',
     // url:'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_0_Corrected/MapServer',
     url:
@@ -831,7 +831,7 @@ class MapServicesStore {
       return {color: '#0070FF', weight: 1, fillOpacity: 0.5}
     },
   })
-  zeroFtLowLyingArea: init = new esri.FeatureLayer({
+  zeroFtLowLyingArea: init = new esri.featureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_0ft/MapServer',
     // url: 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_0_Corrected/MapServer/0',
     url:
@@ -841,7 +841,7 @@ class MapServicesStore {
       return {color: '#7fcdbb', weight: 1, fillOpacity: 0.9}
     },
   })
-  oneFtSeaLevel: init = new esri.FeatureLayer({
+  oneFtSeaLevel: init = new esri.featureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_1ft/MapServer',
     // url:'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_1_Corrected/MapServer',
     url:
@@ -852,7 +852,7 @@ class MapServicesStore {
       return {color: '#0070FF', weight: 1, fillOpacity: 0.5}
     },
   })
-  oneFtLowLyingArea: init = new esri.FeatureLayer({
+  oneFtLowLyingArea: init = new esri.featureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_1ft/MapServer',
     url:
       'https://services1.arcgis.com/Cx6nu3bxRHgwsm05/arcgis/rest/services/Map1/FeatureServer/0',
@@ -861,7 +861,7 @@ class MapServicesStore {
       return {color: '#7fcdbb', weight: 1, fillOpacity: 0.9}
     },
   })
-  twoFtSeaLevel: init = new esri.FeatureLayer({
+  twoFtSeaLevel: init = new esri.featureLayer({
     url:
       // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_2ft/MapServer',
       // 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_2_Corrected/MapServer',
@@ -872,7 +872,7 @@ class MapServicesStore {
       return {color: '#0070FF', weight: 1, fillOpacity: 0.5}
     },
   })
-  twoFtLowLyingArea: init = new esri.FeatureLayer({
+  twoFtLowLyingArea: init = new esri.featureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_2ft/MapServer',
     url:
       'https://services1.arcgis.com/Cx6nu3bxRHgwsm05/arcgis/rest/services/Map2/FeatureServer/0',
@@ -881,7 +881,7 @@ class MapServicesStore {
       return {color: '#7fcdbb', weight: 1, fillOpacity: 0.9}
     },
   })
-  threeFtSeaLevel: init = new esri.FeatureLayer({
+  threeFtSeaLevel: init = new esri.featureLayer({
     url:
       // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_3ft/MapServer',
       // 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_3_Corrected/MapServer',
@@ -892,7 +892,7 @@ class MapServicesStore {
       return {color: '#0070FF', weight: 1, fillOpacity: 0.5}
     },
   })
-  threeFtLowLyingArea: init = new esri.FeatureLayer({
+  threeFtLowLyingArea: init = new esri.featureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_3ft/MapServer',
     url:
       'https://services1.arcgis.com/Cx6nu3bxRHgwsm05/arcgis/rest/services/Map3/FeatureServer/0',
@@ -901,7 +901,7 @@ class MapServicesStore {
       return {color: '#7fcdbb', weight: 1, fillOpacity: 0.9}
     },
   })
-  fourFtSeaLevel: init = new esri.FeatureLayer({
+  fourFtSeaLevel: init = new esri.featureLayer({
     url:
       // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_4ft/MapServer',
       // 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_4ft_Corrected/MapServer',
@@ -912,7 +912,7 @@ class MapServicesStore {
       return {color: '#0070FF', weight: 1, fillOpacity: 0.5}
     },
   })
-  fourFtLowLyingArea: init = new esri.FeatureLayer({
+  fourFtLowLyingArea: init = new esri.featureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_4ft/MapServer',
     url:
       'https://services1.arcgis.com/Cx6nu3bxRHgwsm05/arcgis/rest/services/Map4/FeatureServer/0',
@@ -921,7 +921,7 @@ class MapServicesStore {
       return {color: '#7fcdbb', weight: 1, fillOpacity: 0.9}
     },
   })
-  fiveFtSeaLevel: init = new esri.FeatureLayer({
+  fiveFtSeaLevel: init = new esri.featureLayer({
     url:
       // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_5ft/MapServer',
       // 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_5ft_Corrected/MapServer',
@@ -932,7 +932,7 @@ class MapServicesStore {
       return {color: '#0070FF', weight: 1, fillOpacity: 0.5}
     },
   })
-  fiveFtLowLyingArea: init = new esri.FeatureLayer({
+  fiveFtLowLyingArea: init = new esri.featureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_5ft/MapServer',
     url:
       'https://services1.arcgis.com/Cx6nu3bxRHgwsm05/arcgis/rest/services/Map5/FeatureServer/0',
@@ -941,7 +941,7 @@ class MapServicesStore {
       return {color: '#7fcdbb', weight: 1, fillOpacity: 0.9}
     },
   })
-  sixFtSeaLevel: init = new esri.FeatureLayer({
+  sixFtSeaLevel: init = new esri.featureLayer({
     url:
       // 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_6ft/MapServer',
       // 'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/SLR_6/MapServer',
@@ -952,7 +952,7 @@ class MapServicesStore {
       return {color: '#0070FF', weight: 1, fillOpacity: 0.5}
     },
   })
-  sixFtLowLyingArea: init = new esri.FeatureLayer({
+  sixFtLowLyingArea: init = new esri.featureLayer({
     // url: 'https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/slr_6ft/MapServer',
     url:
       'https://services1.arcgis.com/Cx6nu3bxRHgwsm05/arcgis/rest/services/Map6/FeatureServer/0',
