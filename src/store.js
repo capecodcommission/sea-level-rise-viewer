@@ -54,7 +54,7 @@ class EsriMapStore {
 
   // Adds current SLR and Road geojson layers, initializes blank intersection layer
   handleLayerAdding = () => {
-    this.RootStore.MapServicesStore.currentSLRLayer.addTo(this.map)
+    this.RootStore.GeoJSONStore.currentSLRLayer.addTo(this.map)
     this.RootStore.GeoJSONStore.currentRoadLayer.addTo(this.map)
     this.RootStore.GeoJSONStore.criticalFacilitiesIntersection.addTo(this.map)
     this.RootStore.GeoJSONStore.currentLowLyingLayer.addTo(this.map)
@@ -62,8 +62,8 @@ class EsriMapStore {
 
   // Remove or reset map-attached layers, nullify intersection-OBJECTID array if filled
   handleLayerRemoval = () => {
-    if (this.map.hasLayer(this.RootStore.MapServicesStore.currentSLRLayer)) {
-      this.map.removeLayer(this.RootStore.MapServicesStore.currentSLRLayer)
+    if (this.map.hasLayer(this.RootStore.GeoJSONStore.currentSLRLayer)) {
+      this.map.removeLayer(this.RootStore.GeoJSONStore.currentSLRLayer)
     }
     if (this.map.hasLayer(this.RootStore.GeoJSONStore.currentRoadLayer)) {
       this.map.removeLayer(this.RootStore.GeoJSONStore.currentRoadLayer)
@@ -76,7 +76,7 @@ class EsriMapStore {
       this.RootStore.GeoJSONStore.criticalFacilitiesIntersection.clearLayers()
       this.map.removeLayer(
         this.RootStore.GeoJSONStore.criticalFacilitiesIntersection &&
-          this.RootStore.MapServicesStore.currentSLRLayer &&
+          this.RootStore.GeoJSONStore.currentSLRLayer &&
           this.RootStore.GeoJSONStore.currentRoadLayer
       )
     }
@@ -212,7 +212,7 @@ class EsriMapStore {
       this.RootStore.MapServicesStore.criticalFacilities,
       this.RootStore.MapServicesStore.slosh,
       this.RootStore.MapServicesStore.femaFirm,
-      this.RootStore.MapServicesStore.currentSLRLayer,
+      this.RootStore.GeoJSONStore.currentSLRLayer,
       this.RootStore.GeoJSONStore.currentRoadLayer,
       this.RootStore.GeoJSONStore.criticalFacilitiesIntersection,
       this.RootStore.MapServicesStore.searchResults,
@@ -225,7 +225,7 @@ class EsriMapStore {
       !map.hasLayer(this.RootStore.MapServicesStore.criticalFacilities) &&
       !map.hasLayer(this.RootStore.MapServicesStore.slosh) &&
       !map.hasLayer(this.RootStore.MapServicesStore.femaFirm) &&
-      !map.hasLayer(this.RootStore.MapServicesStore.currentSLRLayer) &&
+      !map.hasLayer(this.RootStore.GeoJSONStore.currentSLRLayer) &&
       !map.hasLayer(this.RootStore.GeoJSONStore.currentRoadLayer) &&
       !map.hasLayer(
         this.RootStore.GeoJSONStore.criticalFacilitiesIntersection
