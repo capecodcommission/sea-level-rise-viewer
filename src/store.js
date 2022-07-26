@@ -474,7 +474,7 @@ class ControlPanelStore {
     const mapServicesStore = this.RootStore.MapServicesStore
     switch (value) {
       case 0:
-        mapServicesStore.currentSLRLayer = mapServicesStore.zeroFtSeaLevel
+        geoJSONStore.currentSLRLayer = mapServicesStore.zeroFtSeaLevel
         geoJSONStore.currentRoadLayer = mapServicesStore.roads
         geoJSONStore.currentSLR_geojson = geoJSONStore.SLR_0ft_geojson
         geoJSONStore.currentLowLyingLayer = mapServicesStore.zeroFtLowLyingArea
