@@ -647,7 +647,7 @@ class ControlPanelStore {
         this.layerDesc = (
           <p>
             At present Cape Cod is 383 square miles with 116,031 acres of
-            Priority Habitat. There are 728 Critical Facilities and 3,121 miles
+            Priority Habitat. There are 959 Critical Facilities and 3,121 miles
             of roadway. Annual sales equal $19.7 billion and 127,412 people are
             employed in 14,658 businesses.
           </p>
@@ -1086,7 +1086,8 @@ class GeoJSONStore {
   load_1ft_geojson = () => {
     axios
       .get(
-        'https://opendata.arcgis.com/datasets/b80d6c3f86944c4db081a52ddead9d24_2.geojson'
+        // 'https://opendata.arcgis.com/datasets/b80d6c3f86944c4db081a52ddead9d24_2.geojson'
+        'static/geo/OnefootJSON.geojson'
       )
       .then(response => {
         this.SLR_1ft_geojson = L.geoJSON(response.data)
@@ -1101,7 +1102,8 @@ class GeoJSONStore {
   load_2ft_geojson = () => {
     axios
       .get(
-        'https://opendata.arcgis.com/datasets/a592e537476d4752a738001fd637a8de_5.geojson'
+        // 'https://opendata.arcgis.com/datasets/a592e537476d4752a738001fd637a8de_5.geojson'
+        'static/geo/TwofootJSON.geojson'
       )
       .then(response => {
         this.SLR_2ft_geojson = L.geoJSON(response.data)
@@ -1132,7 +1134,8 @@ class GeoJSONStore {
   load_4ft_geojson = () => {
     axios
       .get(
-        'https://opendata.arcgis.com/datasets/3c04cf48476e477897aef4f4f2100b6d_11.geojson'
+        // 'https://opendata.arcgis.com/datasets/3c04cf48476e477897aef4f4f2100b6d_11.geojson'
+        'static/geo/FourfootJSON.geojson'
       )
       .then(response => {
         this.SLR_4ft_geojson = L.geoJSON(response.data)
@@ -1163,7 +1166,8 @@ class GeoJSONStore {
   load_6ft_geojson = () => {
     axios
       .get(
-        'https://opendata.arcgis.com/datasets/46d817c5b3dd48cca54bd56d3547b4b5_17.geojson'
+        // 'https://opendata.arcgis.com/datasets/46d817c5b3dd48cca54bd56d3547b4b5_17.geojson'
+        'static/geo/SixfootJSON.geojson'
       )
       .then(response => {
         this.SLR_6ft_geojson = L.geoJSON(response.data)
