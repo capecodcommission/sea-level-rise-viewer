@@ -658,7 +658,8 @@ class ControlPanelStore {
         this.layerDesc = (
           <ul style={{paddingLeft: 3}}>
             <li>5,760 acres (2%) of land is submerged.</li>
-            <li>{facCount} Critical Facilities are impacted.</li>
+            {/* was {facCount} b4 hard coded number */}
+            <li>45 Critical Facilities are impacted.</li>
             <li>3,007 Acres of Priority Habitat is lost.</li>
             <li>
               Sales of $43.7 million and 361 jobs are lost in 61 businesses.
@@ -675,7 +676,8 @@ class ControlPanelStore {
         this.layerDesc = (
           <ul style={{paddingLeft: 3}}>
             <li>8,960 acres (4%) of land is submerged.</li>
-            <li>{facCount} Critical Facilities are impacted.</li>
+            {/* was {facCount} b4 hard coded number */}
+            <li>66 Critical Facilities are impacted.</li>
             <li>4,072 Acres of Priority Habitat is lost.</li>
             <li>
               Sales of $185.7 million and 851 jobs are lost in 97 businesses.
@@ -692,7 +694,8 @@ class ControlPanelStore {
         this.layerDesc = (
           <ul style={{paddingLeft: 3}}>
             <li>12,800 acres (5%) of land is submerged.</li>
-            <li>{facCount} Critical Facilities are impacted.</li>
+            {/* was {facCount} b4 hard coded number */}
+            <li>107 Critical Facilities are impacted.</li>
             <li>5,644 Acres of Priority Habitat is lost.</li>
             <li>
               Sales of $288.8 million and 1,432 jobs are lost in 169 businesses.
@@ -709,7 +712,8 @@ class ControlPanelStore {
         this.layerDesc = (
           <ul style={{paddingLeft: 3}}>
             <li>16,000 acres (7%) of land is submerged.</li>
-            <li>{facCount} Critical Facilities are impacted.</li>
+            {/* was {facCount} b4 hard coded number */}
+            <li>148 Critical Facilities are impacted.</li>
             <li>8,081 Acres of Priority Habitat is lost.</li>
             <li>
               Sales of $510.4 million and 2,657 jobs are lost in 304 businesses.
@@ -726,7 +730,8 @@ class ControlPanelStore {
         this.layerDesc = (
           <ul style={{paddingLeft: 3}}>
             <li>19,200 acres (8%) of land is submerged.</li>
-            <li>{facCount} Critical Facilities are impacted.</li>
+            {/* was {facCount} b4 hard coded number */}
+            <li>182 Critical Facilities are impacted.</li>
             <li>10,033 Acres of Priority Habitat is lost.</li>
             <li>
               Sales of $796.9 million and 5,664 jobs are lost in 552 businesses.
@@ -743,7 +748,8 @@ class ControlPanelStore {
         this.layerDesc = (
           <ul style={{paddingLeft: 3}}>
             <li>21,760 acres (9%) of land is submerged.</li>
-            <li>{facCount} Critical Facilities are impacted.</li>
+            {/* was {facCount} b4 hard coded number */}
+            <li>213 Critical Facilities are impacted.</li>
             <li>11,724 Acres of Priority Habitat is lost.</li>
             <li>
               Sales of $1.07 billion and 8,222 jobs are lost in 795 businesses.
@@ -1071,7 +1077,7 @@ class GeoJSONStore {
       .get(
         // 'https://opendata.arcgis.com/datasets/f05ed0d4a6444cb39c8642c8f4b7a199_0.geojson'
         // 'https://opendata.arcgis.com/api/v3/datasets/f05ed0d4a6444cb39c8642c8f4b7a199_0/downloads/data?format=geojson&spatialRefId=4326'
-        'static/geo/ZerofootJSON.geojson'
+        'https://services1.arcgis.com/Cx6nu3bxRHgwsm05/arcgis/rest/services/Map0/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson'
       )
       .then(response => {
         this.SLR_0ft_geojson = L.geoJSON(response.data)
@@ -1087,7 +1093,7 @@ class GeoJSONStore {
     axios
       .get(
         // 'https://opendata.arcgis.com/datasets/b80d6c3f86944c4db081a52ddead9d24_2.geojson'
-        'static/geo/OnefootJSON.geojson'
+        'https://services1.arcgis.com/Cx6nu3bxRHgwsm05/arcgis/rest/services/Map1/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson'
       )
       .then(response => {
         this.SLR_1ft_geojson = L.geoJSON(response.data)
@@ -1103,7 +1109,7 @@ class GeoJSONStore {
     axios
       .get(
         // 'https://opendata.arcgis.com/datasets/a592e537476d4752a738001fd637a8de_5.geojson'
-        'static/geo/TwofootJSON.geojson'
+        'https://services1.arcgis.com/Cx6nu3bxRHgwsm05/arcgis/rest/services/Map2/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson'
       )
       .then(response => {
         this.SLR_2ft_geojson = L.geoJSON(response.data)
@@ -1118,8 +1124,8 @@ class GeoJSONStore {
   load_3ft_geojson = () => {
     axios
       .get(
-        // 'https://opendata.arcgis.com/datasets/183f493d62f84b26a09badd0288d6b53_8.geojson'
-        'static/geo/ThreefootJSON.geojson'
+        // 'https://hub.arcgis.com/datasets/183f493d62f84b26a09badd0288d6b53_8.geojson'
+        'https://services1.arcgis.com/Cx6nu3bxRHgwsm05/arcgis/rest/services/Map3/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson'
       )
       .then(response => {
         this.SLR_3ft_geojson = L.geoJSON(response.data)
@@ -1134,8 +1140,8 @@ class GeoJSONStore {
   load_4ft_geojson = () => {
     axios
       .get(
-        // 'https://opendata.arcgis.com/datasets/3c04cf48476e477897aef4f4f2100b6d_11.geojson'
-        'static/geo/FourfootJSON.geojson'
+        // 'https://hub.arcgis.com/datasets/3c04cf48476e477897aef4f4f2100b6d_11.geojson'
+        'https://services1.arcgis.com/Cx6nu3bxRHgwsm05/arcgis/rest/services/Map4/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson'
       )
       .then(response => {
         this.SLR_4ft_geojson = L.geoJSON(response.data)
@@ -1150,8 +1156,8 @@ class GeoJSONStore {
   load_5ft_geojson = () => {
     axios
       .get(
-        // 'https://opendata.arcgis.com/datasets/fe799f18fbda4eb0b65d07d60bb28e3e_14.geojson'
-        'static/geo/FivefootJSON.geojson'
+        // 'https://hub.arcgis.com/datasets/fe799f18fbda4eb0b65d07d60bb28e3e_14.geojson'
+        'https://services1.arcgis.com/Cx6nu3bxRHgwsm05/arcgis/rest/services/Map5/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson'
       )
       .then(response => {
         this.SLR_5ft_geojson = L.geoJSON(response.data)
@@ -1166,8 +1172,8 @@ class GeoJSONStore {
   load_6ft_geojson = () => {
     axios
       .get(
-        // 'https://opendata.arcgis.com/datasets/46d817c5b3dd48cca54bd56d3547b4b5_17.geojson'
-        'static/geo/SixfootJSON.geojson'
+        // 'https://hub.arcgis.com/datasets/46d817c5b3dd48cca54bd56d3547b4b5_17.geojson'
+        'https://services1.arcgis.com/Cx6nu3bxRHgwsm05/arcgis/rest/services/Map6/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson'
       )
       .then(response => {
         this.SLR_6ft_geojson = L.geoJSON(response.data)
