@@ -986,42 +986,42 @@ class MapServicesStore {
   })
   roads1ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_1ft/MapServer/0',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/MasterSLR/MapServer/3',
     style: function(feature) {
       return {color: '#756bb1', weight: 3}
     },
   })
   roads2ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_2ft/MapServer/0',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/MasterSLR/MapServer/6',
     style: function(feature) {
       return {color: '#756bb1', weight: 3}
     },
   })
   roads3ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_3ft/MapServer/0',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/MasterSLR/MapServer/9',
     style: function(feature) {
       return {color: '#756bb1', weight: 3}
     },
   })
   roads4ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_4ft/MapServer/0',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/MasterSLR/MapServer/12',
     style: function(feature) {
       return {color: '#756bb1', weight: 3}
     },
   })
   roads5ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_5ft/MapServer/0',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/MasterSLR/MapServer/15',
     style: function(feature) {
       return {color: '#756bb1', weight: 3}
     },
   })
   roads6ftSeaLevel: init = new esri.FeatureLayer({
     url:
-      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/Roads_Isolated_6ft/MapServer/0',
+      'https://gis-services.capecodcommission.org/arcgis/rest/services/SeaLevelRise/MasterSLR/MapServer/18',
     style: function(feature) {
       return {color: '#756bb1', weight: 3}
     },
